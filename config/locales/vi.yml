@@ -1,2 +1,7 @@
 vi:
   title: "Đặt vé online"
+  layouts:
+    header:
+      sign_up: "Đăng ký"
+      log_in: "Đăng nhập"
+      log_out: "Đăng xuất"

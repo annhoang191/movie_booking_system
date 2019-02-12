@@ -18,6 +18,8 @@ gem "font-awesome-sass"
 gem "devise"
 gem "paranoia", "~> 2.2"
 gem "ffaker"
+gem "config"
+gem "figaro"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
