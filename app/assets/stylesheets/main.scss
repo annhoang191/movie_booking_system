@@ -38,11 +38,6 @@
     -moz-transform: translateY(-50%);
     transform: translateY(-50%);
   }
-  @font-face {
-    font-family: 'Montserrat-Light';
-    font-weight: 100;
-    src: url(../fonts/Montserrat-Light.otf);
-  }
   /* Header Style
   ====================================*/
   header#header {
@@ -53,6 +48,11 @@
     width: 100%;
     line-height: 90px;
     z-index: 999;
+    background-color: black;
+  }
+  header.carousel-img {
+    z-index: -99999;
+    opacity: 0.5;
   }
   header#header .button_container {
     position: absolute;
@@ -209,7 +209,7 @@
     display: block;
     position: relative;
     color: #fb802d;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 28px;
     text-transform: uppercase;
     text-decoration: none;
@@ -267,7 +267,7 @@
     color: #fff;
     text-decoration: none;
     font-size: 16px;
-    font-family: 'Open Sans';
+    font-family: 'Roboto';
     letter-spacing: 1px;
     margin-right: 10px;
     -webkit-transition: all 0.25s ease;
@@ -319,7 +319,6 @@
     transition: all 0.25s ease;
   }
   header#header #header-search:before {
-    content: url(../images/search.png);
     width: 30px;
     height: 30px;
     display: block;
@@ -392,7 +391,7 @@
     font-weight: 400;
     text-transform: uppercase;
     color: #fff;
-    font-family: 'Montserrat-light', serif;
+    font-family: 'Roboto', serif;
     padding-top: 58px;
     line-height: 65px;
     max-width: 780px;
@@ -404,7 +403,7 @@
   .fullwidth-slider .carousel-inner .fill .slider-content .title i {
     font-size: 24px;
     font-style: normal;
-    font-family: montserrat-hairline;
+    font-family: Roboto;
     font-weight: 200;
     opacity: .7;
   }
@@ -417,7 +416,7 @@
   .fullwidth-slider .carousel-inner .fill .slider-content .subtitle li {
     float: left;
     color: #fff;
-    font-family: 'Montserrat-light';
+    font-family: 'Roboto';
     font-weight: 200;
     padding-right: 20px;
     line-height: 40px;
@@ -457,7 +456,7 @@
   }
   .fullwidth-slider .carousel-inner .fill .slider-content .slide_right .btn-trailer:before {
     content: '\f04b';
-    font-family: Fontawesome;
+    // font-family: Fontawesome;
     color: #fb802d;
     padding-right: 20px;
   }
@@ -496,7 +495,7 @@
   .fullwidth-slider .carousel-inner .fill .slider-content .chart-cirle .chart-circle-r span {
     color: #fff;
     font-weight: 300;
-    font-family: 'Open Sans';
+    font-family: 'Roboto';
     font-size: 14px;
     opacity: .9;
   }
@@ -536,7 +535,7 @@
     transform: translateX(-50%) translateY(-50%);
     font-size: 20px !important;
     font-weight: 300;
-    font-family: 'Open Sans';
+    font-family: 'Roboto';
     color: #fb802d;
   }
   .fullwidth-slider .carousel-inner .fill .slider-content .chart-cirle .chart-circle-l {
@@ -609,14 +608,14 @@
     color: #fb802d;
   }
   .ticket-carousel .swiper-button-prev::before {
-    content: '';
+    content: '<';
     font-family: Fontawesome;
     font-size: 27px;
     line-height: 47px;
     margin-left: -2px;
   }
   .ticket-carousel .swiper-button-next::before {
-    content: '';
+    content: '>';
     font-family: Fontawesome;
     font-size: 27px;
     line-height: 47px;
@@ -856,7 +855,7 @@
     padding: 5px 30px;
   }
   .comming-slider .swiper-container .swiper-slide .entry-desc .entry-title {
-    font-family: Roboto-light;
+    font-family: Roboto;
     font-size: 20px;
     color: #fff;
     margin: 0;
@@ -876,7 +875,7 @@
     font-size: 15px;
     line-height: 40px;
     font-weight: 100;
-    font-family: 'Open Sans';
+    font-family: 'Roboto';
     opacity: .54;
     color: #fff;
   }
@@ -1057,7 +1056,7 @@
     padding: 20px 30px;
   }
   .single-slider .swiper-container .swiper-slide .entry-desc .entry-title {
-    font-family: Roboto-light;
+    font-family: Roboto;
     font-size: 20px;
     color: #fff;
     margin: 0;
@@ -1075,7 +1074,7 @@
     margin-right: 10px;
     font-size: 15px;
     font-weight: 400;
-    font-family: 'Open Sans';
+    font-family: 'Roboto';
     opacity: .9;
     color: #fff;
   }
@@ -1194,7 +1193,6 @@
     z-index: -1;
   }
   .wpc-testimonails .testimonial:after {
-    content: url(../images/qte-b.png);
     position: absolute;
     bottom: -25px;
     right: 60px;
@@ -1206,7 +1204,7 @@
   }
   .wpc-testimonails .testimonial h4 {
     font-size: 16px;
-    font-family: 'Open Sans';
+    font-family: 'Roboto';
     font-style: italic;
     color: #fff;
     font-weight: 300;
@@ -1215,7 +1213,7 @@
   .wpc-testimonails .testimonial p {
     color: #fff;
     font-size: 16px;
-    font-family: 'Open Sans';
+    font-family: 'Roboto';
     font-weight: 300;
   }
   .wpc-testimonails .carousel-container {
@@ -1263,12 +1261,12 @@
     transform: translateX(-50%) translateY(-50%);
     font-size: 14px !important;
     font-weight: 100;
-    font-family: 'Open sans';
+    font-family: 'Roboto';
     color: #fff;
   }
   .circle-chart .circles-text small {
     font-size: 55%;
-    font-family: 'Open Sans';
+    font-family: 'Roboto';
     font-weight: 400;
     color: rgba(255, 255, 255, 0.5);
   }
@@ -1310,7 +1308,7 @@
   }
   .section-content .heading {
     text-transform: uppercase;
-    font-family: 'Montserrat-light', serif;
+    font-family: 'Roboto', serif;
     font-size: 32px;
     color: #101010;
   }
@@ -1406,7 +1404,7 @@
   .section-content #slider_coming .product-item .entry-title .subtitle li {
     float: left;
     color: #fff;
-    font-family: 'Montserrat-light', serif;
+    font-family: 'Roboto', serif;
     font-weight: 200;
     padding-right: 20px;
     font-size: 14px;
@@ -1442,7 +1440,7 @@
   }
   .section-content #slider_coming .product-item .entry-title .entry-date span {
     color: #fff;
-    font-family: 'Open Sans';
+    font-family: 'Roboto';
     opacity: .4;
     padding-left: 30px;
   }
@@ -1470,14 +1468,14 @@
     border-bottom: 2px solid #272727;
   }
   .section-content #slider_coming .product-item .entry-desc .entry-text h3 {
-    font-family: 'Montserrat-light', serif;
+    font-family: 'Roboto', serif;
     font-size: 22px;
     color: #fff;
     text-transform: capitalize;
   }
   .section-content #slider_coming .product-item .entry-desc .entry-text p {
     margin-top: 20px;
-    font-family: 'Open Sans';
+    font-family: 'Roboto';
     font-size: 16px;
     color: #fff;
     line-height: 28px;
@@ -1552,7 +1550,7 @@
     padding: 200px 0 0 25px;
   }
   .section-content #carousel_coming .slides .entry-desc .entry-title {
-    font-family: Roboto-light;
+    font-family: Roboto;
     font-size: 20px;
     color: #fff;
     margin: 0;
@@ -1572,7 +1570,7 @@
     font-size: 15px;
     line-height: 40px;
     font-weight: 100;
-    font-family: montserrat-hairline;
+    font-family: Roboto;
     opacity: .54;
     color: #fff;
     margin-top: 0;
@@ -1618,7 +1616,7 @@
     text-align: center;
   }
   .section-content .service h2 {
-    font-family: 'Montserrat-light', serif;
+    font-family: 'Roboto', serif;
     font-size: 20px;
     font-weight: 400;
     color: #fb802d;
@@ -1636,7 +1634,7 @@
   .section-content .wpc-boxoffice h3 {
     font-size: 28px;
     text-transform: uppercase;
-    font-family: 'Montserrat-light', serif;
+    font-family: 'Roboto', serif;
     font-weight: 300;
     text-align: center;
     color: #ffffff;
@@ -1683,7 +1681,7 @@
     border: none;
     line-height: 80px;
     font-weight: 300;
-    font-family: 'Open Sans';
+    font-family: 'Roboto';
     font-size: 14px;
     color: #fff;
     padding: 0 15px;
@@ -1710,7 +1708,7 @@
   }
   .section-content .wpc-boxoffice .wpc-box-list li ol li.bx-item-title h4 {
     color: #fff;
-    font-family: 'Open Sans';
+    font-family: 'Roboto';
     font-weight: 300;
     font-size: 16px;
   }
@@ -1799,7 +1797,7 @@
   }
   .page-title h2 {
     text-transform: uppercase;
-    font-family: 'Montserrat-light', serif;
+    font-family: 'Roboto', serif;
     font-size: 37px;
     color: #fff;
   }
@@ -1897,7 +1895,7 @@
   .blog-container .blog-item .post-content .entry-meta .category li a {
     color: #fff;
     opacity: .8;
-    font-family: 'Montserrat-light', serif;
+    font-family: 'Roboto', serif;
     font-size: 12px;
     font-weight: 100;
     text-decoration: none;
@@ -1922,7 +1920,7 @@
     color: #fff;
   }
   .blog-container .blog-item .post-content .entry-title {
-    font-family: 'Montserrat-light', serif;
+    font-family: 'Roboto', serif;
     font-size: 20px;
     width: 100%;
   }
@@ -1982,7 +1980,7 @@
     padding: 6px 13px;
     background: #f14236;
     color: #fff;
-    font-family: 'Montserrat-light';
+    font-family: 'Roboto';
     font-size: 11px;
     text-transform: uppercase;
   }
@@ -2032,7 +2030,7 @@
   article.blog-item.featured .post-content .entry-meta .category li a {
     color: #fff;
     opacity: .8;
-    font-family: 'Montserrat-light', serif;
+    font-family: 'Roboto', serif;
     font-size: 16px;
     font-weight: 100;
     text-decoration: none;
@@ -2057,7 +2055,7 @@
     color: #fff;
   }
   article.blog-item.featured .post-content .entry-title {
-    font-family: 'Montserrat-light', serif;
+    font-family: 'Roboto', serif;
     font-size: 30px;
     width: 90%;
     line-height: 35px;
@@ -2181,7 +2179,7 @@
     color: #fff;
     font-style: normal;
     text-transform: uppercase;
-    font-family: 'Montserrat-light', serif;
+    font-family: 'Roboto', serif;
     font-size: 28px;
     letter-spacing: 0;
     width: 65%;
@@ -2204,7 +2202,7 @@
     margin-top: 46px;
     text-transform: capitalize;
     font-size: 18px;
-    font-family: 'Open Sans';
+    font-family: 'Roboto';
     font-weight: 400;
     opacity: .9;
   }
@@ -2227,7 +2225,7 @@
     font-size: 14px;
     padding: 0;
     margin: 67px 0 20px 0;
-    font-family: 'Open Sans';
+    font-family: 'Roboto';
     font-weight: 400;
     opacity: .9;
     line-height: 28px;
@@ -2250,7 +2248,7 @@
   article.blog-item.single .post-content .info-content .item-info li span,
   article.blog-item.single .post-content .info-content .item-info li p {
     font-size: 14px;
-    font-family: 'Open Sans';
+    font-family: 'Roboto';
     color: #fff;
     font-weight: 400;
   }
@@ -2303,7 +2301,7 @@
   article.blog-item.single .post-content .info-content .item-info-rate .chart-cirle .chart-circle-r span {
     color: #fff;
     font-weight: 400;
-    font-family: 'Open Sans';
+    font-family: 'Roboto';
     font-size: 14px;
     opacity: .9;
   }
@@ -2342,7 +2340,7 @@
     transform: translateX(-50%) translateY(-50%);
     font-size: 14px !important;
     font-weight: 100;
-    font-family: 'Open Sans';
+    font-family: 'Roboto';
     color: #fb802d;
   }
   article.blog-item.single .post-content .info-content .item-info-rate .chart-circle-l {
@@ -2358,7 +2356,7 @@
   article.blog-item.single .post-content .info-content .item-info-rate .wpc-skills span {
     color: #fff;
     font-weight: 400;
-    font-family: 'Open Sans';
+    font-family: 'Roboto';
     font-size: 14px;
     opacity: .9;
   }
@@ -2390,7 +2388,7 @@
   article.blog-item.single .content-footer span {
     font-size: 12px;
     color: #fff;
-    font-family: 'Open Sans';
+    font-family: 'Roboto';
     padding-left: 60px;
     font-weight: normal;
     float: left;
@@ -2582,7 +2580,7 @@
   /* Page
   ====================================*/
   body {
-    font-family: 'Open Sans';
+    font-family: 'Roboto';
     font-size: 16px;
     font-weight: 100;
     line-height: 30px;
@@ -2870,7 +2868,7 @@
     background-color: #fff;
     width: 100%;
     letter-spacing: 0.7px;
-    font-family: 'Open Sans';
+    font-family: 'Roboto';
     text-transform: uppercase;
     font-size: 13px;
     font-weight: 100;
@@ -2923,7 +2921,7 @@
     width: 100%;
     letter-spacing: 0.7px;
     text-transform: uppercase;
-    font-family: 'Open Sans';
+    font-family: 'Roboto';
     font-style: italic;
     font-size: 15px;
     font-weight: 400;
@@ -2945,7 +2943,7 @@
   form.transparent input,
   form.transparent textarea {
     background-color: transparent;
-    font-family: 'Montserrat-Light';
+    font-family: 'Roboto';
     text-transform: none;
     font-style: normal;
   }
@@ -3069,7 +3067,7 @@
     outline: none;
     padding: 0px;
     line-height: 1em;
-    font-family: 'Open Sans';
+    font-family: 'Roboto';
     font-size: 60px;
     font-weight: normal;
     background-color: transparent;
@@ -3182,7 +3180,7 @@
   }
   #order .order-content h2 {
     color: #000;
-    font-family: 'Montserrat-light', serif;
+    font-family: 'Roboto', serif;
     font-size: 16px;
     margin: 0;
     padding: 0;
@@ -3195,7 +3193,7 @@
   }
   #order .order-content span {
     color: #000;
-    font-family: 'Montserrat-light', serif;
+    font-family: 'Roboto', serif;
     font-size: 16px;
     margin: 0;
     padding: 0;
@@ -3248,7 +3246,7 @@
     padding: 5px 10px ;
     font-size: 12px;
     color: #000;
-    font-family: 'Open Sans';
+    font-family: 'Roboto';
     font-weight: 400;
     border-radius: 15px;
     border: 1px solid #000;
@@ -3314,7 +3312,7 @@
     margin-bottom: 10px;
     width: 60%;
     box-sizing: border-box;
-    font-family: montserrat;
+    font-family: Roboto;
     color: #2C3E50;
     font-size: 13px;
   }
@@ -3581,7 +3579,7 @@
   }
   .sidebar .widget .widget-title {
     display: block;
-    font-family: 'Montserrat-light', serif;
+    font-family: 'Roboto', serif;
     font-weight: 600;
     font-size: 16px;
     color: #171717;
@@ -3597,7 +3595,7 @@
     padding: 0px;
     display: block;
     text-align: left;
-    font-family: 'Open Sans';
+    font-family: 'Roboto';
     font-size: 14px;
     font-weight: 300;
     font-style: italic;
@@ -3697,7 +3695,7 @@
     line-height: 50px;
     border: 1px solid #999999;
     box-shadow: none;
-    font-family: 'Open Sans';
+    font-family: 'Roboto';
     font-weight: 300;
     font-style: italic;
     font-size: 12px;
@@ -3708,25 +3706,25 @@
   }
   .sidebar .widget .search_form input::-webkit-input-placeholder {
     color: #999999;
-    font-family: 'Open Sans';
+    font-family: 'Roboto';
     font-style: italic;
     text-transform: capitalize;
   }
   .sidebar .widget .search_form input:-moz-placeholder {
     color: #999999;
-    font-family: 'Open Sans';
+    font-family: 'Roboto';
     font-style: italic;
     text-transform: capitalize;
   }
   .sidebar .widget .search_form input::-moz-placeholder {
     color: #999999;
-    font-family: 'Open Sans';
+    font-family: 'Roboto';
     font-style: italic;
     text-transform: capitalize;
   }
   .sidebar .widget .search_form input:-ms-input-placeholder {
     color: #999999;
-    font-family: 'Open Sans';
+    font-family: 'Roboto';
     font-style: italic;
     text-transform: capitalize;
   }
@@ -3757,11 +3755,11 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   }
   footer#footer .footer-cp-text {
-    font-family: 'Montserrat-Light';
+    font-family: 'Roboto';
     font-size: 12px;
   }
   footer#footer .widget {
-    font-family: 'Open Sans';
+    font-family: 'Roboto';
     font-size: 14px;
     font-style: italic;
     letter-spacing: 0.4px;
@@ -3773,7 +3771,7 @@
     color: #ffffff;
     font-style: normal;
     text-transform: uppercase;
-    font-family: 'Montserrat-light', serif;
+    font-family: 'Roboto', serif;
     font-size: 16px;
     letter-spacing: 2px;
     margin: 0px;
@@ -3799,7 +3797,7 @@
   }
   footer#footer .widget ul li a {
     color: rgba(255, 255, 255, 0.6);
-    font-family: 'Open Sans';
+    font-family: 'Roboto';
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -3814,7 +3812,7 @@
   }
   footer#footer .widget p {
     color: rgba(255, 255, 255, 0.6);
-    font-family: 'Open Sans';
+    font-family: 'Roboto';
     font-size: 14px;
     font-style: normal;
     font-weight: 300;
@@ -3860,7 +3858,7 @@
     color: #989898;
   }
   footer#footer .sub-footer p {
-    font-family: 'Montserrat-Light';
+    font-family: 'Roboto';
     font-size: 13px;
     letter-spacing: 0px;
   }

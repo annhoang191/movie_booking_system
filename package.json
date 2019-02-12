@@ -1,5 +1,7 @@
 {
   "name": "movie_booking",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "swiper": "^4.4.6"
+  }
 }
