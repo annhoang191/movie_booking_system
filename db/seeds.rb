@@ -37,82 +37,82 @@ Auditorium.create!(cinema_id: 3,
 
 p "Create seat 200"
 ("A".."E").each do |row|
-  Seat.create!(auditorium_id: 2,
-    row: row,
-    number: 1..10)
+  10.times.each do |n|
+    Seat.create! auditorium_id: 2, row: row, number: n
+  end
 end
 ("F".."J").each do |row|
-  Seat.create!(auditorium_id: 2,
-    row: row,
-    number: 1..20)
+  20.times.each do |n|
+    Seat.create! auditorium_id: 2, row: row, number: n
+  end
 end
 ("K".."L").each do |row|
-  Seat.create!(auditorium_id: 2,
-    row: row,
-    number: 1..25)
+  25.times.each do |n|
+    Seat.create! auditorium_id: 2, row: row, number: n
+  end
 end
 
 ("A".."E").each do |row|
-  Seat.create!(auditorium_id: 2,
-    row: row,
-    number: 1..10)
+  10.times.each do |n|
+    Seat.create! auditorium_id: 3, row: row, number: n
+  end
 end
 ("F".."G").each do |row|
-  Seat.create!(auditorium_id: 2,
-    row: row,
-    number: 1..25)
+  25.times.each do |n|
+    Seat.create! auditorium_id: 3, row: row, number: n
+  end
 end
 ("H".."L").each do |row|
-  Seat.create!(auditorium_id: 2,
-    row: row,
-    number: 1..20)
+  20.times.each do |n|
+    Seat.create! auditorium_id: 3, row: row, number: n
+  end
 end
 
 p "Create seat 300"
 ("A".."E").each do |row|
-  Seat.create!(auditorium_id: 4,
-    row: row,
-    number: 1..14)
+  14.times.each do |n|
+    Seat.create! auditorium_id: 4, row: row, number: n
+  end
 end
 ("F".."M").each do |row|
-  Seat.create!(auditorium_id: 4,
-    row: row,
-    number: 1..15)
+  15.times.each do |n|
+    Seat.create! auditorium_id: 4, row: row, number: n
+  end
 end
 ("N".."O").each do |row|
-  Seat.create!(auditorium_id: 4,
-    row: row,
-    number: 1..16)
+  16.times.each do |n|
+    Seat.create! auditorium_id: 4, row: row, number: n
+  end
 end
 ("P".."R").each do |row|
-  Seat.create!(auditorium_id: 4,
-    row: row,
-    number: 1..26)
+  26.times.each do |n|
+    Seat.create! auditorium_id: 4, row: row, number: n
+  end
 end
 
 p "Create seat 400"
 ("A".."E").each do |row|
-  Seat.create!(auditorium_id: 1,
-    row: row,
-    number: 1..10)
+  10.times.each do |n|
+    Seat.create! auditorium_id: 1, row: row, number: n
+  end
 end
 ("F".."K").each do |row|
-  Seat.create!(auditorium_id: 1,
-    row: row,
-    number: 1..12)
+  12.times.each do |n|
+    Seat.create! auditorium_id: 1, row: row, number: n
+  end
 end
 ("L".."O").each do |row|
-  Seat.create!(auditorium_id: 1,
-    row: row,
-    number: 1..14)
+  14.times.each do |n|
+    Seat.create! auditorium_id: 1, row: row, number: n
+  end
 end
 ("P".."T").each do |row|
-  Seat.create!(auditorium_id: 1,
-    row: row,
-    number: 1..26)
+  26.times.each do |n|
+    Seat.create! auditorium_id: 1, row: row, number: n
+  end
 end
 ("U".."X").each do |row|
-  Seat.create!(auditorium_id: 1,
-    row: row,
-    number: 1..23)
+  23.times.each do |n|
+    Seat.create! auditorium_id: 1, row: row, number: n
+  end
 end
