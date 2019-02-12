@@ -16,6 +16,7 @@ gem "bootstrap-sass", "3.3.7"
 gem "jquery-rails"
 gem "font-awesome-sass"
 gem "devise"
+gem "paranoia", "~> 2.2"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
