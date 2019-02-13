@@ -1,0 +1,7 @@
+models:
+  user:
+    name:
+      max_length: 50
+      min_length: 5
+    phone_number:
+      max_length: 20

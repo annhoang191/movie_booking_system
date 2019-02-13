@@ -38,13 +38,40 @@ vi:
       signed_up_but_unconfirmed: Một email chứa đường dẫn xác nhận tài khoản đã được gửi cho bạn. Bạn vui lòng kiểm tra email.
       update_needs_confirmation: Tài khoản của bạn được cập nhật thành công, nhưng bạn cần xác nhận địa chỉ email mới. Vui lòng kiểm tra email và nhấn vào đường dẫn xác nhận tài khoản để hoàn tất việc thay đổi địa chỉ email.
       updated: Cập nhật tài khoản thành công.
+      new:
+        heading: "Đăng ký tài khoản"
+        name: "Họ tên"
+        phone_number: "Số điện thoại"
+        email: "Email"
+        password: "Mật khẩu"
+        password_confirmation: "Xác nhận mật khẩu"
+        signup: "Đăng ký"
+        minimum_characters: "kí tự tối thiểu"
     sessions:
       signed_in: Đăng nhập thành công.
       signed_out: Đăng xuất thành công.
+      new:
+        email: "Email"
+        password: "Mật khẩu"
+        log_in: "Đăng nhập"
+        remember_me: "Ghi nhớ tài khoản"
     unlocks:
       send_instructions: Bạn sẽ nhận được email hướng dẫn cách mở khóa tài khoản trong vài phút nữa.
       send_paranoid_instructions: Nếu tài khoản của bạn tồn tại, bạn sẽ nhận được email hướng dẫn cách mở khóa tài khoản trong vài phút nữa.
       unlocked: Tài khoản của bạn đã được mở khóa thành công. Vui lòng đăng nhập để tiếp tục.
+    shared:
+      links:
+        log_in: "Đăng nhập"
+        signup: "Đăng ký"
+        forgot_password: "Quên mật khẩu?"
+    mailer:
+      confirmation_instructions:
+        title: "Framgia Internal Training Management"
+        welcome: "Xin chào"
+        description: 'Cảm ơn bạn đã đăng ký tài khoản trên ứng dụng đặt vé xem phim. Để hoàn tất quá trình
+          đăng ký hãy click vào nút "Xác nhận tài khoản" ở dưới'
+        confirm_account: "Xác nhận tài khoản"
+        signature: "Đặt vé online"
   errors:
     messages:
       already_confirmed: đã được xác nhận, vui lòng đăng nhập để tiếp tục.

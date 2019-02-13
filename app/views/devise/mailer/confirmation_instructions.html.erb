@@ -1,5 +1,60 @@
-<p>Welcome <%= @email %>!</p>
-
-<p>You can confirm your account email through the link below:</p>
-
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <style type="text/css">
+      @media only screen and (max-width: 550px), screen and (max-device-width: 550px) {
+          body[yahoo] .buttonwrapper { background-color: transparent !important; }
+          body[yahoo] .button { padding: 0 !important; }
+          body[yahoo] .button a { background-color: #46b7bf; padding: 15px 25px !important; }
+      }
+      @media only screen and (min-device-width: 601px) {
+          .content { width: 600px !important; }
+          .col387 { width: 387px !important; }
+      }
+    </style>
+  </head>
+  <body bgcolor="#3b3f40" style="margin: 0; padding: 0;" yahoo="fix">
+    <!--[if (gte mso 9)|(IE)]>
+    <table width="600" align="center" cellpadding="0" cellspacing="0" border="0">
+      <tr>
+        <td>
+    <![endif]-->
+    <table align="center" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%; max-width: 600px;" class="content">
+      <tr><br></tr>
+      <tr>
+        <td align="center" bgcolor="#46b7bf" style="padding: 20px 20px 20px 20px; color: #ffffff; font-family: Arial, sans-serif; font-size: 36px; font-weight: bold;">
+          <img src="http://www.myiconfinder.com/uploads/iconsets/256-256-9ea4d43475dc0e77aab3c6152086b5ed.png" alt="Ticket Logo"style="display:block;" />
+        </td>
+      </tr>
+      <tr>
+        <td align="center" bgcolor="#ffffff" style="padding: 40px 20px 40px 20px; color: #555555; font-family: Arial, sans-serif; font-size: 20px; line-height: 30px; border-bottom: 1px solid #f6f6f6;">
+          <%= t ".welcome" %> <%= @email %>!
+        </td>
+      </tr>
+      <tr>
+        <td align="center" bgcolor="#ffffff" style="padding: 40px 20px 40px 20px; color: #555555; font-family: Arial, sans-serif; font-size: 20px; line-height: 30px; border-bottom: 1px solid #f6f6f6;">
+          <%= t ".description" %>
+        </td>
+      </tr>
+      <tr>
+        <td align="center" bgcolor="#f9f9f9" style="padding: 30px 20px 30px 20px; font-family: Arial, sans-serif; border-bottom: 1px solid #f6f6f6;">
+          <table bgcolor="#46b7bf" border="0" cellspacing="0" cellpadding="0" class="buttonwrapper">
+            <tr>
+              <td align="center" height="50" style=" padding: 0 25px 0 25px; font-family: Arial, sans-serif; font-size: 16px; font-weight: bold;" class="button">
+                <%= link_to t(".confirm_account"), confirmation_url(@resource, confirmation_token: @token),
+                  {:style=>"color: #ffffff; text-align: center; text-decoration: none;"} %>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td align="center" bgcolor="#dddddd" style="padding: 15px 10px 15px 10px; color: #555555; font-family: Arial, sans-serif; font-size: 12px; line-height: 18px;">
+          <b><%= t ".signature" %></b><br/>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
