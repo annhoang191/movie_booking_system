@@ -17,3 +17,4 @@
 //= require bootstrap-sprockets
 //= require packages.js
 //= require scripts.js
+//= require toastr
