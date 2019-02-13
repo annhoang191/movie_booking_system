@@ -6,7 +6,7 @@
     </ol>
     <div class="carousel-inner" role="listbox">
       <div class="item active">
-        <div class="fill" data-bg-image="<%= @movie.cover %>">
+        <div class="fill" data-bg-image="<%= @movie.cover if @movie.cover %>">
           <div class="container movie-slider-container">
             <div class="row">
               <div class="col-sm-12 movie-slider-content">
@@ -58,7 +58,7 @@
                   <div class="entry-hover">
                     <div class="entry-actions">
                       <a href="https://vimeo.com/28177848" class="btn-trailers video-player">watch trailer</a>
-                      <a href="#order" class="btn-ticket order_btn ">buy ticket</a>
+                      <a href="#order" class="btn-ticket order_btn">buy ticket</a>
                     </div>
                   </div>
                   <div class="entry-desc">
@@ -81,3 +81,5 @@
     </div>
   </div>
 </section>
+
+<%= render "booking_seats/form" %>
