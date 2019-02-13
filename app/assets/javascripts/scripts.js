@@ -1,80 +1,197 @@
 (function($) {
-  "use strict";
-  $('[data-bg-color]').each(function() {
+  var price = 13; //price
+  $(document).ready(function() {
+    var $cart = $('#selected-seats'), //Sitting Area
+      $counter = $('#counter'), //Votes
+      $total = $('#total'); //Total money
+
+    var sc = $('#seat-map').seatCharts({
+      map: [ //Seating chart
+        'aaaaaaa_aaaaaaa_aaaaaaa',
+        'aaaaaaa_aaaaaaa_aaaaaaa',
+        'aaaaaaa_aaaaaaa_aaaaaaa',
+        'aaaaaaa_aaaaaaa_aaaaaaa',
+        'aaaaaaa_aaaaaaa_aaaaaaa'
+      ],
+      naming: {
+        top: false,
+        getLabel: function(character, row, column) {
+          return column;
+        }
+      },
+      legend: { //Definition legend
+        node: $('#legend'),
+        items: [
+          ['a', 'available', 'Available'],
+          ['a', 'unavailable', 'Unavailable'],
+          ['a', 'selected', 'selected'],
+        ]
+      },
+      click: function() { //Click event
+        if (this.status() == 'available') { //optional seat
+          $('<li>R' + (this.settings.row + 1) + ' S' + this.settings.label + '</li>')
+            .attr('id', 'cart-item-' + this.settings.id)
+            .data('seatId', this.settings.id)
+            .appendTo($cart);
+
+          $counter.text(sc.find('selected').length + 1);
+          $total.text(recalculateTotal(sc) + price);
+
+          return 'selected';
+        } else if (this.status() == 'selected') { //Checked
+          //Update Number
+          $counter.text(sc.find('selected').length - 1);
+          //update totalnum
+          $total.text(recalculateTotal(sc) - price);
+
+          //Delete reservation
+          $('#cart-item-' + this.settings.id).remove();
+          //optional
+          return 'available';
+        } else if (this.status() == 'unavailable') { //sold
+          return 'unavailable';
+        } else {
+          return this.style();
+        }
+      }
+    });
+    //sold seat
+    // sc.get(['2_9', '2_11', '2_12', '2_13', '2_14', '2_15', '2_10', '3_11', '3_12', '3_13', ]).status('unavailable');
+
+  });
+  //sum total money
+  function recalculateTotal(sc) {
+    var total = 0;
+    sc.find('selected').each(function() {
+      total += price;
+    });
+
+    return total;
+  }
+
+  function doAnimations(elems) {
+    //Cache the animationend event in a variable
+    var animEndEv = 'webkitAnimationEnd animationend';
+
+    elems.each(function() {
+      var $this = $(this),
+        $animationType = $this.data('animation');
+      $this.addClass($animationType).one(animEndEv, function() {
+        $this.removeClass($animationType);
+      });
+    });
+  }
+
+  //Variables on page load
+  var $myCarousel = $('#headerslider'),
+    $firstAnimatingElems = $myCarousel.find('.item').find("[data-animation ^= 'animated']");
+
+  //Initialize carousel
+  $myCarousel.carousel();
+
+  //Animate captions in first slide on page load
+  doAnimations($firstAnimatingElems);
+
+  //Pause carousel
+  $myCarousel.carousel('pause');
+
+
+  //Other slides to be animated on carousel slide event
+  $myCarousel.on('slide.bs.carousel', function(e) {
+    var $animatingElems = $(e.relatedTarget).find("[data-animation ^= 'animated']");
+    doAnimations($animatingElems);
+  });
+  $(window).load(function() {
+    // The slider being synced must be initialized first
+    $('#carousel_coming').flexslider({
+      animation: "slide",
+      controlNav: false,
+      animationLoop: true,
+      slideshow: false,
+      loop: true,
+      centeredSlides: true,
+      itemWidth: 212,
+      itemMargin: 20,
+      asNavFor: '#slider_coming'
+    });
+
+    $('#slider_coming').flexslider({
+      animation: "slide",
+      controlNav: false,
+      slideshow: true,
+      sync: "#carousel_coming"
+    });
+  });
+
+  function wpc_add_img_bg(img_sel, parent_sel) {
+    if (!img_sel) {
+      console.info('no img selector');
+      return false;
+    }
+    var $parent, _this;
+    $(img_sel).each(function() {
+      _this = $(this);
+      $parent = _this.closest(parent_sel);
+      $parent = $parent.length ? $parent : _this.parent();
+      $parent.css('background-image', 'url(' + this.src + ')');
+      _this.hide();
+    });
+  }
+  $(window).load(function() {
+    wpc_add_img_bg('.featured-image img', '.featured-image');
+    wpc_add_img_bg('.thumb_item .wpc_img', '.thumb_item');
+  });
+})(jQuery);
+
+$(document).on('turbolinks:load', function() {
+  $(window).load(function() {
+    // Animate loader off screen
+    $("#loader").hide();
+  });
+
+  $('[data-bg-image]').each(function() {
+    $(this).css({
+      'background-image': 'url(' + $(this).data('bg-image') + ')'
+    });
+	});
+	$('[data-bg-color]').each(function() {
     $(this).css({
       'background-color': $(this).data('bg-color')
     });
   });
-  //menu popup
+
+    // Sticky menu execution
+  if ($('body').hasClass('sticky-menu')) {
+    var headerBottom = $('#header').offset().top + $('#header').height();
+    var lastScrollTop = 0;
+    $(window).scroll(function(event) {
+      var st = $(this).scrollTop();
+      if ($(window).width() < 992) {
+        if (st > lastScrollTop) {
+          // downscroll code
+          $("body").removeClass("stick");
+        } else {
+          // upscroll code
+          $("body").addClass("stick");
+        }
+      } else {
+        if (st >= headerBottom) {
+          $("body").addClass("stick");
+        } else {
+          $("body").removeClass("stick");
+        }
+      }
+      if (st == 0) {
+        $("body").removeClass("stick");
+      }
+      lastScrollTop = st;
+    });
+  }
 
   $('#toggle').on('click', function() {
     $(this).toggleClass('active');
     $('#overlay').toggleClass('open');
   });
-
-  $(window).load(function() {
-    // Animate loader off screen
-    $("#loader").hide();
-
-  });
-
-
-  //order popup
-
-  $('.order_btn').magnificPopup({
-    type: 'inline',
-    removalDelay: 500,
-    mainClass: 'mfp-zoom-in',
-    callbacks: {
-      beforeOpen: function() {
-        this.st.mainClass = this.st.el.attr('data-effect');
-      }
-    },
-    midClick: true
-
-  });
-  $('.close-window').on('click', function() {
-    $.magnificPopup.close();
-  });
-
-
-  // Circle chart
-  $('.circle-chart').each(function(ci) {
-    var _circle = $(this),
-      _id = 'circle-chart' + ci,
-      _width = _circle.data('circle-width'),
-      _percent = _circle.data('percent'),
-      _text = _circle.data('text');
-
-    _percent = (_percent + '').replace('%', '');
-    _width = parseInt(_width, 10);
-
-    _circle.attr('id', _id);
-    var _cc = Circles.create({
-      id: _id,
-      value: _percent,
-      text: _text,
-      radius: 100,
-      width: _width,
-      colors: ['rgba(255,255,255, .05)', '#fb802d']
-    });
-
-  });
-
-  // header search action
-  $('#header-search').on('click', function() {
-    $('#overlay-search').addClass('active');
-
-    setTimeout(function() {
-      $('#overlay-search').find('input').eq(0).focus();
-    }, 400);
-  });
-  $('#overlay-search').find('.close-window').on('click', function() {
-    $('#overlay-search').removeClass('active');
-
-  });
-
-
   /* Modal video player */
   $('.video-player').each(function() {
     var _video = $(this);
@@ -84,43 +201,6 @@
   });
   $('.featured-image').on('click', function() {
     $(this).find('.video-player').on('click');
-  });
-
-  $(document).ready(function() {
-
-    // Sticky menu execution
-    if ($('body').hasClass('sticky-menu')) {
-
-      var headerBottom = $('#header').offset().top + $('#header').height();
-
-      var lastScrollTop = 0;
-      $(window).scroll(function(event) {
-        var st = $(this).scrollTop();
-
-        if ($(window).width() < 992) {
-          if (st > lastScrollTop) {
-            // downscroll code
-            $("body").removeClass("stick");
-          } else {
-            // upscroll code
-            $("body").addClass("stick");
-          }
-        } else {
-          if (st >= headerBottom) {
-            $("body").addClass("stick");
-          } else {
-            $("body").removeClass("stick");
-          }
-        }
-        if (st == 0) {
-          $("body").removeClass("stick");
-        }
-        lastScrollTop = st;
-      });
-
-    }
-
-    //header slider
   });
 
   $('.carousel').carousel({
@@ -151,9 +231,6 @@
       }
     });
   });
-
-
-
   $('.comming-slider').each(function() {
     var $this = $(this);
     var comming = new Swiper('#commingslider', {
@@ -202,9 +279,6 @@
     });
 
   });
-
-
-
   //progress bar
   function wpcProgress() {
     if ($('.wpc-skills').length) {
@@ -346,189 +420,25 @@
     }
   });
 
-  var price = 13; //price
-  $(document).ready(function() {
-    var $cart = $('#selected-seats'), //Sitting Area
-      $counter = $('#counter'), //Votes
-      $total = $('#total'); //Total money
+  $('#toggle').on('click', function() {
+    $(this).toggleClass('active');
+    $('#overlay').toggleClass('open');
+  });
 
-    var sc = $('#seat-map').seatCharts({
-      map: [ //Seating chart
-        'aaaaaaa_aaaaaaa_aaaaaaa',
-        'aaaaaaa_aaaaaaa_aaaaaaa',
-        'aaaaaaa_aaaaaaa_aaaaaaa',
-        'aaaaaaa_aaaaaaa_aaaaaaa',
-        'aaaaaaa_aaaaaaa_aaaaaaa'
-      ],
-      naming: {
-        top: false,
-        getLabel: function(character, row, column) {
-          return column;
-        }
-      },
-      legend: { //Definition legend
-        node: $('#legend'),
-        items: [
-          ['a', 'available', 'Available'],
-          ['a', 'unavailable', 'Unavailable'],
-          ['a', 'selected', 'selected'],
-        ]
-      },
-      click: function() { //Click event
-        if (this.status() == 'available') { //optional seat
-          $('<li>R' + (this.settings.row + 1) + ' S' + this.settings.label + '</li>')
-            .attr('id', 'cart-item-' + this.settings.id)
-            .data('seatId', this.settings.id)
-            .appendTo($cart);
+  //order popup
 
-          $counter.text(sc.find('selected').length + 1);
-          $total.text(recalculateTotal(sc) + price);
-
-          return 'selected';
-        } else if (this.status() == 'selected') { //Checked
-          //Update Number
-          $counter.text(sc.find('selected').length - 1);
-          //update totalnum
-          $total.text(recalculateTotal(sc) - price);
-
-          //Delete reservation
-          $('#cart-item-' + this.settings.id).remove();
-          //optional
-          return 'available';
-        } else if (this.status() == 'unavailable') { //sold
-          return 'unavailable';
-        } else {
-          return this.style();
-        }
+  $('.order_btn').magnificPopup({
+    type: 'inline',
+    removalDelay: 500,
+    mainClass: 'mfp-zoom-in',
+    callbacks: {
+      beforeOpen: function() {
+        this.st.mainClass = this.st.el.attr('data-effect');
       }
-    });
-    //sold seat
-    // sc.get(['2_9', '2_11', '2_12', '2_13', '2_14', '2_15', '2_10', '3_11', '3_12', '3_13', ]).status('unavailable');
-
+    },
+    midClick: true
   });
-  //sum total money
-  function recalculateTotal(sc) {
-    var total = 0;
-    sc.find('selected').each(function() {
-      total += price;
-    });
-
-    return total;
-  }
-
-  function doAnimations(elems) {
-    //Cache the animationend event in a variable
-    var animEndEv = 'webkitAnimationEnd animationend';
-
-    elems.each(function() {
-      var $this = $(this),
-        $animationType = $this.data('animation');
-      $this.addClass($animationType).one(animEndEv, function() {
-        $this.removeClass($animationType);
-      });
-    });
-  }
-
-  //Variables on page load
-  var $myCarousel = $('#headerslider'),
-    $firstAnimatingElems = $myCarousel.find('.item').find("[data-animation ^= 'animated']");
-
-  //Initialize carousel
-  $myCarousel.carousel();
-
-  //Animate captions in first slide on page load
-  doAnimations($firstAnimatingElems);
-
-  //Pause carousel
-  $myCarousel.carousel('pause');
-
-
-  //Other slides to be animated on carousel slide event
-  $myCarousel.on('slide.bs.carousel', function(e) {
-    var $animatingElems = $(e.relatedTarget).find("[data-animation ^= 'animated']");
-    doAnimations($animatingElems);
-  });
-  $(window).load(function() {
-    // The slider being synced must be initialized first
-    $('#carousel_coming').flexslider({
-      animation: "slide",
-      controlNav: false,
-      animationLoop: true,
-      slideshow: false,
-      loop: true,
-      centeredSlides: true,
-      itemWidth: 212,
-      itemMargin: 20,
-      asNavFor: '#slider_coming'
-    });
-
-    $('#slider_coming').flexslider({
-      animation: "slide",
-      controlNav: false,
-      slideshow: true,
-      sync: "#carousel_coming"
-    });
-  });
-
-  function wpc_add_img_bg(img_sel, parent_sel) {
-
-    if (!img_sel) {
-      console.info('no img selector');
-      return false;
-    }
-    var $parent, _this;
-
-    $(img_sel).each(function() {
-      _this = $(this);
-      $parent = _this.closest(parent_sel);
-      $parent = $parent.length ? $parent : _this.parent();
-      $parent.css('background-image', 'url(' + this.src + ')');
-      _this.hide();
-    });
-
-  }
-  $(window).load(function() {
-    wpc_add_img_bg('.featured-image img', '.featured-image');
-    wpc_add_img_bg('.thumb_item .wpc_img', '.thumb_item');
-  });
-
-  //contact form validate
-  $(".contact_form").on("submit", function(e) {
-
-    var errorMessage = $(".errorMessage");
-    var hasError = false;
-
-    $(".inputValidation").each(function() {
-      var $this = $(this);
-
-      if ($this.val() == "") {
-        hasError = true;
-        $this.addClass("inputError");
-        errorMessage.html("<p>Error: Please correct errors above</p>");
-        e.preventDefault();
-      }
-      if ($this.val() != "") {
-        $this.removeClass("inputError");
-      } else {
-        return true;
-      }
-    }); //Input
-
-    errorMessage.slideDown(700);
-  });
-
-
-})(jQuery);
-
-$(document).on('turbolinks:load', function() {
-  $('[data-bg-image]').each(function() {
-    $(this).css({
-      'background-image': 'url(' + $(this).data('bg-image') + ')'
-    });
-	});
-	$('[data-bg-color]').each(function() {
-    $(this).css({
-      'background-color': $(this).data('bg-color')
-    });
+  $('.close-window').on('click', function() {
+    $.magnificPopup.close();
   });
 });
