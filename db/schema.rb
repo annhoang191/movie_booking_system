@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_12_021529) do
+ActiveRecord::Schema.define(version: 2019_02_13_032630) do
 
   create_table "auditoria", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "cinema_id"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2019_02_12_021529) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
+    t.string "cover"
     t.index ["deleted_at"], name: "index_movies_on_deleted_at"
   end
 
