@@ -72,6 +72,23 @@ vi:
           đăng ký hãy click vào nút "Xác nhận tài khoản" ở dưới'
         confirm_account: "Xác nhận tài khoản"
         signature: "Đặt vé online"
+      reset_password_instructions:
+        title: "Đặt vé xem phim online"
+        welcome: "Xin chào"
+        description: 'Ai đó đã yêu cầu gửi đường link thay đổi mật khẩu tới email của bạn. Bạn có thể
+          click nút "Thay đổi mật khẩu" ở dưới để có thể  thay đổi mật khẩu mới. Nếu không phải bạn yêu cầu, hãy bỏ qua email này'
+        reset_password: "Thay đổi mật khẩu"
+        signature: "Đặt vé online"
+    passwords:
+      new:
+        forgot_password: "Quên mật khẩu?"
+        send_email: "Gửi hướng dẫn lấy lại mật khẩu"
+      edit:
+        edit: "Thay đổi mật khẩu"
+        new_password: "Mật khẩu mới"
+        confirm_new_password: "Xác nhận mật khẩu"
+        minimum_characters: "kí tự tối thiểu"
+        update: "Cập nhật"
   errors:
     messages:
       already_confirmed: đã được xác nhận, vui lòng đăng nhập để tiếp tục.
