@@ -46,14 +46,8 @@
     top: 0px;
     left: 0px;
     width: 100%;
-    line-height: 50px;
-    height: 50px;
+    line-height: 90px;
     z-index: 999;
-    background-color: black;
-  }
-  header.carousel-img {
-    z-index: -99999;
-    opacity: 0.5;
   }
   header#header .button_container {
     position: absolute;
@@ -320,6 +314,7 @@
     transition: all 0.25s ease;
   }
   header#header #header-search:before {
+    content: url(../images/search.png);
     width: 30px;
     height: 30px;
     display: block;
@@ -404,7 +399,7 @@
   .fullwidth-slider .carousel-inner .fill .slider-content .title i {
     font-size: 24px;
     font-style: normal;
-    font-family: Roboto;
+    font-family: 'Roboto';
     font-weight: 200;
     opacity: .7;
   }
@@ -422,6 +417,7 @@
     padding-right: 20px;
     line-height: 40px;
     font-size: 17px;
+    text-transform: uppercase;
   }
   .fullwidth-slider .carousel-inner .fill .slider-content .subtitle li:after {
     content: '|';
@@ -457,7 +453,7 @@
   }
   .fullwidth-slider .carousel-inner .fill .slider-content .slide_right .btn-trailer:before {
     content: '\f04b';
-    // font-family: Fontawesome;
+    font-family: Fontawesome;
     color: #fb802d;
     padding-right: 20px;
   }
@@ -609,14 +605,14 @@
     color: #fb802d;
   }
   .ticket-carousel .swiper-button-prev::before {
-    content: '<';
+    content: '';
     font-family: Fontawesome;
     font-size: 27px;
     line-height: 47px;
     margin-left: -2px;
   }
   .ticket-carousel .swiper-button-next::before {
-    content: '>';
+    content: '';
     font-family: Fontawesome;
     font-size: 27px;
     line-height: 47px;
@@ -659,7 +655,7 @@
     height: 40px;
     line-height: 40px;
     font-size: 14px;
-    font-family: Roboto;
+    font-family: 'Roboto';
     text-transform: uppercase;
     text-decoration: none;
     text-align: center;
@@ -717,7 +713,7 @@
     padding: 20px 30px;
   }
   .ticket-carousel .entry-desc .entry-title {
-    font-family: Roboto;
+    font-family: 'Roboto';
     font-size: 24px;
     color: #fff;
     margin: 0;
@@ -737,7 +733,7 @@
     font-size: 15px;
     line-height: 40px;
     font-weight: 100;
-    font-family: Roboto;
+    font-family: 'Roboto';
     color: #fff;
   }
   /* comming soon slider */
@@ -798,7 +794,7 @@
     height: 40px;
     line-height: 40px;
     font-size: 14px;
-    font-family: Roboto;
+    font-family: 'Roboto';
     text-transform: uppercase;
     text-decoration: none;
     text-align: center;
@@ -856,7 +852,7 @@
     padding: 5px 30px;
   }
   .comming-slider .swiper-container .swiper-slide .entry-desc .entry-title {
-    font-family: Roboto;
+    font-family: Roboto-light;
     font-size: 20px;
     color: #fff;
     margin: 0;
@@ -999,7 +995,7 @@
     height: 40px;
     line-height: 40px;
     font-size: 14px;
-    font-family: Roboto;
+    font-family: 'Roboto';
     text-transform: uppercase;
     text-decoration: none;
     text-align: center;
@@ -1057,7 +1053,7 @@
     padding: 20px 30px;
   }
   .single-slider .swiper-container .swiper-slide .entry-desc .entry-title {
-    font-family: Roboto;
+    font-family: Roboto-light;
     font-size: 20px;
     color: #fff;
     margin: 0;
@@ -1139,7 +1135,7 @@
     float: left;
     position: relative;
     top: 5px;
-    font-family: Roboto;
+    font-family: 'Roboto';
     color: #fff;
     opacity: .4;
     font-size: 14px;
@@ -1149,7 +1145,7 @@
   .wpc-skills .skill-block h6 {
     position: relative;
     top: 5px;
-    font-family: Roboto;
+    font-family: 'Roboto';
     color: #fff;
     opacity: .4;
     font-size: 14px;
@@ -1194,6 +1190,7 @@
     z-index: -1;
   }
   .wpc-testimonails .testimonial:after {
+    content: url(../images/qte-b.png);
     position: absolute;
     bottom: -25px;
     right: 60px;
@@ -1426,7 +1423,7 @@
     padding-top: 10px;
     font-size: 28px;
     float: left;
-    font-family: Roboto;
+    font-family: 'Roboto';
     font-weight: 300;
     -webkit-transition: all 0.25s ease;
     -moz-transition: all 0.25s ease;
@@ -1551,7 +1548,7 @@
     padding: 200px 0 0 25px;
   }
   .section-content #carousel_coming .slides .entry-desc .entry-title {
-    font-family: Roboto;
+    font-family: Roboto-light;
     font-size: 20px;
     color: #fff;
     margin: 0;
@@ -1571,7 +1568,7 @@
     font-size: 15px;
     line-height: 40px;
     font-weight: 100;
-    font-family: Roboto;
+    font-family: 'Roboto';
     opacity: .54;
     color: #fff;
     margin-top: 0;
@@ -1624,7 +1621,7 @@
     text-transform: uppercase;
   }
   .section-content .service p {
-    font-family: Roboto;
+    font-family: 'Roboto';
     font-size: 16px;
     line-height: 30px;
     font-weight: 300;
@@ -2535,7 +2532,7 @@
   #respond input,
   #respond textarea {
     background-color: transparent;
-    font-family: Roboto;
+    font-family: 'Roboto';
     text-transform: none;
     font-style: normal;
     border: 1px solid rgba(61, 61, 61, 0.44);
@@ -2619,7 +2616,7 @@
     display: inline-block;
     font-size: 14px;
     font-weight: 400;
-    font-family: Roboto;
+    font-family: 'Roboto';
     font-style: normal;
     text-transform: uppercase;
     padding: 8px 32px;
@@ -3312,7 +3309,7 @@
     margin-bottom: 10px;
     width: 60%;
     box-sizing: border-box;
-    font-family: Roboto;
+    font-family: 'Roboto';
     color: #2C3E50;
     font-size: 13px;
   }
@@ -3350,7 +3347,7 @@
     display: inline-block;
     font-size: 10px;
     font-weight: 400;
-    font-family: Roboto;
+    font-family: 'Roboto';
     font-style: normal;
     text-transform: uppercase;
     padding: 0 35px;
