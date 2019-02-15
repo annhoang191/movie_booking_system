@@ -1,0 +1,58 @@
+<div class="seat-map">
+  <%= form_tag booking_seats_path, method: :post do %>
+    <table class="table">
+      <tbody>
+        <% ("A".."E").each do |row| %>
+          <tr>
+            <% @seats.where(row:row).each do |seat| %>
+              <td id="<%= seat.id %>">
+                <%= check_box_tag "seat_id[]", seat.id %>
+                <%= seat.row %><%= seat.number %>
+                <%= hidden_field_tag "user_id", current_user.id %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+        <% ("F".."M").each do |row| %>
+          <tr>
+            <% @seats.where(row:row).each do |seat| %>
+              <td>
+                <%= check_box_tag "seat_id[]", seat.id %>
+                <%= seat.row %><%= seat.number %>
+                <%= hidden_field_tag "user_id", current_user.id %>
+                <%= hidden_field_tag "schedule_id", Schedule.first.id %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+        <% ("N".."O").each do |row| %>
+          <tr>
+            <% @seats.where(row:row).each do |seat| %>
+              <td>
+                <%= check_box_tag "seat_id[]", seat.id %>
+                <%= seat.row %><%= seat.number %>
+                <%= hidden_field_tag "user_id", current_user.id %>
+                <%= hidden_field_tag "schedule_id", Schedule.first.id %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+        <% ("P".."R").each do |row| %>
+          <tr>
+            <% @seats.where(row:row).each do |seat| %>
+              <td>
+                <%= check_box_tag "seat_id[]", seat.id %>
+                <%= seat.row %><%= seat.number %>
+                <%= hidden_field_tag "user_id", current_user.id %>
+                <%= hidden_field_tag "schedule_id", Schedule.first.id %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="text-center">
+      <%= submit_tag "Đặt vé",class:"submit action-button" %>
+    </div>
+  <% end %>
+</div>

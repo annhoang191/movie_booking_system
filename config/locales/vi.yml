@@ -5,3 +5,7 @@ vi:
       sign_up: "Đăng ký"
       log_in: "Đăng nhập"
       log_out: "Đăng xuất"
+  booking_seats:
+    create:
+      create_success: "Đặt vé thành công"
+      create_failed: "Đặt vé thất bại"

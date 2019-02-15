@@ -4,8 +4,7 @@
       <div class="col-sm-8 col-xs-12 seat_content ph0">
         <h2>Đặt vé</h2>
         <div class="entry-order-content">
-          <form id="msform" name="msform">
-            <!-- fieldsets -->
+          <div id="msform" name="msform">
             <fieldset>
               <div class="wpc-content">
                 <h3>Chọn rạp phim</h3>
@@ -13,40 +12,45 @@
                   options_from_collection_for_select(@cinemas, :id, :name) %>
                 <h3 class="mt3">Chọn phòng chiếu</h3>
                 <%= select_tag :select_auditorium,
-                  options_from_collection_for_select(@auditoria, :id, :name) %>
+                  options_from_collection_for_select(Cinema.first.auditoria, :id, :name) %>
                 <h3 class="mt3">Chọn phim</h3>
                 <%= select_tag :select_movie,
                   options_from_collection_for_select(@movies, :id, :title) %>
                 <h3 class="mt3">Lịch chiếu</h3>
                 <ul class="order-date"></ul>
               </div>
-              <input type="button" name="next" class="next action-button" value="Next" />
             </fieldset>
             <fieldset class="seat-content">
               <div class="wpc-content">
-                <h3 class="seat_title">seat</h3>
-                <div id="seat-map"></div>
+                <% if @seats.size == 200 %>
+                  <%= render "booking_seats/seat_map" %>
+                <% elsif @seats.size == 300 %>
+                  <%= render "booking_seats/seat_map_300" %>
+                <% else %>
+                  <%= render "booking_seats/seat_map_400" %>
+                <% end %>
                 <div id="legend"></div>
               </div>
               <input type="button" name="previous" class="action-button previous" value="Previous" />
               <input type="submit" name="submit" class="submit action-button" value="Submit" />
             </fieldset>
-          </form>
+          </div>
         </div>
       </div>
       <div class="col-sm-4 col-xs-12 order_sidebar ph0">
         <h2>Thông tin vé</h2>
         <div class="order-details">
           <span> Rạp phim:</span>
-          <p id="locationp"></p>
+          <p id="locationp">CGV</p>
           <span> Phòng chiếu:</span>
           <p id="auditoriump"></p>
+          <span> Phim:</span>
+          <p id="moviep"></p>
           <span>Giờ chiếu:</span>
-          <p></p>
+          <p id="timep"></p>
           <span>Ghế: </span>
           <ul id="selected-seats"></ul>
           <div>Số lượng vé: <span id="counter">0</span></div>
-          <div>Tổng: <b>$<span id="total">0</span></b></div>
         </div>
         <a href="javascript:;" class="close-window"><i class="fa fa-times"></i></a>
       </div>

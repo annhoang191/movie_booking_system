@@ -22,6 +22,8 @@ gem "config"
 gem "figaro"
 gem "toastr-rails"
 gem "simple_form"
+gem "activerecord-import"
+
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]

@@ -9,12 +9,9 @@
       </div>
       <div class="col-md-4 col-md-offset-2 col-sm-6 col-xs-8 phl0">
         <% if user_signed_in? %>
-          <div class="header_author">
-            <%= current_user.name %>
-          </div>
           <div class="header_ticket">
-            <a href="#order" class="order_btn">My tickets</a>
-            <span>3</span>
+            <%= current_user.name %>
+            <a href="#order" class="order_btn">Đặt vé</a>
             <%= link_to t(".log_out"), destroy_user_session_path, method: :delete %>
           </div>
         <% else %>
