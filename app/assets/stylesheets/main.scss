@@ -47,7 +47,7 @@
     left: 0px;
     width: 100%;
     line-height: 90px;
-    z-index: 999;
+    z-index: 100;
   }
   header#header .button_container {
     position: absolute;
@@ -3169,6 +3169,7 @@
     -webkit-transition: all 0.25s ease;
     -moz-transition: all 0.25s ease;
     transition: all 0.25s ease;
+    z-index: 200;
   }
   #order .order-content {
     background: #f5f5f5;
@@ -3184,9 +3185,6 @@
     font-weight: 500;
     text-transform: uppercase;
     margin-bottom: 50px;
-  }
-  #order .order-content {
-    /*order forum */
   }
   #order .order-content span {
     color: #000;
@@ -3282,7 +3280,7 @@
   #order .order-content .entry-order-content #msform fieldset .wpc-content .order-ticket li select {
     width: 48px;
     margin-top: 30px;
-    background: url(../images/order-arrow.png) 85% no-repeat #f5f5f5;
+    // background: url(../images/order-arrow.png) 85% no-repeat #f5f5f5;
   }
   #order .order-content .entry-order-content #msform fieldset.seat-content {
     width: 100%;
@@ -3295,7 +3293,7 @@
     width: 100%;
     margin: 25px 0 35px 0;
     height: 45px;
-    background-image: url(../images/ScreenForSeating_450.png);
+    // background-image: url(../images/ScreenForSeating_450.png);
     background-repeat: no-repeat;
     display: block;
     content: '';
@@ -3336,7 +3334,7 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    background: url(../images/order-arrow.png) 96% no-repeat #f5f5f5;
+    // background: url(../images/order-arrow.png) 96% no-repeat #f5f5f5;
   }
   #order .order-content .entry-order-content #msform .action-button {
     box-shadow: none;

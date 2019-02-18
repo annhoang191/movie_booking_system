@@ -21,6 +21,8 @@ gem "ffaker"
 gem "config"
 gem "figaro"
 gem "toastr-rails"
+gem "simple_form"
+gem "activerecord-import"
 
 
 group :development, :test do

@@ -18,3 +18,4 @@
 //= require packages.js
 //= require scripts.js
 //= require toastr
+//= require booking_seats
