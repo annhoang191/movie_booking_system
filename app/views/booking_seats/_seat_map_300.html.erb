@@ -1,6 +1,6 @@
 <div class="seat-map">
-  <%= form_tag booking_seats_path, method: :post do %>
-    <table class="table">
+  <%= form_tag booking_seats_path, id: "form-seat", method: :post do %>
+    <table class="table" id="seat-map-table">
       <tbody>
         <% ("A".."E").each do |row| %>
           <tr>
@@ -51,8 +51,5 @@
         <% end %>
       </tbody>
     </table>
-    <div class="text-center">
-      <%= submit_tag "Đặt vé",class:"submit action-button" %>
-    </div>
   <% end %>
 </div>

@@ -3,16 +3,20 @@ class BookingSeatsController < ApplicationController
 
   def create
     reservations = []
-    params[:seat_id].each do |seat_id|
-      reservation = Reservation.new seat_params.merge(seat_id: seat_id, schedule_id: session[:schedule_id])
-      reservations << reservation
-    end
+    if params[:seat_id]
+      params[:seat_id].each do |seat_id|
+        reservation = Reservation.new seat_params.merge(seat_id: seat_id, schedule_id: session[:schedule_id])
+        reservations << reservation
+      end
 
-    if Reservation.import! reservations
-      redirect_to root_path
-      flash[:success] = t ".create_success"
+      if Reservation.import! reservations
+        redirect_to root_path
+        flash[:success] = t ".create_success"
+      else
+        flash.now[:danger] = t ".create_failed"
+      end
     else
-      flash.now[:danger] = t ".create_failed"
+      flash.now[:danger] = "Chưa chọn ghế"
     end
   end
 

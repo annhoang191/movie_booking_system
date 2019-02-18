@@ -137,3 +137,13 @@
     }
   }
 }
+
+#seat-map-table {
+  table-layout:fixed;
+  width: 500;
+}
+
+#submit-booking {
+  color: $white;
+  background-color: $jaffa;
+}
