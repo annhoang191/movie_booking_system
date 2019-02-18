@@ -1,4 +1,6 @@
 class BookingSeatsController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     reservations = []
     params[:seat_id].each do |seat_id|

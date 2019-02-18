@@ -1,4 +1,5 @@
 $(document).on('turbolinks:load', function() {
+  window.onload = window.localStorage.clear();
   $('#select_cinema').on('change', function(){
     $('#locationp').text($("#select_cinema option:selected").text());
     $.ajax({
@@ -105,7 +106,14 @@ $(document).on('turbolinks:load', function() {
     })
   });
   var area = document.querySelector('.table');
-  panzoom(area)
+  var controller = panzoom(area, {zoomDoubleClickSpeed: 1})
+  $('#msform').on('click', '.zoom-in', function(){
+    var area = document.querySelector('.table');
+    panzoom(area, {zoomDoubleClickSpeed: 1})
+  })
+
+
+  $()
   $('.seat-map table tr td').on('click', function(e){
     if(e.target.type == 'checkbox'){
       if($(this).is(':checked')) $(this).attr('checked', false);

@@ -359,7 +359,6 @@ $(document).on('turbolinks:load', function() {
 
   $('#toggle').on('click', function() {
     $(this).toggleClass('active');
-    $('#overlay').toggleClass('open');
   });
 
   //order popup
