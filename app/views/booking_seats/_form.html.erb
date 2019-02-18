@@ -1,7 +1,7 @@
 <div id="order">
   <div class="container">
     <div class="row order-content">
-      <div class="col-sm-10 col-xs-12 seat_content ph0">
+      <div class="col-sm-9 col-xs-12 seat_content ph0">
         <h2>Đặt vé</h2>
         <div class="entry-order-content">
           <div id="msform" name="msform">
@@ -31,13 +31,11 @@
                 <% end %>
                 <div id="legend"></div>
               </div>
-              <input type="button" name="previous" class="action-button previous" value="Previous" />
-              <input type="submit" name="submit" class="submit action-button" value="Submit" />
             </fieldset>
           </div>
         </div>
       </div>
-      <div class="col-sm-2 col-xs-12 order_sidebar ph0">
+      <div class="col-sm-3 col-xs-12 order_sidebar ph0">
         <h2>Thông tin vé</h2>
         <div class="order-details">
           <span> Rạp phim:</span>
@@ -51,6 +49,9 @@
           <span>Ghế: </span>
           <ul id="selected-seats"></ul>
           <div>Số lượng vé: <span id="counter">0</span></div>
+          <div>
+            <button id="submit-booking">Đặt vé</button>
+          </div>
         </div>
         <a href="javascript:;" class="close-window"><i class="fa fa-times"></i></a>
       </div>

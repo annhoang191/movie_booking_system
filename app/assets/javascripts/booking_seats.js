@@ -107,9 +107,8 @@ $(document).on('turbolinks:load', function() {
   });
   var area = document.querySelector('.table');
   var controller = panzoom(area, {zoomDoubleClickSpeed: 1})
-  $('#msform').on('click', '.zoom-in', function(){
-    var area = document.querySelector('.table');
-    panzoom(area, {zoomDoubleClickSpeed: 1})
+  $('#submit-booking').click(function(){
+    $('#form-seat').submit();
   })
 
 
