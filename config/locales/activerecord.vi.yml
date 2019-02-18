@@ -1,0 +1,12 @@
+vi:
+  activerecord:
+    attributes:
+      user:
+        name: "Tên"
+    errors:
+      models:
+        user:
+          attributes:
+            name:
+              blank: "không được trống"
+              too_short: "quá ngắn. Tối thiểu %{count} ký tự"
