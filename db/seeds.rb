@@ -18,6 +18,13 @@ Cinema.create!(name: "BHD Star",
   address: "Vincom Center, 2 Phạm Ngọc Thạch, Kim Liên, Đống Đa, Hà Nội"
 )
 
+p "Create  user"
+User.create(email: "test@gmail.com",
+            password: '123456',
+            password_confirmation: '123456',
+            phone_number:"23843928",
+            confirmed_at: Time.now.utc)
+
 p "Create auditoria"
 Auditorium.create!(cinema_id: 1,
   name: "IMAX",

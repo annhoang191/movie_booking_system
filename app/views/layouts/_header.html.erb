@@ -10,7 +10,7 @@
       <div class="col-md-4 col-md-offset-2 col-sm-6 col-xs-8 phl0">
         <% if user_signed_in? %>
           <div class="header_ticket">
-            <%= current_user.name %>
+            <%= link_to current_user.name, "#" %>
             <a href="#order" class="order_btn">Đặt vé</a>
             <%= link_to t(".log_out"), destroy_user_session_path, method: :delete %>
           </div>
@@ -25,6 +25,15 @@
           <span class="middle"></span>
           <span class="bottom"></span>
         </div>
+      </div>
+      <div class="overlay" id="overlay">
+        <a href="javascript:;" class="close-window"></a>
+        <nav class="overlay-menu">
+          <ul >
+            <li><%= link_to "Trang chủ", root_path %></li>
+            <li><a href="#order" class="order_btn">Order</a></li>
+          </ul>
+        </nav>
       </div>
     </div>
   </div>

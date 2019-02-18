@@ -2,7 +2,7 @@
  * circles - v0.0.6 - 2015-11-27
  *
  * Copyright (c) 2015 lugolabs
- * Licensed 
+ * Licensed
  */
 !function(a, b) {
     "object" == typeof exports ? module.exports = b() : "function" == typeof define && define.amd ? define([], b) : a.Circles = b();
@@ -13,37 +13,37 @@
     }, b = function(a) {
         var b = a.id;
         if (this._el = document.getElementById(b), null !== this._el) {
-            this._radius = a.radius || 10, this._duration = void 0 === a.duration ? 500 : a.duration, 
+            this._radius = a.radius || 10, this._duration = void 0 === a.duration ? 500 : a.duration,
             this._value = 0, this._maxValue = a.maxValue || 100, this._text = void 0 === a.text ? function(a) {
                 return this.htmlifyNumber(a);
-            } : a.text, this._strokeWidth = a.width || 10, this._colors = a.colors || [ "#EEE", "#F00" ], 
-            this._svg = null, this._movingPath = null, this._wrapContainer = null, this._textContainer = null, 
-            this._wrpClass = a.wrpClass || "circles-wrp", this._textClass = a.textClass || "circles-text", 
-            this._valClass = a.valueStrokeClass || "circles-valueStroke", this._maxValClass = a.maxValueStrokeClass || "circles-maxValueStroke", 
+            } : a.text, this._strokeWidth = a.width || 10, this._colors = a.colors || [ "#EEE", "#F00" ],
+            this._svg = null, this._movingPath = null, this._wrapContainer = null, this._textContainer = null,
+            this._wrpClass = a.wrpClass || "circles-wrp", this._textClass = a.textClass || "circles-text",
+            this._valClass = a.valueStrokeClass || "circles-valueStroke", this._maxValClass = a.maxValueStrokeClass || "circles-maxValueStroke",
             this._styleWrapper = a.styleWrapper === !1 ? !1 : !0, this._styleText = a.styleText === !1 ? !1 : !0;
             var c = Math.PI / 180 * 270;
-            this._start = -Math.PI / 180 * 90, this._startPrecise = this._precise(this._start), 
+            this._start = -Math.PI / 180 * 90, this._startPrecise = this._precise(this._start),
             this._circ = c - this._start, this._generate().update(a.value || 0);
         }
     };
     return b.prototype = {
         VERSION: "0.0.6",
         _generate: function() {
-            return this._svgSize = 2 * this._radius, this._radiusAdjusted = this._radius - this._strokeWidth / 2, 
-            this._generateSvg()._generateText()._generateWrapper(), this._el.innerHTML = "", 
+            return this._svgSize = 2 * this._radius, this._radiusAdjusted = this._radius - this._strokeWidth / 2,
+            this._generateSvg()._generateText()._generateWrapper(), this._el.innerHTML = "",
             this._el.appendChild(this._wrapContainer), this;
         },
         _setPercentage: function(a) {
             this._movingPath.setAttribute("d", this._calculatePath(a, !0)), this._textContainer.innerHTML = this._getText(this.getValueFromPercent(a));
         },
         _generateWrapper: function() {
-            return this._wrapContainer = document.createElement("div"), this._wrapContainer.className = this._wrpClass, 
-            this._styleWrapper && (this._wrapContainer.style.position = "relative", this._wrapContainer.style.display = "inline-block"), 
-            this._wrapContainer.appendChild(this._svg), this._wrapContainer.appendChild(this._textContainer), 
+            return this._wrapContainer = document.createElement("div"), this._wrapContainer.className = this._wrpClass,
+            this._styleWrapper && (this._wrapContainer.style.position = "relative", this._wrapContainer.style.display = "inline-block"),
+            this._wrapContainer.appendChild(this._svg), this._wrapContainer.appendChild(this._textContainer),
             this;
         },
         _generateText: function() {
-            if (this._textContainer = document.createElement("div"), this._textContainer.className = this._textClass, 
+            if (this._textContainer = document.createElement("div"), this._textContainer.className = this._textClass,
             this._styleText) {
                 var a = {
                     position: "absolute",
@@ -60,19 +60,19 @@
             return this._textContainer.innerHTML = this._getText(0), this;
         },
         _getText: function(a) {
-            return this._text ? (void 0 === a && (a = this._value), a = parseFloat(a.toFixed(2)), 
+            return this._text ? (void 0 === a && (a = this._value), a = parseFloat(a.toFixed(2)),
             "function" == typeof this._text ? this._text.call(this, a) : this._text) : "";
         },
         _generateSvg: function() {
-            return this._svg = document.createElementNS("http://www.w3.org/2000/svg", "svg"), 
-            this._svg.setAttribute("xmlns", "http://www.w3.org/2000/svg"), this._svg.setAttribute("viewBox", "0 0 " + this._svgSize + " " + this._svgSize), 
-            this._generatePath(100, !1, this._colors[0], this._maxValClass)._generatePath(1, !0, this._colors[1], this._valClass), 
+            return this._svg = document.createElementNS("http://www.w3.org/2000/svg", "svg"),
+            this._svg.setAttribute("xmlns", "http://www.w3.org/2000/svg"), this._svg.setAttribute("viewBox", "0 0 " + this._svgSize + " " + this._svgSize),
+            this._generatePath(100, !1, this._colors[0], this._maxValClass)._generatePath(1, !0, this._colors[1], this._valClass),
             this._movingPath = this._svg.getElementsByTagName("path")[1], this;
         },
         _generatePath: function(a, b, c, d) {
             var e = document.createElementNS("http://www.w3.org/2000/svg", "path");
-            return e.setAttribute("fill", "transparent"), e.setAttribute("stroke", c), e.setAttribute("stroke-width", this._strokeWidth), 
-            e.setAttribute("d", this._calculatePath(a, b)), e.setAttribute("class", d), this._svg.appendChild(e), 
+            return e.setAttribute("fill", "transparent"), e.setAttribute("stroke", c), e.setAttribute("stroke-width", this._strokeWidth),
+            e.setAttribute("d", this._calculatePath(a, b)), e.setAttribute("class", d), this._svg.appendChild(e),
             this;
         },
         _calculatePath: function(a, b) {
@@ -89,7 +89,7 @@
         htmlifyNumber: function(a, b, c) {
             b = b || "circles-integer", c = c || "circles-decimals";
             var d = (a + "").split("."), e = '<span class="' + b + '">' + d[0] + "</span>";
-            return d.length > 1 && (e += '.<span class="' + c + '">' + d[1].substring(0, 2) + "</span>"), 
+            return d.length > 1 && (e += '.<span class="' + c + '">' + d[1].substring(0, 2) + "</span>"),
             e;
         },
         updateRadius: function(a) {
@@ -120,7 +120,7 @@
             if (this._value == b || isNaN(b)) return this;
             void 0 === c && (c = this._duration);
             var d, e, f, g, h = this, i = h.getPercent(), j = 1;
-            return this._value = Math.min(this._maxValue, Math.max(0, b)), c ? (d = h.getPercent(), 
+            return this._value = Math.min(this._maxValue, Math.max(0, b)), c ? (d = h.getPercent(),
             e = d > i, j += d % 1, f = Math.floor(Math.abs(d - i) / j), g = c / f, function k(b) {
                 if (e ? i += j : i -= j, e && i >= d || !e && d >= i) return void a(function() {
                     h._setPercentage(d);
@@ -188,7 +188,7 @@
                     "aria-checked": !1,
                     focusable: !0,
                     tabIndex: -1
-                }).text(i.settings.label).addClass([ "seatCharts-seat", "seatCharts-cell", "available" ].concat(i.settings.classes, "undefined" == typeof e.seats[i.settings.character] ? [] : e.seats[i.settings.character].classes).join(" ")), 
+                }).text(i.settings.label).addClass([ "seatCharts-seat", "seatCharts-cell", "available" ].concat(i.settings.classes, "undefined" == typeof e.seats[i.settings.character] ? [] : e.seats[i.settings.character].classes).join(" ")),
                 i.data = function() {
                     return i.settings.data;
                 }, i["char"] = function() {
@@ -198,8 +198,8 @@
                 }, i.style = function() {
                     return 1 == arguments.length ? function(t) {
                         var s = i.settings.style;
-                        return t == s ? s : (i.settings.status = "focused" != t ? t : i.settings.status, 
-                        i.settings.$node.attr("aria-checked", "selected" == t), e.animate ? i.settings.$node.switchClass(s, t, 200) : i.settings.$node.removeClass(s).addClass(t), 
+                        return t == s ? s : (i.settings.status = "focused" != t ? t : i.settings.status,
+                        i.settings.$node.attr("aria-checked", "selected" == t), e.animate ? i.settings.$node.switchClass(s, t, 200) : i.settings.$node.removeClass(s).addClass(t),
                         i.settings.style = t);
                     }(arguments[0]) : i.settings.style;
                 }, i.status = function() {
@@ -207,7 +207,7 @@
                 }, function(n, r, c) {
                     t.each([ "click", "focus", "blur" ], function(t, u) {
                         i[u] = function() {
-                            return "focus" == u && (void 0 !== s.attr("aria-activedescendant") && a[s.attr("aria-activedescendant")].blur(), 
+                            return "focus" == u && (void 0 !== s.attr("aria-activedescendant") && a[s.attr("aria-activedescendant")].blur(),
                             s.attr("aria-activedescendant", c.settings.id), c.node().focus()), i.style("function" == typeof n[r][u] ? n[r][u].apply(c) : e[u].apply(c));
                         };
                     });
@@ -223,9 +223,9 @@
                           case 38:
                             if (n.preventDefault(), i = function r(t, s, a) {
                                 var c;
-                                return c = t.index(a) || 38 != n.which ? t.index(a) == t.length - 1 && 40 == n.which ? t.first() : t.eq(t.index(a) + (38 == n.which ? -1 : 1)) : t.last(), 
+                                return c = t.index(a) || 38 != n.which ? t.index(a) == t.length - 1 && 40 == n.which ? t.first() : t.eq(t.index(a) + (38 == n.which ? -1 : 1)) : t.last(),
                                 i = c.find(".seatCharts-seat,.seatCharts-space").eq(s.index(e)), i.hasClass("seatCharts-space") ? r(t, s, c) : i;
-                            }(e.parents(".seatCharts-container").find(".seatCharts-row:not(.seatCharts-header)"), e.parents(".seatCharts-row:first").find(".seatCharts-seat,.seatCharts-space"), e.parents(".seatCharts-row:not(.seatCharts-header)")), 
+                            }(e.parents(".seatCharts-container").find(".seatCharts-row:not(.seatCharts-header)"), e.parents(".seatCharts-row:first").find(".seatCharts-seat,.seatCharts-space"), e.parents(".seatCharts-row:not(.seatCharts-header)")),
                             !i.length) return;
                             t.blur(), a[i.attr("id")].focus(), i.focus(), s.attr("aria-activedescendant", i.attr("id"));
                             break;
@@ -234,7 +234,7 @@
                           case 39:
                             if (n.preventDefault(), i = function(t) {
                                 return t.index(e) || 37 != n.which ? t.index(e) == t.length - 1 && 39 == n.which ? t.first() : t.eq(t.index(e) + (37 == n.which ? -1 : 1)) : t.last();
-                            }(e.parents(".seatCharts-container:first").find(".seatCharts-seat:not(.seatCharts-space)")), 
+                            }(e.parents(".seatCharts-container:first").find(".seatCharts-seat:not(.seatCharts-space)")),
                             !i.length) return;
                             t.blur(), a[i.attr("id")].focus(), i.focus(), s.attr("aria-activedescendant", i.attr("id"));
                         }
@@ -256,7 +256,7 @@
         }
         return e.append(c), t.each(i.map, function(s, c) {
             var u = t("<div></div>").addClass("seatCharts-row");
-            i.naming.left && u.append(t("<div></div>").addClass("seatCharts-cell seatCharts-space").text(i.naming.rows[s])), 
+            i.naming.left && u.append(t("<div></div>").addClass("seatCharts-cell seatCharts-space").text(i.naming.rows[s])),
             t.each(c.match(/[a-z_]{1}(\[[0-9a-z_]{0,}(,[0-9a-z_ ]+)?\])?/gi), function(e, c) {
                 var h = c.match(/([a-z_]{1})(\[([0-9a-z_ ,]+)\])?/i), d = h[1], o = "undefined" != typeof h[3] ? h[3].split(",") : [], l = o.length ? o[0] : null, f = 2 === o.length ? o[1] : null;
                 u.append("_" != d ? function(t) {
@@ -279,7 +279,7 @@
         }(i.legend) : null, e.attr({
             tabIndex: 0
         }), e.focus(function() {
-            e.attr("aria-activedescendant") && a[e.attr("aria-activedescendant")].blur(), e.find(".seatCharts-seat:not(.seatCharts-space):first").focus(), 
+            e.attr("aria-activedescendant") && a[e.attr("aria-activedescendant")].blur(), e.find(".seatCharts-seat:not(.seatCharts-space):first").focus(),
             a[n[0]].focus();
         }), e.data("seatCharts", {
             seats: a,
@@ -380,40 +380,40 @@
  * to offer multiple easing options
  *
  * TERMS OF USE - EASING EQUATIONS
- * 
- * Open source under the BSD License. 
- * 
+ *
+ * Open source under the BSD License.
+ *
  * Copyright Â© 2001 Robert Penner
  * All rights reserved.
  *
  * TERMS OF USE - jQuery Easing
- * 
- * Open source under the BSD License.  
- * 
+ *
+ * Open source under the BSD License.
+ *
  * Copyright Â© 2008 George McGinley Smith
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without modification, 
+ * Redistribution and use in source and binary forms, with or without modification,
  * are permitted provided that the following conditions are met:
- * 
- * Redistributions of source code must retain the above copyright notice, this list of 
+ *
+ * Redistributions of source code must retain the above copyright notice, this list of
  * conditions and the following disclaimer.
- * Redistributions in binary form must reproduce the above copyright notice, this list 
- * of conditions and the following disclaimer in the documentation and/or other materials 
+ * Redistributions in binary form must reproduce the above copyright notice, this list
+ * of conditions and the following disclaimer in the documentation and/or other materials
  * provided with the distribution.
- * 
- * Neither the name of the author nor the names of contributors may be used to endorse 
+ *
+ * Neither the name of the author nor the names of contributors may be used to endorse
  * or promote products derived from this software without specific prior written permission.
- * 
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY 
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY
  * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
  * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
  *  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
  *  EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
- *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED 
+ *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
  * AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- *  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED 
- * OF THE POSSIBILITY OF SUCH DAMAGE. 
+ *  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+ * OF THE POSSIBILITY OF SUCH DAMAGE.
  *
 */
 jQuery.easing.jswing = jQuery.easing.swing;
@@ -684,7 +684,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
         var e = a(this), f = e.attr("data-target");
         f || (f = e.attr("href"), f = f && f.replace(/.*(?=#[^\s]*$)/, ""));
         var g = a("#" === f ? [] : f);
-        b && b.preventDefault(), g.length || (g = e.closest(".alert")), g.trigger(b = a.Event("close.bs.alert")), 
+        b && b.preventDefault(), g.length || (g = e.closest(".alert")), g.trigger(b = a.Event("close.bs.alert")),
         b.isDefaultPrevented() || (g.removeClass("in"), a.support.transition && g.hasClass("fade") ? g.one("bsTransitionEnd", c).emulateTransitionEnd(d.TRANSITION_DURATION) : c());
     };
     var e = a.fn.alert;
@@ -707,17 +707,17 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
     }, c.prototype.setState = function(b) {
         var c = "disabled", d = this.$element, e = d.is("input") ? "val" : "html", f = d.data();
         b += "Text", null == f.resetText && d.data("resetText", d[e]()), setTimeout(a.proxy(function() {
-            d[e](null == f[b] ? this.options[b] : f[b]), "loadingText" == b ? (this.isLoading = !0, 
-            d.addClass(c).attr(c, c).prop(c, !0)) : this.isLoading && (this.isLoading = !1, 
+            d[e](null == f[b] ? this.options[b] : f[b]), "loadingText" == b ? (this.isLoading = !0,
+            d.addClass(c).attr(c, c).prop(c, !0)) : this.isLoading && (this.isLoading = !1,
             d.removeClass(c).removeAttr(c).prop(c, !1));
         }, this), 0);
     }, c.prototype.toggle = function() {
         var a = !0, b = this.$element.closest('[data-toggle="buttons"]');
         if (b.length) {
             var c = this.$element.find("input");
-            "radio" == c.prop("type") ? (c.prop("checked") && (a = !1), b.find(".active").removeClass("active"), 
-            this.$element.addClass("active")) : "checkbox" == c.prop("type") && (c.prop("checked") !== this.$element.hasClass("active") && (a = !1), 
-            this.$element.toggleClass("active")), c.prop("checked", this.$element.hasClass("active")), 
+            "radio" == c.prop("type") ? (c.prop("checked") && (a = !1), b.find(".active").removeClass("active"),
+            this.$element.addClass("active")) : "checkbox" == c.prop("type") && (c.prop("checked") !== this.$element.hasClass("active") && (a = !1),
+            this.$element.toggleClass("active")), c.prop("checked", this.$element.hasClass("active")),
             a && c.trigger("change");
         } else this.$element.attr("aria-pressed", !this.$element.hasClass("active")), this.$element.toggleClass("active");
     };
@@ -726,7 +726,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
         return a.fn.button = d, this;
     }, a(document).on("click.bs.button.data-api", '[data-toggle^="button"]', function(c) {
         var d = a(c.target).closest(".btn");
-        b.call(d, "toggle"), a(c.target).is('input[type="radio"], input[type="checkbox"]') || (c.preventDefault(), 
+        b.call(d, "toggle"), a(c.target).is('input[type="radio"], input[type="checkbox"]') || (c.preventDefault(),
         d.is("input,button") ? d.trigger("focus") : d.find("input:visible,button:visible").first().trigger("focus"));
     }).on("focus.bs.button.data-api blur.bs.button.data-api", '[data-toggle^="button"]', function(b) {
         a(b.target).closest(".btn").toggleClass("focus", /^focus(in)?$/.test(b.type));
@@ -740,9 +740,9 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
         });
     }
     var c = function(b, c) {
-        this.$element = a(b), this.$indicators = this.$element.find(".carousel-indicators"), 
-        this.options = c, this.paused = null, this.sliding = null, this.interval = null, 
-        this.$active = null, this.$items = null, this.options.keyboard && this.$element.on("keydown.bs.carousel", a.proxy(this.keydown, this)), 
+        this.$element = a(b), this.$indicators = this.$element.find(".carousel-indicators"),
+        this.options = c, this.paused = null, this.sliding = null, this.interval = null,
+        this.$active = null, this.$items = null, this.options.keyboard && this.$element.on("keydown.bs.carousel", a.proxy(this.keydown, this)),
         "hover" == this.options.pause && !("ontouchstart" in document.documentElement) && this.$element.on("mouseenter.bs.carousel", a.proxy(this.pause, this)).on("mouseleave.bs.carousel", a.proxy(this.cycle, this));
     };
     c.VERSION = "3.3.7", c.TRANSITION_DURATION = 600, c.DEFAULTS = {
@@ -767,7 +767,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
             a.preventDefault();
         }
     }, c.prototype.cycle = function(b) {
-        return b || (this.paused = !1), this.interval && clearInterval(this.interval), this.options.interval && !this.paused && (this.interval = setInterval(a.proxy(this.next, this), this.options.interval)), 
+        return b || (this.paused = !1), this.interval && clearInterval(this.interval), this.options.interval && !this.paused && (this.interval = setInterval(a.proxy(this.next, this), this.options.interval)),
         this;
     }, c.prototype.getItemIndex = function(a) {
         return this.$items = a.parent().children(".item"), this.$items.index(a || this.$active);
@@ -782,7 +782,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
             b.to(a);
         }) : c == a ? this.pause().cycle() : this.slide(a > c ? "next" : "prev", this.$items.eq(a));
     }, c.prototype.pause = function(b) {
-        return b || (this.paused = !0), this.$element.find(".next, .prev").length && a.support.transition && (this.$element.trigger(a.support.transition.end), 
+        return b || (this.paused = !0), this.$element.find(".next, .prev").length && a.support.transition && (this.$element.trigger(a.support.transition.end),
         this.cycle(!0)), this.interval = clearInterval(this.interval), this;
     }, c.prototype.next = function() {
         if (!this.sliding) return this.slide("next");
@@ -805,13 +805,13 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                 relatedTarget: j,
                 direction: h
             });
-            return a.support.transition && this.$element.hasClass("slide") ? (f.addClass(b), 
+            return a.support.transition && this.$element.hasClass("slide") ? (f.addClass(b),
             f[0].offsetWidth, e.addClass(h), f.addClass(h), e.one("bsTransitionEnd", function() {
-                f.removeClass([ b, h ].join(" ")).addClass("active"), e.removeClass([ "active", h ].join(" ")), 
+                f.removeClass([ b, h ].join(" ")).addClass("active"), e.removeClass([ "active", h ].join(" ")),
                 i.sliding = !1, setTimeout(function() {
                     i.$element.trigger(m);
                 }, 0);
-            }).emulateTransitionEnd(c.TRANSITION_DURATION)) : (e.removeClass("active"), f.addClass("active"), 
+            }).emulateTransitionEnd(c.TRANSITION_DURATION)) : (e.removeClass("active"), f.addClass("active"),
             this.sliding = !1, this.$element.trigger(m)), g && this.cycle(), this;
         }
     };
@@ -826,7 +826,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
             h && (g.interval = !1), b.call(f, g), h && f.data("bs.carousel").to(h), c.preventDefault();
         }
     };
-    a(document).on("click.bs.carousel.data-api", "[data-slide]", e).on("click.bs.carousel.data-api", "[data-slide-to]", e), 
+    a(document).on("click.bs.carousel.data-api", "[data-slide]", e).on("click.bs.carousel.data-api", "[data-slide-to]", e),
     a(window).on("load", function() {
         a('[data-ride="carousel"]').each(function() {
             var c = a(this);
@@ -842,13 +842,13 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
     function c(b) {
         return this.each(function() {
             var c = a(this), e = c.data("bs.collapse"), f = a.extend({}, d.DEFAULTS, c.data(), "object" == typeof b && b);
-            !e && f.toggle && /show|hide/.test(b) && (f.toggle = !1), e || c.data("bs.collapse", e = new d(this, f)), 
+            !e && f.toggle && /show|hide/.test(b) && (f.toggle = !1), e || c.data("bs.collapse", e = new d(this, f)),
             "string" == typeof b && e[b]();
         });
     }
     var d = function(b, c) {
-        this.$element = a(b), this.options = a.extend({}, d.DEFAULTS, c), this.$trigger = a('[data-toggle="collapse"][href="#' + b.id + '"],[data-toggle="collapse"][data-target="#' + b.id + '"]'), 
-        this.transitioning = null, this.options.parent ? this.$parent = this.getParent() : this.addAriaAndCollapsedClass(this.$element, this.$trigger), 
+        this.$element = a(b), this.options = a.extend({}, d.DEFAULTS, c), this.$trigger = a('[data-toggle="collapse"][href="#' + b.id + '"],[data-toggle="collapse"][data-target="#' + b.id + '"]'),
+        this.transitioning = null, this.options.parent ? this.$parent = this.getParent() : this.addAriaAndCollapsedClass(this.$element, this.$trigger),
         this.options.toggle && this.toggle();
     };
     d.VERSION = "3.3.7", d.TRANSITION_DURATION = 350, d.DEFAULTS = {
@@ -864,10 +864,10 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                 if (this.$element.trigger(f), !f.isDefaultPrevented()) {
                     e && e.length && (c.call(e, "hide"), b || e.data("bs.collapse", null));
                     var g = this.dimension();
-                    this.$element.removeClass("collapse").addClass("collapsing")[g](0).attr("aria-expanded", !0), 
+                    this.$element.removeClass("collapse").addClass("collapsing")[g](0).attr("aria-expanded", !0),
                     this.$trigger.removeClass("collapsed").attr("aria-expanded", !0), this.transitioning = 1;
                     var h = function() {
-                        this.$element.removeClass("collapsing").addClass("collapse in")[g](""), this.transitioning = 0, 
+                        this.$element.removeClass("collapsing").addClass("collapse in")[g](""), this.transitioning = 0,
                         this.$element.trigger("shown.bs.collapse");
                     };
                     if (!a.support.transition) return h.call(this);
@@ -881,7 +881,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
             var b = a.Event("hide.bs.collapse");
             if (this.$element.trigger(b), !b.isDefaultPrevented()) {
                 var c = this.dimension();
-                this.$element[c](this.$element[c]())[0].offsetHeight, this.$element.addClass("collapsing").removeClass("collapse in").attr("aria-expanded", !1), 
+                this.$element[c](this.$element[c]())[0].offsetHeight, this.$element.addClass("collapsing").removeClass("collapse in").attr("aria-expanded", !1),
                 this.$trigger.addClass("collapsed").attr("aria-expanded", !1), this.transitioning = 1;
                 var e = function() {
                     this.transitioning = 0, this.$element.removeClass("collapsing").addClass("collapse").trigger("hidden.bs.collapse");
@@ -922,7 +922,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
             var d = a(this), e = b(d), f = {
                 relatedTarget: this
             };
-            e.hasClass("open") && (c && "click" == c.type && /input|textarea/i.test(c.target.tagName) && a.contains(e[0], c.target) || (e.trigger(c = a.Event("hide.bs.dropdown", f)), 
+            e.hasClass("open") && (c && "click" == c.type && /input|textarea/i.test(c.target.tagName) && a.contains(e[0], c.target) || (e.trigger(c = a.Event("hide.bs.dropdown", f)),
             c.isDefaultPrevented() || (d.attr("aria-expanded", "false"), e.removeClass("open").trigger(a.Event("hidden.bs.dropdown", f)))));
         }));
     }
@@ -954,12 +954,12 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
             var d = a(this);
             if (c.preventDefault(), c.stopPropagation(), !d.is(".disabled, :disabled")) {
                 var e = b(d), g = e.hasClass("open");
-                if (!g && 27 != c.which || g && 27 == c.which) return 27 == c.which && e.find(f).trigger("focus"), 
+                if (!g && 27 != c.which || g && 27 == c.which) return 27 == c.which && e.find(f).trigger("focus"),
                 d.trigger("click");
                 var h = " li:not(.disabled):visible a", i = e.find(".dropdown-menu" + h);
                 if (i.length) {
                     var j = i.index(c.target);
-                    38 == c.which && j > 0 && j--, 40 == c.which && j < i.length - 1 && j++, ~j || (j = 0), 
+                    38 == c.which && j > 0 && j--, 40 == c.which && j < i.length - 1 && j++, ~j || (j = 0),
                     i.eq(j).trigger("focus");
                 }
             }
@@ -980,13 +980,13 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
         });
     }
     var c = function(b, c) {
-        this.options = c, this.$body = a(document.body), this.$element = a(b), this.$dialog = this.$element.find(".modal-dialog"), 
-        this.$backdrop = null, this.isShown = null, this.originalBodyPad = null, this.scrollbarWidth = 0, 
+        this.options = c, this.$body = a(document.body), this.$element = a(b), this.$dialog = this.$element.find(".modal-dialog"),
+        this.$backdrop = null, this.isShown = null, this.originalBodyPad = null, this.scrollbarWidth = 0,
         this.ignoreBackdropClick = !1, this.options.remote && this.$element.find(".modal-content").load(this.options.remote, a.proxy(function() {
             this.$element.trigger("loaded.bs.modal");
         }, this));
     };
-    c.VERSION = "3.3.7", c.TRANSITION_DURATION = 300, c.BACKDROP_TRANSITION_DURATION = 150, 
+    c.VERSION = "3.3.7", c.TRANSITION_DURATION = 300, c.BACKDROP_TRANSITION_DURATION = 150,
     c.DEFAULTS = {
         backdrop: !0,
         keyboard: !0,
@@ -997,16 +997,16 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
         var d = this, e = a.Event("show.bs.modal", {
             relatedTarget: b
         });
-        this.$element.trigger(e), this.isShown || e.isDefaultPrevented() || (this.isShown = !0, 
-        this.checkScrollbar(), this.setScrollbar(), this.$body.addClass("modal-open"), this.escape(), 
-        this.resize(), this.$element.on("click.dismiss.bs.modal", '[data-dismiss="modal"]', a.proxy(this.hide, this)), 
+        this.$element.trigger(e), this.isShown || e.isDefaultPrevented() || (this.isShown = !0,
+        this.checkScrollbar(), this.setScrollbar(), this.$body.addClass("modal-open"), this.escape(),
+        this.resize(), this.$element.on("click.dismiss.bs.modal", '[data-dismiss="modal"]', a.proxy(this.hide, this)),
         this.$dialog.on("mousedown.dismiss.bs.modal", function() {
             d.$element.one("mouseup.dismiss.bs.modal", function(b) {
                 a(b.target).is(d.$element) && (d.ignoreBackdropClick = !0);
             });
         }), this.backdrop(function() {
             var e = a.support.transition && d.$element.hasClass("fade");
-            d.$element.parent().length || d.$element.appendTo(d.$body), d.$element.show().scrollTop(0), 
+            d.$element.parent().length || d.$element.appendTo(d.$body), d.$element.show().scrollTop(0),
             d.adjustDialog(), e && d.$element[0].offsetWidth, d.$element.addClass("in"), d.enforceFocus();
             var f = a.Event("shown.bs.modal", {
                 relatedTarget: b
@@ -1016,9 +1016,9 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
             }).emulateTransitionEnd(c.TRANSITION_DURATION) : d.$element.trigger("focus").trigger(f);
         }));
     }, c.prototype.hide = function(b) {
-        b && b.preventDefault(), b = a.Event("hide.bs.modal"), this.$element.trigger(b), 
-        this.isShown && !b.isDefaultPrevented() && (this.isShown = !1, this.escape(), this.resize(), 
-        a(document).off("focusin.bs.modal"), this.$element.removeClass("in").off("click.dismiss.bs.modal").off("mouseup.dismiss.bs.modal"), 
+        b && b.preventDefault(), b = a.Event("hide.bs.modal"), this.$element.trigger(b),
+        this.isShown && !b.isDefaultPrevented() && (this.isShown = !1, this.escape(), this.resize(),
+        a(document).off("focusin.bs.modal"), this.$element.removeClass("in").off("click.dismiss.bs.modal").off("mouseup.dismiss.bs.modal"),
         this.$dialog.off("mousedown.dismiss.bs.modal"), a.support.transition && this.$element.hasClass("fade") ? this.$element.one("bsTransitionEnd", a.proxy(this.hideModal, this)).emulateTransitionEnd(c.TRANSITION_DURATION) : this.hideModal());
     }, c.prototype.enforceFocus = function() {
         a(document).off("focusin.bs.modal").on("focusin.bs.modal", a.proxy(function(a) {
@@ -1041,7 +1041,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
         var d = this, e = this.$element.hasClass("fade") ? "fade" : "";
         if (this.isShown && this.options.backdrop) {
             var f = a.support.transition && e;
-            if (this.$backdrop = a(document.createElement("div")).addClass("modal-backdrop " + e).appendTo(this.$body), 
+            if (this.$backdrop = a(document.createElement("div")).addClass("modal-backdrop " + e).appendTo(this.$body),
             this.$element.on("click.dismiss.bs.modal", a.proxy(function(a) {
                 return this.ignoreBackdropClick ? void (this.ignoreBackdropClick = !1) : void (a.target === a.currentTarget && ("static" == this.options.backdrop ? this.$element[0].focus() : this.hide()));
             }, this)), f && this.$backdrop[0].offsetWidth, this.$backdrop.addClass("in"), !b) return;
@@ -1102,12 +1102,12 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
     function b(b) {
         return this.each(function() {
             var d = a(this), e = d.data("bs.tooltip"), f = "object" == typeof b && b;
-            !e && /destroy|hide/.test(b) || (e || d.data("bs.tooltip", e = new c(this, f)), 
+            !e && /destroy|hide/.test(b) || (e || d.data("bs.tooltip", e = new c(this, f)),
             "string" == typeof b && e[b]());
         });
     }
     var c = function(a, b) {
-        this.type = null, this.options = null, this.enabled = null, this.timeout = null, 
+        this.type = null, this.options = null, this.enabled = null, this.timeout = null,
         this.hoverState = null, this.$element = null, this.inState = null, this.init("tooltip", a, b);
     };
     c.VERSION = "3.3.7", c.TRANSITION_DURATION = 150, c.DEFAULTS = {
@@ -1125,8 +1125,8 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
             padding: 0
         }
     }, c.prototype.init = function(b, c, d) {
-        if (this.enabled = !0, this.type = b, this.$element = a(c), this.options = this.getOptions(d), 
-        this.$viewport = this.options.viewport && a(a.isFunction(this.options.viewport) ? this.options.viewport.call(this, this.$element) : this.options.viewport.selector || this.options.viewport), 
+        if (this.enabled = !0, this.type = b, this.$element = a(c), this.options = this.getOptions(d),
+        this.$viewport = this.options.viewport && a(a.isFunction(this.options.viewport) ? this.options.viewport.call(this, this.$element) : this.options.viewport.selector || this.options.viewport),
         this.inState = {
             click: !1,
             hover: !1,
@@ -1136,7 +1136,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
             var g = e[f];
             if ("click" == g) this.$element.on("click." + this.type, this.options.selector, a.proxy(this.toggle, this)); else if ("manual" != g) {
                 var h = "hover" == g ? "mouseenter" : "focusin", i = "hover" == g ? "mouseleave" : "focusout";
-                this.$element.on(h + "." + this.type, this.options.selector, a.proxy(this.enter, this)), 
+                this.$element.on(h + "." + this.type, this.options.selector, a.proxy(this.enter, this)),
                 this.$element.on(i + "." + this.type, this.options.selector, a.proxy(this.leave, this));
             }
         }
@@ -1158,9 +1158,9 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
         }), b;
     }, c.prototype.enter = function(b) {
         var c = b instanceof this.constructor ? b : a(b.currentTarget).data("bs." + this.type);
-        return c || (c = new this.constructor(b.currentTarget, this.getDelegateOptions()), 
-        a(b.currentTarget).data("bs." + this.type, c)), b instanceof a.Event && (c.inState["focusin" == b.type ? "focus" : "hover"] = !0), 
-        c.tip().hasClass("in") || "in" == c.hoverState ? void (c.hoverState = "in") : (clearTimeout(c.timeout), 
+        return c || (c = new this.constructor(b.currentTarget, this.getDelegateOptions()),
+        a(b.currentTarget).data("bs." + this.type, c)), b instanceof a.Event && (c.inState["focusin" == b.type ? "focus" : "hover"] = !0),
+        c.tip().hasClass("in") || "in" == c.hoverState ? void (c.hoverState = "in") : (clearTimeout(c.timeout),
         c.hoverState = "in", c.options.delay && c.options.delay.show ? void (c.timeout = setTimeout(function() {
             "in" == c.hoverState && c.show();
         }, c.options.delay.show)) : c.show());
@@ -1169,8 +1169,8 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
         return !1;
     }, c.prototype.leave = function(b) {
         var c = b instanceof this.constructor ? b : a(b.currentTarget).data("bs." + this.type);
-        if (c || (c = new this.constructor(b.currentTarget, this.getDelegateOptions()), 
-        a(b.currentTarget).data("bs." + this.type, c)), b instanceof a.Event && (c.inState["focusout" == b.type ? "focus" : "hover"] = !1), 
+        if (c || (c = new this.constructor(b.currentTarget, this.getDelegateOptions()),
+        a(b.currentTarget).data("bs." + this.type, c)), b instanceof a.Event && (c.inState["focusout" == b.type ? "focus" : "hover"] = !1),
         !c.isInStateTrue()) return clearTimeout(c.timeout), c.hoverState = "out", c.options.delay && c.options.delay.hide ? void (c.timeout = setTimeout(function() {
             "out" == c.hoverState && c.hide();
         }, c.options.delay.hide)) : c.hide();
@@ -1187,12 +1187,12 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                 top: 0,
                 left: 0,
                 display: "block"
-            }).addClass(h).data("bs." + this.type, this), this.options.container ? f.appendTo(this.options.container) : f.insertAfter(this.$element), 
+            }).addClass(h).data("bs." + this.type, this), this.options.container ? f.appendTo(this.options.container) : f.insertAfter(this.$element),
             this.$element.trigger("inserted.bs." + this.type);
             var k = this.getPosition(), l = f[0].offsetWidth, m = f[0].offsetHeight;
             if (j) {
                 var n = h, o = this.getPosition(this.$viewport);
-                h = "bottom" == h && k.bottom + m > o.bottom ? "top" : "top" == h && k.top - m < o.top ? "bottom" : "right" == h && k.right + l > o.width ? "left" : "left" == h && k.left - l < o.left ? "right" : h, 
+                h = "bottom" == h && k.bottom + m > o.bottom ? "top" : "top" == h && k.top - m < o.top ? "bottom" : "right" == h && k.right + l > o.width ? "left" : "left" == h && k.left - l < o.left ? "right" : h,
                 f.removeClass(n).addClass(h);
             }
             var p = this.getCalculatedOffset(h, k, l, m);
@@ -1226,12 +1226,12 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
         a.find(".tooltip-inner")[this.options.html ? "html" : "text"](b), a.removeClass("fade in top bottom left right");
     }, c.prototype.hide = function(b) {
         function d() {
-            "in" != e.hoverState && f.detach(), e.$element && e.$element.removeAttr("aria-describedby").trigger("hidden.bs." + e.type), 
+            "in" != e.hoverState && f.detach(), e.$element && e.$element.removeAttr("aria-describedby").trigger("hidden.bs." + e.type),
             b && b();
         }
         var e = this, f = a(this.$tip), g = a.Event("hide.bs." + this.type);
-        if (this.$element.trigger(g), !g.isDefaultPrevented()) return f.removeClass("in"), 
-        a.support.transition && f.hasClass("fade") ? f.one("bsTransitionEnd", d).emulateTransitionEnd(c.TRANSITION_DURATION) : d(), 
+        if (this.$element.trigger(g), !g.isDefaultPrevented()) return f.removeClass("in"),
+        a.support.transition && f.hasClass("fade") ? f.one("bsTransitionEnd", d).emulateTransitionEnd(c.TRANSITION_DURATION) : d(),
         this.hoverState = null, this;
     }, c.prototype.fixTitle = function() {
         var a = this.$element;
@@ -1303,13 +1303,13 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
         this.enabled = !this.enabled;
     }, c.prototype.toggle = function(b) {
         var c = this;
-        b && (c = a(b.currentTarget).data("bs." + this.type), c || (c = new this.constructor(b.currentTarget, this.getDelegateOptions()), 
-        a(b.currentTarget).data("bs." + this.type, c))), b ? (c.inState.click = !c.inState.click, 
+        b && (c = a(b.currentTarget).data("bs." + this.type), c || (c = new this.constructor(b.currentTarget, this.getDelegateOptions()),
+        a(b.currentTarget).data("bs." + this.type, c))), b ? (c.inState.click = !c.inState.click,
         c.isInStateTrue() ? c.enter(c) : c.leave(c)) : c.tip().hasClass("in") ? c.leave(c) : c.enter(c);
     }, c.prototype.destroy = function() {
         var a = this;
         clearTimeout(this.timeout), this.hide(function() {
-            a.$element.off("." + a.type).removeData("bs." + a.type), a.$tip && a.$tip.detach(), 
+            a.$element.off("." + a.type).removeData("bs." + a.type), a.$tip && a.$tip.detach(),
             a.$tip = null, a.$arrow = null, a.$viewport = null, a.$element = null;
         });
     };
@@ -1322,7 +1322,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
     function b(b) {
         return this.each(function() {
             var d = a(this), e = d.data("bs.popover"), f = "object" == typeof b && b;
-            !e && /destroy|hide/.test(b) || (e || d.data("bs.popover", e = new c(this, f)), 
+            !e && /destroy|hide/.test(b) || (e || d.data("bs.popover", e = new c(this, f)),
             "string" == typeof b && e[b]());
         });
     }
@@ -1335,12 +1335,12 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
         trigger: "click",
         content: "",
         template: '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
-    }), c.prototype = a.extend({}, a.fn.tooltip.Constructor.prototype), c.prototype.constructor = c, 
+    }), c.prototype = a.extend({}, a.fn.tooltip.Constructor.prototype), c.prototype.constructor = c,
     c.prototype.getDefaults = function() {
         return c.DEFAULTS;
     }, c.prototype.setContent = function() {
         var a = this.tip(), b = this.getTitle(), c = this.getContent();
-        a.find(".popover-title")[this.options.html ? "html" : "text"](b), a.find(".popover-content").children().detach().end()[this.options.html ? "string" == typeof c ? "html" : "append" : "text"](c), 
+        a.find(".popover-title")[this.options.html ? "html" : "text"](b), a.find(".popover-content").children().detach().end()[this.options.html ? "string" == typeof c ? "html" : "append" : "text"](c),
         a.removeClass("fade top bottom left right in"), a.find(".popover-title").html() || a.find(".popover-title").hide();
     }, c.prototype.hasContent = function() {
         return this.getTitle() || this.getContent();
@@ -1357,10 +1357,10 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
 }(jQuery), +function(a) {
     "use strict";
     function b(c, d) {
-        this.$body = a(document.body), this.$scrollElement = a(a(c).is(document.body) ? window : c), 
-        this.options = a.extend({}, b.DEFAULTS, d), this.selector = (this.options.target || "") + " .nav li > a", 
-        this.offsets = [], this.targets = [], this.activeTarget = null, this.scrollHeight = 0, 
-        this.$scrollElement.on("scroll.bs.scrollspy", a.proxy(this.process, this)), this.refresh(), 
+        this.$body = a(document.body), this.$scrollElement = a(a(c).is(document.body) ? window : c),
+        this.options = a.extend({}, b.DEFAULTS, d), this.selector = (this.options.target || "") + " .nav li > a",
+        this.offsets = [], this.targets = [], this.activeTarget = null, this.scrollHeight = 0,
+        this.$scrollElement.on("scroll.bs.scrollspy", a.proxy(this.process, this)), this.refresh(),
         this.process();
     }
     function c(c) {
@@ -1375,8 +1375,8 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
         return this.$scrollElement[0].scrollHeight || Math.max(this.$body[0].scrollHeight, document.documentElement.scrollHeight);
     }, b.prototype.refresh = function() {
         var b = this, c = "offset", d = 0;
-        this.offsets = [], this.targets = [], this.scrollHeight = this.getScrollHeight(), 
-        a.isWindow(this.$scrollElement[0]) || (c = "position", d = this.$scrollElement.scrollTop()), 
+        this.offsets = [], this.targets = [], this.scrollHeight = this.getScrollHeight(),
+        a.isWindow(this.$scrollElement[0]) || (c = "position", d = this.$scrollElement.scrollTop()),
         this.$body.find(this.selector).map(function() {
             var b = a(this), e = b.data("target") || b.attr("href"), f = /^#./.test(e) && a(e);
             return f && f.length && f.is(":visible") && [ [ f[c]().top + d, e ] ] || null;
@@ -1393,7 +1393,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
     }, b.prototype.activate = function(b) {
         this.activeTarget = b, this.clear();
         var c = this.selector + '[data-target="' + b + '"],' + this.selector + '[href="' + b + '"]', d = a(c).parents("li").addClass("active");
-        d.parent(".dropdown-menu").length && (d = d.closest("li.dropdown").addClass("active")), 
+        d.parent(".dropdown-menu").length && (d = d.closest("li.dropdown").addClass("active")),
         d.trigger("activate.bs.scrollspy");
     }, b.prototype.clear = function() {
         a(this.selector).parentsUntil(this.options.target, ".active").removeClass("active");
@@ -1441,13 +1441,13 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
         }
     }, c.prototype.activate = function(b, d, e) {
         function f() {
-            g.removeClass("active").find("> .dropdown-menu > .active").removeClass("active").end().find('[data-toggle="tab"]').attr("aria-expanded", !1), 
-            b.addClass("active").find('[data-toggle="tab"]').attr("aria-expanded", !0), h ? (b[0].offsetWidth, 
-            b.addClass("in")) : b.removeClass("fade"), b.parent(".dropdown-menu").length && b.closest("li.dropdown").addClass("active").end().find('[data-toggle="tab"]').attr("aria-expanded", !0), 
+            g.removeClass("active").find("> .dropdown-menu > .active").removeClass("active").end().find('[data-toggle="tab"]').attr("aria-expanded", !1),
+            b.addClass("active").find('[data-toggle="tab"]').attr("aria-expanded", !0), h ? (b[0].offsetWidth,
+            b.addClass("in")) : b.removeClass("fade"), b.parent(".dropdown-menu").length && b.closest("li.dropdown").addClass("active").end().find('[data-toggle="tab"]').attr("aria-expanded", !0),
             e && e();
         }
         var g = d.find("> .active"), h = e && a.support.transition && (g.length && g.hasClass("fade") || !!d.find("> .fade").length);
-        g.length && h ? g.one("bsTransitionEnd", f).emulateTransitionEnd(c.TRANSITION_DURATION) : f(), 
+        g.length && h ? g.one("bsTransitionEnd", f).emulateTransitionEnd(c.TRANSITION_DURATION) : f(),
         g.removeClass("in");
     };
     var d = a.fn.tab;
@@ -1467,8 +1467,8 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
         });
     }
     var c = function(b, d) {
-        this.options = a.extend({}, c.DEFAULTS, d), this.$target = a(this.options.target).on("scroll.bs.affix.data-api", a.proxy(this.checkPosition, this)).on("click.bs.affix.data-api", a.proxy(this.checkPositionWithEventLoop, this)), 
-        this.$element = a(b), this.affixed = null, this.unpin = null, this.pinnedOffset = null, 
+        this.options = a.extend({}, c.DEFAULTS, d), this.$target = a(this.options.target).on("scroll.bs.affix.data-api", a.proxy(this.checkPosition, this)).on("click.bs.affix.data-api", a.proxy(this.checkPositionWithEventLoop, this)),
+        this.$element = a(b), this.affixed = null, this.unpin = null, this.pinnedOffset = null,
         this.checkPosition();
     };
     c.VERSION = "3.3.7", c.RESET = "affix affix-top affix-bottom", c.DEFAULTS = {
@@ -1490,7 +1490,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
     }, c.prototype.checkPosition = function() {
         if (this.$element.is(":visible")) {
             var b = this.$element.height(), d = this.options.offset, e = d.top, f = d.bottom, g = Math.max(a(document).height(), a(document.body).height());
-            "object" != typeof d && (f = e = d), "function" == typeof e && (e = d.top(this.$element)), 
+            "object" != typeof d && (f = e = d), "function" == typeof e && (e = d.top(this.$element)),
             "function" == typeof f && (f = d.bottom(this.$element));
             var h = this.getState(g, b, e, f);
             if (this.affixed != h) {
@@ -1510,7 +1510,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
     }, a(window).on("load", function() {
         a('[data-spy="affix"]').each(function() {
             var c = a(this), d = c.data();
-            d.offset = d.offset || {}, null != d.offsetBottom && (d.offset.bottom = d.offsetBottom), 
+            d.offset = d.offset || {}, null != d.offsetBottom && (d.offset.bottom = d.offsetBottom),
             null != d.offsetTop && (d.offset.top = d.offsetTop), b.call(c, d);
         });
     });
@@ -1519,15 +1519,15 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
 /**
  * Swiper 3.2.7
  * Most modern mobile touch slider and framework with hardware accelerated transitions
- * 
+ *
  * http://www.idangero.us/swiper/
- * 
+ *
  * Copyright 2015, Vladimir Kharlampidi
  * The iDangero.us
  * http://www.idangero.us/
- * 
+ *
  * Licensed under MIT
- * 
+ *
  * Released on: December 7, 2015
  */
 !function() {
@@ -1596,8 +1596,8 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                     }
                     if (!t) return;
                 }
-                i() ? ((37 === a || 39 === a) && (e.preventDefault ? e.preventDefault() : e.returnValue = !1), 
-                (39 === a && !T.rtl || 37 === a && T.rtl) && T.slideNext(), (37 === a && !T.rtl || 39 === a && T.rtl) && T.slidePrev()) : ((38 === a || 40 === a) && (e.preventDefault ? e.preventDefault() : e.returnValue = !1), 
+                i() ? ((37 === a || 39 === a) && (e.preventDefault ? e.preventDefault() : e.returnValue = !1),
+                (39 === a && !T.rtl || 37 === a && T.rtl) && T.slideNext(), (37 === a && !T.rtl || 39 === a && T.rtl) && T.slidePrev()) : ((38 === a || 40 === a) && (e.preventDefault ? e.preventDefault() : e.returnValue = !1),
                 40 === a && T.slideNext(), 38 === a && T.slidePrev());
             }
         }
@@ -1620,9 +1620,9 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
             if (0 !== t) {
                 if (T.params.mousewheelInvert && (t = -t), T.params.freeMode) {
                     var s = T.getWrapperTranslate() + t * T.params.mousewheelSensitivity, n = T.isBeginning, o = T.isEnd;
-                    if (s >= T.minTranslate() && (s = T.minTranslate()), s <= T.maxTranslate() && (s = T.maxTranslate()), 
-                    T.setWrapperTransition(0), T.setWrapperTranslate(s), T.updateProgress(), T.updateActiveIndex(), 
-                    (!n && T.isBeginning || !o && T.isEnd) && T.updateClasses(), T.params.freeModeSticky && (clearTimeout(T.mousewheel.timeout), 
+                    if (s >= T.minTranslate() && (s = T.minTranslate()), s <= T.maxTranslate() && (s = T.maxTranslate()),
+                    T.setWrapperTransition(0), T.setWrapperTranslate(s), T.updateProgress(), T.updateActiveIndex(),
+                    (!n && T.isBeginning || !o && T.isEnd) && T.updateClasses(), T.params.freeModeSticky && (clearTimeout(T.mousewheel.timeout),
                     T.mousewheel.timeout = setTimeout(function() {
                         T.slideReset();
                     }, 300)), 0 === s || s === T.maxTranslate()) return;
@@ -1634,20 +1634,20 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                     } else T.slidePrev();
                     T.mousewheel.lastScrollTime = new window.Date().getTime();
                 }
-                return T.params.autoplay && T.stopAutoplay(), e.preventDefault ? e.preventDefault() : e.returnValue = !1, 
+                return T.params.autoplay && T.stopAutoplay(), e.preventDefault ? e.preventDefault() : e.returnValue = !1,
                 !1;
             }
         }
         function c(e, t) {
             e = a(e);
             var r, s, n, o = T.rtl ? -1 : 1;
-            r = e.attr("data-swiper-parallax") || "0", s = e.attr("data-swiper-parallax-x"), 
-            n = e.attr("data-swiper-parallax-y"), s || n ? (s = s || "0", n = n || "0") : i() ? (s = r, 
-            n = "0") : (n = r, s = "0"), s = s.indexOf("%") >= 0 ? parseInt(s, 10) * t * o + "%" : s * t * o + "px", 
+            r = e.attr("data-swiper-parallax") || "0", s = e.attr("data-swiper-parallax-x"),
+            n = e.attr("data-swiper-parallax-y"), s || n ? (s = s || "0", n = n || "0") : i() ? (s = r,
+            n = "0") : (n = r, s = "0"), s = s.indexOf("%") >= 0 ? parseInt(s, 10) * t * o + "%" : s * t * o + "px",
             n = n.indexOf("%") >= 0 ? parseInt(n, 10) * t + "%" : n * t + "px", e.transform("translate3d(" + s + ", " + n + ",0px)");
         }
         function m(e) {
-            return 0 !== e.indexOf("on") && (e = e[0] !== e[0].toUpperCase() ? "on" + e[0].toUpperCase() + e.substring(1) : "on" + e), 
+            return 0 !== e.indexOf("on") && (e = e[0] !== e[0].toUpperCase() ? "on" + e[0].toUpperCase() + e.substring(1) : "on" + e),
             e;
         }
         if (!(this instanceof t)) return new t(e, s);
@@ -1780,8 +1780,8 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
         }
         for (var y in f) if ("undefined" == typeof s[y]) s[y] = f[y]; else if ("object" == typeof s[y]) for (var b in f[y]) "undefined" == typeof s[y][b] && (s[y][b] = f[y][b]);
         var T = this;
-        if (T.params = s, T.originalParams = g, T.classNames = [], "undefined" != typeof a && "undefined" != typeof r && (a = r), 
-        ("undefined" != typeof a || (a = "undefined" == typeof r ? window.Dom7 || window.Zepto || window.jQuery : r)) && (T.$ = a, 
+        if (T.params = s, T.originalParams = g, T.classNames = [], "undefined" != typeof a && "undefined" != typeof r && (a = r),
+        ("undefined" != typeof a || (a = "undefined" == typeof r ? window.Dom7 || window.Zepto || window.jQuery : r)) && (T.$ = a,
         T.currentBreakpoint = void 0, T.getActiveBreakpoint = function() {
             if (!T.params.breakpoints) return !1;
             var e, a = !1, t = [];
@@ -1802,24 +1802,24 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
             if (T.container.length > 1) return void T.container.each(function() {
                 new t(this, s);
             });
-            T.container[0].swiper = T, T.container.data("swiper", T), T.classNames.push("swiper-container-" + T.params.direction), 
-            T.params.freeMode && T.classNames.push("swiper-container-free-mode"), T.support.flexbox || (T.classNames.push("swiper-container-no-flexbox"), 
-            T.params.slidesPerColumn = 1), T.params.autoHeight && T.classNames.push("swiper-container-autoheight"), 
-            (T.params.parallax || T.params.watchSlidesVisibility) && (T.params.watchSlidesProgress = !0), 
-            [ "cube", "coverflow" ].indexOf(T.params.effect) >= 0 && (T.support.transforms3d ? (T.params.watchSlidesProgress = !0, 
-            T.classNames.push("swiper-container-3d")) : T.params.effect = "slide"), "slide" !== T.params.effect && T.classNames.push("swiper-container-" + T.params.effect), 
-            "cube" === T.params.effect && (T.params.resistanceRatio = 0, T.params.slidesPerView = 1, 
-            T.params.slidesPerColumn = 1, T.params.slidesPerGroup = 1, T.params.centeredSlides = !1, 
-            T.params.spaceBetween = 0, T.params.virtualTranslate = !0, T.params.setWrapperSize = !1), 
-            "fade" === T.params.effect && (T.params.slidesPerView = 1, T.params.slidesPerColumn = 1, 
-            T.params.slidesPerGroup = 1, T.params.watchSlidesProgress = !0, T.params.spaceBetween = 0, 
-            "undefined" == typeof h && (T.params.virtualTranslate = !0)), T.params.grabCursor && T.support.touch && (T.params.grabCursor = !1), 
-            T.wrapper = T.container.children("." + T.params.wrapperClass), T.params.pagination && (T.paginationContainer = a(T.params.pagination), 
-            T.params.paginationClickable && T.paginationContainer.addClass("swiper-pagination-clickable")), 
-            T.rtl = i() && ("rtl" === T.container[0].dir.toLowerCase() || "rtl" === T.container.css("direction")), 
-            T.rtl && T.classNames.push("swiper-container-rtl"), T.rtl && (T.wrongRTL = "-webkit-box" === T.wrapper.css("display")), 
-            T.params.slidesPerColumn > 1 && T.classNames.push("swiper-container-multirow"), 
-            T.device.android && T.classNames.push("swiper-container-android"), T.container.addClass(T.classNames.join(" ")), 
+            T.container[0].swiper = T, T.container.data("swiper", T), T.classNames.push("swiper-container-" + T.params.direction),
+            T.params.freeMode && T.classNames.push("swiper-container-free-mode"), T.support.flexbox || (T.classNames.push("swiper-container-no-flexbox"),
+            T.params.slidesPerColumn = 1), T.params.autoHeight && T.classNames.push("swiper-container-autoheight"),
+            (T.params.parallax || T.params.watchSlidesVisibility) && (T.params.watchSlidesProgress = !0),
+            [ "cube", "coverflow" ].indexOf(T.params.effect) >= 0 && (T.support.transforms3d ? (T.params.watchSlidesProgress = !0,
+            T.classNames.push("swiper-container-3d")) : T.params.effect = "slide"), "slide" !== T.params.effect && T.classNames.push("swiper-container-" + T.params.effect),
+            "cube" === T.params.effect && (T.params.resistanceRatio = 0, T.params.slidesPerView = 1,
+            T.params.slidesPerColumn = 1, T.params.slidesPerGroup = 1, T.params.centeredSlides = !1,
+            T.params.spaceBetween = 0, T.params.virtualTranslate = !0, T.params.setWrapperSize = !1),
+            "fade" === T.params.effect && (T.params.slidesPerView = 1, T.params.slidesPerColumn = 1,
+            T.params.slidesPerGroup = 1, T.params.watchSlidesProgress = !0, T.params.spaceBetween = 0,
+            "undefined" == typeof h && (T.params.virtualTranslate = !0)), T.params.grabCursor && T.support.touch && (T.params.grabCursor = !1),
+            T.wrapper = T.container.children("." + T.params.wrapperClass), T.params.pagination && (T.paginationContainer = a(T.params.pagination),
+            T.params.paginationClickable && T.paginationContainer.addClass("swiper-pagination-clickable")),
+            T.rtl = i() && ("rtl" === T.container[0].dir.toLowerCase() || "rtl" === T.container.css("direction")),
+            T.rtl && T.classNames.push("swiper-container-rtl"), T.rtl && (T.wrongRTL = "-webkit-box" === T.wrapper.css("display")),
+            T.params.slidesPerColumn > 1 && T.classNames.push("swiper-container-multirow"),
+            T.device.android && T.classNames.push("swiper-container-android"), T.container.addClass(T.classNames.join(" ")),
             T.translate = 0, T.progress = 0, T.velocity = 0, T.lockSwipeToNext = function() {
                 T.params.allowSwipeToNext = !1;
             }, T.lockSwipeToPrev = function() {
@@ -1832,31 +1832,31 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                 T.params.allowSwipeToPrev = !0;
             }, T.unlockSwipes = function() {
                 T.params.allowSwipeToNext = T.params.allowSwipeToPrev = !0;
-            }, T.params.grabCursor && (T.container[0].style.cursor = "move", T.container[0].style.cursor = "-webkit-grab", 
-            T.container[0].style.cursor = "-moz-grab", T.container[0].style.cursor = "grab"), 
+            }, T.params.grabCursor && (T.container[0].style.cursor = "move", T.container[0].style.cursor = "-webkit-grab",
+            T.container[0].style.cursor = "-moz-grab", T.container[0].style.cursor = "grab"),
             T.imagesToLoad = [], T.imagesLoaded = 0, T.loadImage = function(e, a, t, r, s) {
                 function i() {
                     s && s();
                 }
                 var n;
-                e.complete && r ? i() : a ? (n = new window.Image(), n.onload = i, n.onerror = i, 
+                e.complete && r ? i() : a ? (n = new window.Image(), n.onload = i, n.onerror = i,
                 t && (n.srcset = t), a && (n.src = a)) : i();
             }, T.preloadImages = function() {
                 function e() {
-                    "undefined" != typeof T && null !== T && (void 0 !== T.imagesLoaded && T.imagesLoaded++, 
-                    T.imagesLoaded === T.imagesToLoad.length && (T.params.updateOnImagesReady && T.update(), 
+                    "undefined" != typeof T && null !== T && (void 0 !== T.imagesLoaded && T.imagesLoaded++,
+                    T.imagesLoaded === T.imagesToLoad.length && (T.params.updateOnImagesReady && T.update(),
                     T.emit("onImagesReady", T)));
                 }
                 T.imagesToLoad = T.container.find("img");
                 for (var a = 0; a < T.imagesToLoad.length; a++) T.loadImage(T.imagesToLoad[a], T.imagesToLoad[a].currentSrc || T.imagesToLoad[a].getAttribute("src"), T.imagesToLoad[a].srcset || T.imagesToLoad[a].getAttribute("srcset"), !0, e);
             }, T.autoplayTimeoutId = void 0, T.autoplaying = !1, T.autoplayPaused = !1, T.startAutoplay = function() {
-                return "undefined" != typeof T.autoplayTimeoutId ? !1 : T.params.autoplay ? T.autoplaying ? !1 : (T.autoplaying = !0, 
+                return "undefined" != typeof T.autoplayTimeoutId ? !1 : T.params.autoplay ? T.autoplaying ? !1 : (T.autoplaying = !0,
                 T.emit("onAutoplayStart", T), void o()) : !1;
             }, T.stopAutoplay = function(e) {
-                T.autoplayTimeoutId && (T.autoplayTimeoutId && clearTimeout(T.autoplayTimeoutId), 
+                T.autoplayTimeoutId && (T.autoplayTimeoutId && clearTimeout(T.autoplayTimeoutId),
                 T.autoplaying = !1, T.autoplayTimeoutId = void 0, T.emit("onAutoplayStop", T));
             }, T.pauseAutoplay = function(e) {
-                T.autoplayPaused || (T.autoplayTimeoutId && clearTimeout(T.autoplayTimeoutId), T.autoplayPaused = !0, 
+                T.autoplayPaused || (T.autoplayTimeoutId && clearTimeout(T.autoplayTimeoutId), T.autoplayPaused = !0,
                 0 === e ? (T.autoplayPaused = !1, o()) : T.wrapper.transitionEnd(function() {
                     T && (T.autoplayPaused = !1, T.autoplaying ? o() : T.stopAutoplay());
                 }));
@@ -1869,16 +1869,16 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                 e && T.wrapper.css("height", T.slides.eq(T.activeIndex)[0].offsetHeight + "px");
             }, T.updateContainerSize = function() {
                 var e, a;
-                e = "undefined" != typeof T.params.width ? T.params.width : T.container[0].clientWidth, 
-                a = "undefined" != typeof T.params.height ? T.params.height : T.container[0].clientHeight, 
-                0 === e && i() || 0 === a && !i() || (e = e - parseInt(T.container.css("padding-left"), 10) - parseInt(T.container.css("padding-right"), 10), 
-                a = a - parseInt(T.container.css("padding-top"), 10) - parseInt(T.container.css("padding-bottom"), 10), 
+                e = "undefined" != typeof T.params.width ? T.params.width : T.container[0].clientWidth,
+                a = "undefined" != typeof T.params.height ? T.params.height : T.container[0].clientHeight,
+                0 === e && i() || 0 === a && !i() || (e = e - parseInt(T.container.css("padding-left"), 10) - parseInt(T.container.css("padding-right"), 10),
+                a = a - parseInt(T.container.css("padding-top"), 10) - parseInt(T.container.css("padding-bottom"), 10),
                 T.width = e, T.height = a, T.size = i() ? T.width : T.height);
             }, T.updateSlidesSize = function() {
-                T.slides = T.wrapper.children("." + T.params.slideClass), T.snapGrid = [], T.slidesGrid = [], 
+                T.slides = T.wrapper.children("." + T.params.slideClass), T.snapGrid = [], T.slidesGrid = [],
                 T.slidesSizesGrid = [];
                 var e, a = T.params.spaceBetween, t = -T.params.slidesOffsetBefore, r = 0, s = 0;
-                "string" == typeof a && a.indexOf("%") >= 0 && (a = parseFloat(a.replace("%", "")) / 100 * T.size), 
+                "string" == typeof a && a.indexOf("%") >= 0 && (a = parseFloat(a.replace("%", "")) / 100 * T.size),
                 T.virtualSize = -a, T.rtl ? T.slides.css({
                     marginLeft: "",
                     marginTop: ""
@@ -1887,7 +1887,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                     marginBottom: ""
                 });
                 var o;
-                T.params.slidesPerColumn > 1 && (o = Math.floor(T.slides.length / T.params.slidesPerColumn) === T.slides.length / T.params.slidesPerColumn ? T.slides.length : Math.ceil(T.slides.length / T.params.slidesPerColumn) * T.params.slidesPerColumn, 
+                T.params.slidesPerColumn > 1 && (o = Math.floor(T.slides.length / T.params.slidesPerColumn) === T.slides.length / T.params.slidesPerColumn ? T.slides.length : Math.ceil(T.slides.length / T.params.slidesPerColumn) * T.params.slidesPerColumn,
                 "auto" !== T.params.slidesPerView && "row" === T.params.slidesPerColumnFill && (o = Math.max(o, T.params.slidesPerView * T.params.slidesPerColumn)));
                 var l, d = T.params.slidesPerColumn, p = o / d, u = p - (T.params.slidesPerColumn * p - T.slides.length);
                 for (e = 0; e < T.slides.length; e++) {
@@ -1895,8 +1895,8 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                     var c = T.slides.eq(e);
                     if (T.params.slidesPerColumn > 1) {
                         var m, f, h;
-                        "column" === T.params.slidesPerColumnFill ? (f = Math.floor(e / d), h = e - f * d, 
-                        (f > u || f === u && h === d - 1) && ++h >= d && (h = 0, f++), m = f + h * o / d, 
+                        "column" === T.params.slidesPerColumnFill ? (f = Math.floor(e / d), h = e - f * d,
+                        (f > u || f === u && h === d - 1) && ++h >= d && (h = 0, f++), m = f + h * o / d,
                         c.css({
                             "-webkit-box-ordinal-group": m,
                             "-moz-box-ordinal-group": m,
@@ -1907,12 +1907,12 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                             "margin-top": 0 !== h && T.params.spaceBetween && T.params.spaceBetween + "px"
                         }).attr("data-swiper-column", f).attr("data-swiper-row", h);
                     }
-                    "none" !== c.css("display") && ("auto" === T.params.slidesPerView ? (l = i() ? c.outerWidth(!0) : c.outerHeight(!0), 
-                    T.params.roundLengths && (l = n(l))) : (l = (T.size - (T.params.slidesPerView - 1) * a) / T.params.slidesPerView, 
-                    T.params.roundLengths && (l = n(l)), i() ? T.slides[e].style.width = l + "px" : T.slides[e].style.height = l + "px"), 
-                    T.slides[e].swiperSlideSize = l, T.slidesSizesGrid.push(l), T.params.centeredSlides ? (t = t + l / 2 + r / 2 + a, 
-                    0 === e && (t = t - T.size / 2 - a), Math.abs(t) < .001 && (t = 0), s % T.params.slidesPerGroup === 0 && T.snapGrid.push(t), 
-                    T.slidesGrid.push(t)) : (s % T.params.slidesPerGroup === 0 && T.snapGrid.push(t), 
+                    "none" !== c.css("display") && ("auto" === T.params.slidesPerView ? (l = i() ? c.outerWidth(!0) : c.outerHeight(!0),
+                    T.params.roundLengths && (l = n(l))) : (l = (T.size - (T.params.slidesPerView - 1) * a) / T.params.slidesPerView,
+                    T.params.roundLengths && (l = n(l)), i() ? T.slides[e].style.width = l + "px" : T.slides[e].style.height = l + "px"),
+                    T.slides[e].swiperSlideSize = l, T.slidesSizesGrid.push(l), T.params.centeredSlides ? (t = t + l / 2 + r / 2 + a,
+                    0 === e && (t = t - T.size / 2 - a), Math.abs(t) < .001 && (t = 0), s % T.params.slidesPerGroup === 0 && T.snapGrid.push(t),
+                    T.slidesGrid.push(t)) : (s % T.params.slidesPerGroup === 0 && T.snapGrid.push(t),
                     T.slidesGrid.push(t), t = t + l + a), T.virtualSize += l + a, r = l, s++);
                 }
                 T.virtualSize = Math.max(T.virtualSize, T.size) + T.params.slidesOffsetAfter;
@@ -1923,8 +1923,8 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                     width: T.virtualSize + T.params.spaceBetween + "px"
                 }) : T.wrapper.css({
                     height: T.virtualSize + T.params.spaceBetween + "px"
-                })), T.params.slidesPerColumn > 1 && (T.virtualSize = (l + T.params.spaceBetween) * o, 
-                T.virtualSize = Math.ceil(T.virtualSize / T.params.slidesPerColumn) - T.params.spaceBetween, 
+                })), T.params.slidesPerColumn > 1 && (T.virtualSize = (l + T.params.spaceBetween) * o,
+                T.virtualSize = Math.ceil(T.virtualSize / T.params.slidesPerColumn) - T.params.spaceBetween,
                 T.wrapper.css({
                     width: T.virtualSize + T.params.spaceBetween + "px"
                 }), T.params.centeredSlides)) {
@@ -1961,59 +1961,59 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
             }, T.updateProgress = function(e) {
                 "undefined" == typeof e && (e = T.translate || 0);
                 var a = T.maxTranslate() - T.minTranslate(), t = T.isBeginning, r = T.isEnd;
-                0 === a ? (T.progress = 0, T.isBeginning = T.isEnd = !0) : (T.progress = (e - T.minTranslate()) / a, 
-                T.isBeginning = T.progress <= 0, T.isEnd = T.progress >= 1), T.isBeginning && !t && T.emit("onReachBeginning", T), 
-                T.isEnd && !r && T.emit("onReachEnd", T), T.params.watchSlidesProgress && T.updateSlidesProgress(e), 
+                0 === a ? (T.progress = 0, T.isBeginning = T.isEnd = !0) : (T.progress = (e - T.minTranslate()) / a,
+                T.isBeginning = T.progress <= 0, T.isEnd = T.progress >= 1), T.isBeginning && !t && T.emit("onReachBeginning", T),
+                T.isEnd && !r && T.emit("onReachEnd", T), T.params.watchSlidesProgress && T.updateSlidesProgress(e),
                 T.emit("onProgress", T, T.progress);
             }, T.updateActiveIndex = function() {
                 var e, a, t, r = T.rtl ? T.translate : -T.translate;
                 for (a = 0; a < T.slidesGrid.length; a++) "undefined" != typeof T.slidesGrid[a + 1] ? r >= T.slidesGrid[a] && r < T.slidesGrid[a + 1] - (T.slidesGrid[a + 1] - T.slidesGrid[a]) / 2 ? e = a : r >= T.slidesGrid[a] && r < T.slidesGrid[a + 1] && (e = a + 1) : r >= T.slidesGrid[a] && (e = a);
-                (0 > e || "undefined" == typeof e) && (e = 0), t = Math.floor(e / T.params.slidesPerGroup), 
-                t >= T.snapGrid.length && (t = T.snapGrid.length - 1), e !== T.activeIndex && (T.snapIndex = t, 
+                (0 > e || "undefined" == typeof e) && (e = 0), t = Math.floor(e / T.params.slidesPerGroup),
+                t >= T.snapGrid.length && (t = T.snapGrid.length - 1), e !== T.activeIndex && (T.snapIndex = t,
                 T.previousIndex = T.activeIndex, T.activeIndex = e, T.updateClasses());
             }, T.updateClasses = function() {
                 T.slides.removeClass(T.params.slideActiveClass + " " + T.params.slideNextClass + " " + T.params.slidePrevClass);
                 var e = T.slides.eq(T.activeIndex);
-                if (e.addClass(T.params.slideActiveClass), e.next("." + T.params.slideClass).addClass(T.params.slideNextClass), 
+                if (e.addClass(T.params.slideActiveClass), e.next("." + T.params.slideClass).addClass(T.params.slideNextClass),
                 e.prev("." + T.params.slideClass).addClass(T.params.slidePrevClass), T.bullets && T.bullets.length > 0) {
                     T.bullets.removeClass(T.params.bulletActiveClass);
                     var t;
-                    T.params.loop ? (t = Math.ceil(T.activeIndex - T.loopedSlides) / T.params.slidesPerGroup, 
-                    t > T.slides.length - 1 - 2 * T.loopedSlides && (t -= T.slides.length - 2 * T.loopedSlides), 
-                    t > T.bullets.length - 1 && (t -= T.bullets.length)) : t = "undefined" != typeof T.snapIndex ? T.snapIndex : T.activeIndex || 0, 
+                    T.params.loop ? (t = Math.ceil(T.activeIndex - T.loopedSlides) / T.params.slidesPerGroup,
+                    t > T.slides.length - 1 - 2 * T.loopedSlides && (t -= T.slides.length - 2 * T.loopedSlides),
+                    t > T.bullets.length - 1 && (t -= T.bullets.length)) : t = "undefined" != typeof T.snapIndex ? T.snapIndex : T.activeIndex || 0,
                     T.paginationContainer.length > 1 ? T.bullets.each(function() {
                         a(this).index() === t && a(this).addClass(T.params.bulletActiveClass);
                     }) : T.bullets.eq(t).addClass(T.params.bulletActiveClass);
                 }
-                T.params.loop || (T.params.prevButton && (T.isBeginning ? (a(T.params.prevButton).addClass(T.params.buttonDisabledClass), 
-                T.params.a11y && T.a11y && T.a11y.disable(a(T.params.prevButton))) : (a(T.params.prevButton).removeClass(T.params.buttonDisabledClass), 
-                T.params.a11y && T.a11y && T.a11y.enable(a(T.params.prevButton)))), T.params.nextButton && (T.isEnd ? (a(T.params.nextButton).addClass(T.params.buttonDisabledClass), 
-                T.params.a11y && T.a11y && T.a11y.disable(a(T.params.nextButton))) : (a(T.params.nextButton).removeClass(T.params.buttonDisabledClass), 
+                T.params.loop || (T.params.prevButton && (T.isBeginning ? (a(T.params.prevButton).addClass(T.params.buttonDisabledClass),
+                T.params.a11y && T.a11y && T.a11y.disable(a(T.params.prevButton))) : (a(T.params.prevButton).removeClass(T.params.buttonDisabledClass),
+                T.params.a11y && T.a11y && T.a11y.enable(a(T.params.prevButton)))), T.params.nextButton && (T.isEnd ? (a(T.params.nextButton).addClass(T.params.buttonDisabledClass),
+                T.params.a11y && T.a11y && T.a11y.disable(a(T.params.nextButton))) : (a(T.params.nextButton).removeClass(T.params.buttonDisabledClass),
                 T.params.a11y && T.a11y && T.a11y.enable(a(T.params.nextButton)))));
             }, T.updatePagination = function() {
                 if (T.params.pagination && T.paginationContainer && T.paginationContainer.length > 0) {
                     for (var e = "", a = T.params.loop ? Math.ceil((T.slides.length - 2 * T.loopedSlides) / T.params.slidesPerGroup) : T.snapGrid.length, t = 0; a > t; t++) e += T.params.paginationBulletRender ? T.params.paginationBulletRender(t, T.params.bulletClass) : "<" + T.params.paginationElement + ' class="' + T.params.bulletClass + '"></' + T.params.paginationElement + ">";
-                    T.paginationContainer.html(e), T.bullets = T.paginationContainer.find("." + T.params.bulletClass), 
+                    T.paginationContainer.html(e), T.bullets = T.paginationContainer.find("." + T.params.bulletClass),
                     T.params.paginationClickable && T.params.a11y && T.a11y && T.a11y.initPagination();
                 }
             }, T.update = function(e) {
                 function a() {
-                    r = Math.min(Math.max(T.translate, T.maxTranslate()), T.minTranslate()), T.setWrapperTranslate(r), 
+                    r = Math.min(Math.max(T.translate, T.maxTranslate()), T.minTranslate()), T.setWrapperTranslate(r),
                     T.updateActiveIndex(), T.updateClasses();
                 }
-                if (T.updateContainerSize(), T.updateSlidesSize(), T.updateProgress(), T.updatePagination(), 
+                if (T.updateContainerSize(), T.updateSlidesSize(), T.updateProgress(), T.updatePagination(),
                 T.updateClasses(), T.params.scrollbar && T.scrollbar && T.scrollbar.set(), e) {
                     var t, r;
-                    T.controller && T.controller.spline && (T.controller.spline = void 0), T.params.freeMode ? (a(), 
-                    T.params.autoHeight && T.updateAutoHeight()) : (t = ("auto" === T.params.slidesPerView || T.params.slidesPerView > 1) && T.isEnd && !T.params.centeredSlides ? T.slideTo(T.slides.length - 1, 0, !1, !0) : T.slideTo(T.activeIndex, 0, !1, !0), 
+                    T.controller && T.controller.spline && (T.controller.spline = void 0), T.params.freeMode ? (a(),
+                    T.params.autoHeight && T.updateAutoHeight()) : (t = ("auto" === T.params.slidesPerView || T.params.slidesPerView > 1) && T.isEnd && !T.params.centeredSlides ? T.slideTo(T.slides.length - 1, 0, !1, !0) : T.slideTo(T.activeIndex, 0, !1, !0),
                     t || a());
                 } else T.params.autoHeight && T.updateAutoHeight();
             }, T.onResize = function(e) {
                 T.params.breakpoints && T.setBreakpoint();
                 var a = T.params.allowSwipeToPrev, t = T.params.allowSwipeToNext;
-                if (T.params.allowSwipeToPrev = T.params.allowSwipeToNext = !0, T.updateContainerSize(), 
-                T.updateSlidesSize(), ("auto" === T.params.slidesPerView || T.params.freeMode || e) && T.updatePagination(), 
-                T.params.scrollbar && T.scrollbar && T.scrollbar.set(), T.controller && T.controller.spline && (T.controller.spline = void 0), 
+                if (T.params.allowSwipeToPrev = T.params.allowSwipeToNext = !0, T.updateContainerSize(),
+                T.updateSlidesSize(), ("auto" === T.params.slidesPerView || T.params.freeMode || e) && T.updatePagination(),
+                T.params.scrollbar && T.scrollbar && T.scrollbar.set(), T.controller && T.controller.spline && (T.controller.spline = void 0),
                 T.params.freeMode) {
                     var r = Math.min(Math.max(T.translate, T.maxTranslate()), T.minTranslate());
                     T.setWrapperTranslate(r), T.updateActiveIndex(), T.updateClasses(), T.params.autoHeight && T.updateAutoHeight();
@@ -2021,31 +2021,31 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                 T.params.allowSwipeToPrev = a, T.params.allowSwipeToNext = t;
             };
             var x = [ "mousedown", "mousemove", "mouseup" ];
-            window.navigator.pointerEnabled ? x = [ "pointerdown", "pointermove", "pointerup" ] : window.navigator.msPointerEnabled && (x = [ "MSPointerDown", "MSPointerMove", "MSPointerUp" ]), 
+            window.navigator.pointerEnabled ? x = [ "pointerdown", "pointermove", "pointerup" ] : window.navigator.msPointerEnabled && (x = [ "MSPointerDown", "MSPointerMove", "MSPointerUp" ]),
             T.touchEvents = {
                 start: T.support.touch || !T.params.simulateTouch ? "touchstart" : x[0],
                 move: T.support.touch || !T.params.simulateTouch ? "touchmove" : x[1],
                 end: T.support.touch || !T.params.simulateTouch ? "touchend" : x[2]
-            }, (window.navigator.pointerEnabled || window.navigator.msPointerEnabled) && ("container" === T.params.touchEventsTarget ? T.container : T.wrapper).addClass("swiper-wp8-" + T.params.direction), 
+            }, (window.navigator.pointerEnabled || window.navigator.msPointerEnabled) && ("container" === T.params.touchEventsTarget ? T.container : T.wrapper).addClass("swiper-wp8-" + T.params.direction),
             T.initEvents = function(e) {
                 var t = e ? "off" : "on", r = e ? "removeEventListener" : "addEventListener", i = "container" === T.params.touchEventsTarget ? T.container[0] : T.wrapper[0], n = T.support.touch ? i : document, o = T.params.nested ? !0 : !1;
-                T.browser.ie ? (i[r](T.touchEvents.start, T.onTouchStart, !1), n[r](T.touchEvents.move, T.onTouchMove, o), 
-                n[r](T.touchEvents.end, T.onTouchEnd, !1)) : (T.support.touch && (i[r](T.touchEvents.start, T.onTouchStart, !1), 
-                i[r](T.touchEvents.move, T.onTouchMove, o), i[r](T.touchEvents.end, T.onTouchEnd, !1)), 
-                !s.simulateTouch || T.device.ios || T.device.android || (i[r]("mousedown", T.onTouchStart, !1), 
-                document[r]("mousemove", T.onTouchMove, o), document[r]("mouseup", T.onTouchEnd, !1))), 
-                window[r]("resize", T.onResize), T.params.nextButton && (a(T.params.nextButton)[t]("click", T.onClickNext), 
-                T.params.a11y && T.a11y && a(T.params.nextButton)[t]("keydown", T.a11y.onEnterKey)), 
-                T.params.prevButton && (a(T.params.prevButton)[t]("click", T.onClickPrev), T.params.a11y && T.a11y && a(T.params.prevButton)[t]("keydown", T.a11y.onEnterKey)), 
-                T.params.pagination && T.params.paginationClickable && (a(T.paginationContainer)[t]("click", "." + T.params.bulletClass, T.onClickIndex), 
-                T.params.a11y && T.a11y && a(T.paginationContainer)[t]("keydown", "." + T.params.bulletClass, T.a11y.onEnterKey)), 
+                T.browser.ie ? (i[r](T.touchEvents.start, T.onTouchStart, !1), n[r](T.touchEvents.move, T.onTouchMove, o),
+                n[r](T.touchEvents.end, T.onTouchEnd, !1)) : (T.support.touch && (i[r](T.touchEvents.start, T.onTouchStart, !1),
+                i[r](T.touchEvents.move, T.onTouchMove, o), i[r](T.touchEvents.end, T.onTouchEnd, !1)),
+                !s.simulateTouch || T.device.ios || T.device.android || (i[r]("mousedown", T.onTouchStart, !1),
+                document[r]("mousemove", T.onTouchMove, o), document[r]("mouseup", T.onTouchEnd, !1))),
+                window[r]("resize", T.onResize), T.params.nextButton && (a(T.params.nextButton)[t]("click", T.onClickNext),
+                T.params.a11y && T.a11y && a(T.params.nextButton)[t]("keydown", T.a11y.onEnterKey)),
+                T.params.prevButton && (a(T.params.prevButton)[t]("click", T.onClickPrev), T.params.a11y && T.a11y && a(T.params.prevButton)[t]("keydown", T.a11y.onEnterKey)),
+                T.params.pagination && T.params.paginationClickable && (a(T.paginationContainer)[t]("click", "." + T.params.bulletClass, T.onClickIndex),
+                T.params.a11y && T.a11y && a(T.paginationContainer)[t]("keydown", "." + T.params.bulletClass, T.a11y.onEnterKey)),
                 (T.params.preventClicks || T.params.preventClicksPropagation) && i[r]("click", T.preventClicks, !0);
             }, T.attachEvents = function(e) {
                 T.initEvents();
             }, T.detachEvents = function() {
                 T.initEvents(!0);
             }, T.allowClick = !0, T.preventClicks = function(e) {
-                T.allowClick || (T.params.preventClicks && e.preventDefault(), T.params.preventClicksPropagation && T.animating && (e.stopPropagation(), 
+                T.allowClick || (T.params.preventClicks && e.preventDefault(), T.params.preventClicksPropagation && T.animating && (e.stopPropagation(),
                 e.stopImmediatePropagation()));
             }, T.onClickNext = function(e) {
                 e.preventDefault(), (!T.isEnd || T.params.loop) && T.slideNext();
@@ -2063,12 +2063,12 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                     var i, n = T.clickedIndex;
                     if (T.params.loop) {
                         if (T.animating) return;
-                        i = a(T.clickedSlide).attr("data-swiper-slide-index"), T.params.centeredSlides ? n < T.loopedSlides - T.params.slidesPerView / 2 || n > T.slides.length - T.loopedSlides + T.params.slidesPerView / 2 ? (T.fixLoop(), 
-                        n = T.wrapper.children("." + T.params.slideClass + '[data-swiper-slide-index="' + i + '"]:not(.swiper-slide-duplicate)').eq(0).index(), 
+                        i = a(T.clickedSlide).attr("data-swiper-slide-index"), T.params.centeredSlides ? n < T.loopedSlides - T.params.slidesPerView / 2 || n > T.slides.length - T.loopedSlides + T.params.slidesPerView / 2 ? (T.fixLoop(),
+                        n = T.wrapper.children("." + T.params.slideClass + '[data-swiper-slide-index="' + i + '"]:not(.swiper-slide-duplicate)').eq(0).index(),
                         setTimeout(function() {
                             T.slideTo(n);
-                        }, 0)) : T.slideTo(n) : n > T.slides.length - T.params.slidesPerView ? (T.fixLoop(), 
-                        n = T.wrapper.children("." + T.params.slideClass + '[data-swiper-slide-index="' + i + '"]:not(.swiper-slide-duplicate)').eq(0).index(), 
+                        }, 0)) : T.slideTo(n) : n > T.slides.length - T.params.slidesPerView ? (T.fixLoop(),
+                        n = T.wrapper.children("." + T.params.slideClass + '[data-swiper-slide-index="' + i + '"]:not(.swiper-slide-duplicate)').eq(0).index(),
                         setTimeout(function() {
                             T.slideTo(n);
                         }, 0)) : T.slideTo(n);
@@ -2090,11 +2090,11 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                     if (!T.params.swipeHandler || l(e, T.params.swipeHandler)) {
                         var t = T.touches.currentX = "touchstart" === e.type ? e.targetTouches[0].pageX : e.pageX, r = T.touches.currentY = "touchstart" === e.type ? e.targetTouches[0].pageY : e.pageY;
                         if (!(T.device.ios && T.params.iOSEdgeSwipeDetection && t <= T.params.iOSEdgeSwipeThreshold)) {
-                            if (S = !0, C = !1, M = !0, P = void 0, N = void 0, T.touches.startX = t, T.touches.startY = r, 
-                            E = Date.now(), T.allowClick = !0, T.updateContainerSize(), T.swipeDirection = void 0, 
+                            if (S = !0, C = !1, M = !0, P = void 0, N = void 0, T.touches.startX = t, T.touches.startY = r,
+                            E = Date.now(), T.allowClick = !0, T.updateContainerSize(), T.swipeDirection = void 0,
                             T.params.threshold > 0 && (I = !1), "touchstart" !== e.type) {
                                 var s = !0;
-                                a(e.target).is(B) && (s = !1), document.activeElement && a(document.activeElement).is(B) && document.activeElement.blur(), 
+                                a(e.target).is(B) && (s = !1), document.activeElement && a(document.activeElement).is(B) && document.activeElement.blur(),
                                 s && e.preventDefault();
                             }
                             T.emit("onTouchStart", T, e);
@@ -2103,40 +2103,40 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                 }
             }, T.onTouchMove = function(e) {
                 if (e.originalEvent && (e = e.originalEvent), !(O && "mousemove" === e.type || e.preventedByNestedSwiper)) {
-                    if (T.params.onlyExternal) return T.allowClick = !1, void (S && (T.touches.startX = T.touches.currentX = "touchmove" === e.type ? e.targetTouches[0].pageX : e.pageX, 
-                    T.touches.startY = T.touches.currentY = "touchmove" === e.type ? e.targetTouches[0].pageY : e.pageY, 
+                    if (T.params.onlyExternal) return T.allowClick = !1, void (S && (T.touches.startX = T.touches.currentX = "touchmove" === e.type ? e.targetTouches[0].pageX : e.pageX,
+                    T.touches.startY = T.touches.currentY = "touchmove" === e.type ? e.targetTouches[0].pageY : e.pageY,
                     E = Date.now()));
-                    if (O && document.activeElement && e.target === document.activeElement && a(e.target).is(B)) return C = !0, 
+                    if (O && document.activeElement && e.target === document.activeElement && a(e.target).is(B)) return C = !0,
                     void (T.allowClick = !1);
                     if (M && T.emit("onTouchMove", T, e), !(e.targetTouches && e.targetTouches.length > 1)) {
-                        if (T.touches.currentX = "touchmove" === e.type ? e.targetTouches[0].pageX : e.pageX, 
-                        T.touches.currentY = "touchmove" === e.type ? e.targetTouches[0].pageY : e.pageY, 
+                        if (T.touches.currentX = "touchmove" === e.type ? e.targetTouches[0].pageX : e.pageX,
+                        T.touches.currentY = "touchmove" === e.type ? e.targetTouches[0].pageY : e.pageY,
                         "undefined" == typeof P) {
                             var t = 180 * Math.atan2(Math.abs(T.touches.currentY - T.touches.startY), Math.abs(T.touches.currentX - T.touches.startX)) / Math.PI;
                             P = i() ? t > T.params.touchAngle : 90 - t > T.params.touchAngle;
                         }
-                        if (P && T.emit("onTouchMoveOpposite", T, e), "undefined" == typeof N && T.browser.ieTouch && (T.touches.currentX !== T.touches.startX || T.touches.currentY !== T.touches.startY) && (N = !0), 
+                        if (P && T.emit("onTouchMoveOpposite", T, e), "undefined" == typeof N && T.browser.ieTouch && (T.touches.currentX !== T.touches.startX || T.touches.currentY !== T.touches.startY) && (N = !0),
                         S) {
                             if (P) return void (S = !1);
                             if (N || !T.browser.ieTouch) {
-                                T.allowClick = !1, T.emit("onSliderMove", T, e), e.preventDefault(), T.params.touchMoveStopPropagation && !T.params.nested && e.stopPropagation(), 
-                                C || (s.loop && T.fixLoop(), z = T.getWrapperTranslate(), T.setWrapperTransition(0), 
-                                T.animating && T.wrapper.trigger("webkitTransitionEnd transitionend oTransitionEnd MSTransitionEnd msTransitionEnd"), 
-                                T.params.autoplay && T.autoplaying && (T.params.autoplayDisableOnInteraction ? T.stopAutoplay() : T.pauseAutoplay()), 
-                                D = !1, T.params.grabCursor && (T.container[0].style.cursor = "move", T.container[0].style.cursor = "-webkit-grabbing", 
-                                T.container[0].style.cursor = "-moz-grabbin", T.container[0].style.cursor = "grabbing")), 
+                                T.allowClick = !1, T.emit("onSliderMove", T, e), e.preventDefault(), T.params.touchMoveStopPropagation && !T.params.nested && e.stopPropagation(),
+                                C || (s.loop && T.fixLoop(), z = T.getWrapperTranslate(), T.setWrapperTransition(0),
+                                T.animating && T.wrapper.trigger("webkitTransitionEnd transitionend oTransitionEnd MSTransitionEnd msTransitionEnd"),
+                                T.params.autoplay && T.autoplaying && (T.params.autoplayDisableOnInteraction ? T.stopAutoplay() : T.pauseAutoplay()),
+                                D = !1, T.params.grabCursor && (T.container[0].style.cursor = "move", T.container[0].style.cursor = "-webkit-grabbing",
+                                T.container[0].style.cursor = "-moz-grabbin", T.container[0].style.cursor = "grabbing")),
                                 C = !0;
                                 var r = T.touches.diff = i() ? T.touches.currentX - T.touches.startX : T.touches.currentY - T.touches.startY;
-                                r *= T.params.touchRatio, T.rtl && (r = -r), T.swipeDirection = r > 0 ? "prev" : "next", 
+                                r *= T.params.touchRatio, T.rtl && (r = -r), T.swipeDirection = r > 0 ? "prev" : "next",
                                 k = r + z;
                                 var n = !0;
-                                if (r > 0 && k > T.minTranslate() ? (n = !1, T.params.resistance && (k = T.minTranslate() - 1 + Math.pow(-T.minTranslate() + z + r, T.params.resistanceRatio))) : 0 > r && k < T.maxTranslate() && (n = !1, 
-                                T.params.resistance && (k = T.maxTranslate() + 1 - Math.pow(T.maxTranslate() - z - r, T.params.resistanceRatio))), 
-                                n && (e.preventedByNestedSwiper = !0), !T.params.allowSwipeToNext && "next" === T.swipeDirection && z > k && (k = z), 
+                                if (r > 0 && k > T.minTranslate() ? (n = !1, T.params.resistance && (k = T.minTranslate() - 1 + Math.pow(-T.minTranslate() + z + r, T.params.resistanceRatio))) : 0 > r && k < T.maxTranslate() && (n = !1,
+                                T.params.resistance && (k = T.maxTranslate() + 1 - Math.pow(T.maxTranslate() - z - r, T.params.resistanceRatio))),
+                                n && (e.preventedByNestedSwiper = !0), !T.params.allowSwipeToNext && "next" === T.swipeDirection && z > k && (k = z),
                                 !T.params.allowSwipeToPrev && "prev" === T.swipeDirection && k > z && (k = z), T.params.followFinger) {
                                     if (T.params.threshold > 0) {
                                         if (!(Math.abs(r) > T.params.threshold || I)) return void (k = z);
-                                        if (!I) return I = !0, T.touches.startX = T.touches.currentX, T.touches.startY = T.touches.currentY, 
+                                        if (!I) return I = !0, T.touches.startX = T.touches.currentX, T.touches.startY = T.touches.currentY,
                                         k = z, void (T.touches.diff = i() ? T.touches.currentX - T.touches.startX : T.touches.currentY - T.touches.startY);
                                     }
                                     (T.params.freeMode || T.params.watchSlidesProgress) && T.updateActiveIndex(), T.params.freeMode && (0 === A.length && A.push({
@@ -2152,16 +2152,16 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                     }
                 }
             }, T.onTouchEnd = function(e) {
-                if (e.originalEvent && (e = e.originalEvent), M && T.emit("onTouchEnd", T, e), M = !1, 
+                if (e.originalEvent && (e = e.originalEvent), M && T.emit("onTouchEnd", T, e), M = !1,
                 S) {
-                    T.params.grabCursor && C && S && (T.container[0].style.cursor = "move", T.container[0].style.cursor = "-webkit-grab", 
+                    T.params.grabCursor && C && S && (T.container[0].style.cursor = "move", T.container[0].style.cursor = "-webkit-grab",
                     T.container[0].style.cursor = "-moz-grab", T.container[0].style.cursor = "grab");
                     var t = Date.now(), r = t - E;
-                    if (T.allowClick && (T.updateClickedSlide(e), T.emit("onTap", T, e), 300 > r && t - G > 300 && (L && clearTimeout(L), 
+                    if (T.allowClick && (T.updateClickedSlide(e), T.emit("onTap", T, e), 300 > r && t - G > 300 && (L && clearTimeout(L),
                     L = setTimeout(function() {
-                        T && (T.params.paginationHide && T.paginationContainer.length > 0 && !a(e.target).hasClass(T.params.bulletClass) && T.paginationContainer.toggleClass(T.params.paginationHiddenClass), 
+                        T && (T.params.paginationHide && T.paginationContainer.length > 0 && !a(e.target).hasClass(T.params.bulletClass) && T.paginationContainer.toggleClass(T.params.paginationHiddenClass),
                         T.emit("onClick", T, e));
-                    }, 300)), 300 > r && 300 > t - G && (L && clearTimeout(L), T.emit("onDoubleTap", T, e))), 
+                    }, 300)), 300 > r && 300 > t - G && (L && clearTimeout(L), T.emit("onDoubleTap", T, e))),
                     G = Date.now(), setTimeout(function() {
                         T && (T.allowClick = !0);
                     }, 0), !S || !C || !T.swipeDirection || 0 === T.touches.diff || k === z) return void (S = C = !1);
@@ -2173,47 +2173,47 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                         if (T.params.freeModeMomentum) {
                             if (A.length > 1) {
                                 var i = A.pop(), n = A.pop(), o = i.position - n.position, l = i.time - n.time;
-                                T.velocity = o / l, T.velocity = T.velocity / 2, Math.abs(T.velocity) < T.params.freeModeMinimumVelocity && (T.velocity = 0), 
+                                T.velocity = o / l, T.velocity = T.velocity / 2, Math.abs(T.velocity) < T.params.freeModeMinimumVelocity && (T.velocity = 0),
                                 (l > 150 || new window.Date().getTime() - i.time > 300) && (T.velocity = 0);
                             } else T.velocity = 0;
                             A.length = 0;
                             var d = 1e3 * T.params.freeModeMomentumRatio, p = T.velocity * d, u = T.translate + p;
                             T.rtl && (u = -u);
                             var c, m = !1, f = 20 * Math.abs(T.velocity) * T.params.freeModeMomentumBounceRatio;
-                            if (u < T.maxTranslate()) T.params.freeModeMomentumBounce ? (u + T.maxTranslate() < -f && (u = T.maxTranslate() - f), 
-                            c = T.maxTranslate(), m = !0, D = !0) : u = T.maxTranslate(); else if (u > T.minTranslate()) T.params.freeModeMomentumBounce ? (u - T.minTranslate() > f && (u = T.minTranslate() + f), 
+                            if (u < T.maxTranslate()) T.params.freeModeMomentumBounce ? (u + T.maxTranslate() < -f && (u = T.maxTranslate() - f),
+                            c = T.maxTranslate(), m = !0, D = !0) : u = T.maxTranslate(); else if (u > T.minTranslate()) T.params.freeModeMomentumBounce ? (u - T.minTranslate() > f && (u = T.minTranslate() + f),
                             c = T.minTranslate(), m = !0, D = !0) : u = T.minTranslate(); else if (T.params.freeModeSticky) {
                                 var h, g = 0;
                                 for (g = 0; g < T.snapGrid.length; g += 1) if (T.snapGrid[g] > -u) {
                                     h = g;
                                     break;
                                 }
-                                u = Math.abs(T.snapGrid[h] - u) < Math.abs(T.snapGrid[h - 1] - u) || "next" === T.swipeDirection ? T.snapGrid[h] : T.snapGrid[h - 1], 
+                                u = Math.abs(T.snapGrid[h] - u) < Math.abs(T.snapGrid[h - 1] - u) || "next" === T.swipeDirection ? T.snapGrid[h] : T.snapGrid[h - 1],
                                 T.rtl || (u = -u);
                             }
                             if (0 !== T.velocity) d = T.rtl ? Math.abs((-u - T.translate) / T.velocity) : Math.abs((u - T.translate) / T.velocity); else if (T.params.freeModeSticky) return void T.slideReset();
-                            T.params.freeModeMomentumBounce && m ? (T.updateProgress(c), T.setWrapperTransition(d), 
+                            T.params.freeModeMomentumBounce && m ? (T.updateProgress(c), T.setWrapperTransition(d),
                             T.setWrapperTranslate(u), T.onTransitionStart(), T.animating = !0, T.wrapper.transitionEnd(function() {
-                                T && D && (T.emit("onMomentumBounce", T), T.setWrapperTransition(T.params.speed), 
+                                T && D && (T.emit("onMomentumBounce", T), T.setWrapperTransition(T.params.speed),
                                 T.setWrapperTranslate(c), T.wrapper.transitionEnd(function() {
                                     T && T.onTransitionEnd();
                                 }));
-                            })) : T.velocity ? (T.updateProgress(u), T.setWrapperTransition(d), T.setWrapperTranslate(u), 
+                            })) : T.velocity ? (T.updateProgress(u), T.setWrapperTransition(d), T.setWrapperTranslate(u),
                             T.onTransitionStart(), T.animating || (T.animating = !0, T.wrapper.transitionEnd(function() {
                                 T && T.onTransitionEnd();
                             }))) : T.updateProgress(u), T.updateActiveIndex();
                         }
-                        return void ((!T.params.freeModeMomentum || r >= T.params.longSwipesMs) && (T.updateProgress(), 
+                        return void ((!T.params.freeModeMomentum || r >= T.params.longSwipesMs) && (T.updateProgress(),
                         T.updateActiveIndex()));
                     }
                     var v, w = 0, y = T.slidesSizesGrid[0];
-                    for (v = 0; v < T.slidesGrid.length; v += T.params.slidesPerGroup) "undefined" != typeof T.slidesGrid[v + T.params.slidesPerGroup] ? s >= T.slidesGrid[v] && s < T.slidesGrid[v + T.params.slidesPerGroup] && (w = v, 
-                    y = T.slidesGrid[v + T.params.slidesPerGroup] - T.slidesGrid[v]) : s >= T.slidesGrid[v] && (w = v, 
+                    for (v = 0; v < T.slidesGrid.length; v += T.params.slidesPerGroup) "undefined" != typeof T.slidesGrid[v + T.params.slidesPerGroup] ? s >= T.slidesGrid[v] && s < T.slidesGrid[v + T.params.slidesPerGroup] && (w = v,
+                    y = T.slidesGrid[v + T.params.slidesPerGroup] - T.slidesGrid[v]) : s >= T.slidesGrid[v] && (w = v,
                     y = T.slidesGrid[T.slidesGrid.length - 1] - T.slidesGrid[T.slidesGrid.length - 2]);
                     var b = (s - T.slidesGrid[w]) / y;
                     if (r > T.params.longSwipesMs) {
                         if (!T.params.longSwipes) return void T.slideTo(T.activeIndex);
-                        "next" === T.swipeDirection && (b >= T.params.longSwipesRatio ? T.slideTo(w + T.params.slidesPerGroup) : T.slideTo(w)), 
+                        "next" === T.swipeDirection && (b >= T.params.longSwipesRatio ? T.slideTo(w + T.params.slidesPerGroup) : T.slideTo(w)),
                         "prev" === T.swipeDirection && (b > 1 - T.params.longSwipesRatio ? T.slideTo(w + T.params.slidesPerGroup) : T.slideTo(w));
                     } else {
                         if (!T.params.shortSwipes) return void T.slideTo(T.activeIndex);
@@ -2223,28 +2223,28 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
             }, T._slideTo = function(e, a) {
                 return T.slideTo(e, a, !0, !0);
             }, T.slideTo = function(e, a, t, r) {
-                "undefined" == typeof t && (t = !0), "undefined" == typeof e && (e = 0), 0 > e && (e = 0), 
+                "undefined" == typeof t && (t = !0), "undefined" == typeof e && (e = 0), 0 > e && (e = 0),
                 T.snapIndex = Math.floor(e / T.params.slidesPerGroup), T.snapIndex >= T.snapGrid.length && (T.snapIndex = T.snapGrid.length - 1);
                 var s = -T.snapGrid[T.snapIndex];
-                T.params.autoplay && T.autoplaying && (r || !T.params.autoplayDisableOnInteraction ? T.pauseAutoplay(a) : T.stopAutoplay()), 
+                T.params.autoplay && T.autoplaying && (r || !T.params.autoplayDisableOnInteraction ? T.pauseAutoplay(a) : T.stopAutoplay()),
                 T.updateProgress(s);
                 for (var i = 0; i < T.slidesGrid.length; i++) -Math.floor(100 * s) >= Math.floor(100 * T.slidesGrid[i]) && (e = i);
-                return !T.params.allowSwipeToNext && s < T.translate && s < T.minTranslate() ? !1 : !T.params.allowSwipeToPrev && s > T.translate && s > T.maxTranslate() && (T.activeIndex || 0) !== e ? !1 : ("undefined" == typeof a && (a = T.params.speed), 
-                T.previousIndex = T.activeIndex || 0, T.activeIndex = e, T.rtl && -s === T.translate || !T.rtl && s === T.translate ? (T.params.autoHeight && T.updateAutoHeight(), 
-                T.updateClasses(), "slide" !== T.params.effect && T.setWrapperTranslate(s), !1) : (T.updateClasses(), 
-                T.onTransitionStart(t), 0 === a ? (T.setWrapperTranslate(s), T.setWrapperTransition(0), 
-                T.onTransitionEnd(t)) : (T.setWrapperTranslate(s), T.setWrapperTransition(a), T.animating || (T.animating = !0, 
+                return !T.params.allowSwipeToNext && s < T.translate && s < T.minTranslate() ? !1 : !T.params.allowSwipeToPrev && s > T.translate && s > T.maxTranslate() && (T.activeIndex || 0) !== e ? !1 : ("undefined" == typeof a && (a = T.params.speed),
+                T.previousIndex = T.activeIndex || 0, T.activeIndex = e, T.rtl && -s === T.translate || !T.rtl && s === T.translate ? (T.params.autoHeight && T.updateAutoHeight(),
+                T.updateClasses(), "slide" !== T.params.effect && T.setWrapperTranslate(s), !1) : (T.updateClasses(),
+                T.onTransitionStart(t), 0 === a ? (T.setWrapperTranslate(s), T.setWrapperTransition(0),
+                T.onTransitionEnd(t)) : (T.setWrapperTranslate(s), T.setWrapperTransition(a), T.animating || (T.animating = !0,
                 T.wrapper.transitionEnd(function() {
                     T && T.onTransitionEnd(t);
                 }))), !0));
             }, T.onTransitionStart = function(e) {
-                "undefined" == typeof e && (e = !0), T.params.autoHeight && T.updateAutoHeight(), 
-                T.lazy && T.lazy.onTransitionStart(), e && (T.emit("onTransitionStart", T), T.activeIndex !== T.previousIndex && (T.emit("onSlideChangeStart", T), 
+                "undefined" == typeof e && (e = !0), T.params.autoHeight && T.updateAutoHeight(),
+                T.lazy && T.lazy.onTransitionStart(), e && (T.emit("onTransitionStart", T), T.activeIndex !== T.previousIndex && (T.emit("onSlideChangeStart", T),
                 T.activeIndex > T.previousIndex ? T.emit("onSlideNextStart", T) : T.emit("onSlidePrevStart", T)));
             }, T.onTransitionEnd = function(e) {
-                T.animating = !1, T.setWrapperTransition(0), "undefined" == typeof e && (e = !0), 
-                T.lazy && T.lazy.onTransitionEnd(), e && (T.emit("onTransitionEnd", T), T.activeIndex !== T.previousIndex && (T.emit("onSlideChangeEnd", T), 
-                T.activeIndex > T.previousIndex ? T.emit("onSlideNextEnd", T) : T.emit("onSlidePrevEnd", T))), 
+                T.animating = !1, T.setWrapperTransition(0), "undefined" == typeof e && (e = !0),
+                T.lazy && T.lazy.onTransitionEnd(), e && (T.emit("onTransitionEnd", T), T.activeIndex !== T.previousIndex && (T.emit("onSlideChangeEnd", T),
+                T.activeIndex > T.previousIndex ? T.emit("onSlideNextEnd", T) : T.emit("onSlidePrevEnd", T))),
                 T.params.hashnav && T.hashnav && T.hashnav.setHash();
             }, T.slideNext = function(e, a, t) {
                 if (T.params.loop) {
@@ -2269,27 +2269,27 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
             }, T.slideReset = function(e, a, t) {
                 return T.slideTo(T.activeIndex, a, e);
             }, T.setWrapperTransition = function(e, a) {
-                T.wrapper.transition(e), "slide" !== T.params.effect && T.effects[T.params.effect] && T.effects[T.params.effect].setTransition(e), 
-                T.params.parallax && T.parallax && T.parallax.setTransition(e), T.params.scrollbar && T.scrollbar && T.scrollbar.setTransition(e), 
+                T.wrapper.transition(e), "slide" !== T.params.effect && T.effects[T.params.effect] && T.effects[T.params.effect].setTransition(e),
+                T.params.parallax && T.parallax && T.parallax.setTransition(e), T.params.scrollbar && T.scrollbar && T.scrollbar.setTransition(e),
                 T.params.control && T.controller && T.controller.setTransition(e, a), T.emit("onSetTransition", T, e);
             }, T.setWrapperTranslate = function(e, a, t) {
                 var r = 0, s = 0, o = 0;
-                i() ? r = T.rtl ? -e : e : s = e, T.params.roundLengths && (r = n(r), s = n(s)), 
-                T.params.virtualTranslate || (T.support.transforms3d ? T.wrapper.transform("translate3d(" + r + "px, " + s + "px, " + o + "px)") : T.wrapper.transform("translate(" + r + "px, " + s + "px)")), 
+                i() ? r = T.rtl ? -e : e : s = e, T.params.roundLengths && (r = n(r), s = n(s)),
+                T.params.virtualTranslate || (T.support.transforms3d ? T.wrapper.transform("translate3d(" + r + "px, " + s + "px, " + o + "px)") : T.wrapper.transform("translate(" + r + "px, " + s + "px)")),
                 T.translate = i() ? r : s;
                 var l, d = T.maxTranslate() - T.minTranslate();
-                l = 0 === d ? 0 : (e - T.minTranslate()) / d, l !== T.progress && T.updateProgress(e), 
-                a && T.updateActiveIndex(), "slide" !== T.params.effect && T.effects[T.params.effect] && T.effects[T.params.effect].setTranslate(T.translate), 
-                T.params.parallax && T.parallax && T.parallax.setTranslate(T.translate), T.params.scrollbar && T.scrollbar && T.scrollbar.setTranslate(T.translate), 
+                l = 0 === d ? 0 : (e - T.minTranslate()) / d, l !== T.progress && T.updateProgress(e),
+                a && T.updateActiveIndex(), "slide" !== T.params.effect && T.effects[T.params.effect] && T.effects[T.params.effect].setTranslate(T.translate),
+                T.params.parallax && T.parallax && T.parallax.setTranslate(T.translate), T.params.scrollbar && T.scrollbar && T.scrollbar.setTranslate(T.translate),
                 T.params.control && T.controller && T.controller.setTranslate(T.translate, t), T.emit("onSetTranslate", T, T.translate);
             }, T.getTranslate = function(e, a) {
                 var t, r, s, i;
-                return "undefined" == typeof a && (a = "x"), T.params.virtualTranslate ? T.rtl ? -T.translate : T.translate : (s = window.getComputedStyle(e, null), 
+                return "undefined" == typeof a && (a = "x"), T.params.virtualTranslate ? T.rtl ? -T.translate : T.translate : (s = window.getComputedStyle(e, null),
                 window.WebKitCSSMatrix ? (r = s.transform || s.webkitTransform, r.split(",").length > 6 && (r = r.split(", ").map(function(e) {
                     return e.replace(",", ".");
-                }).join(", ")), i = new window.WebKitCSSMatrix("none" === r ? "" : r)) : (i = s.MozTransform || s.OTransform || s.MsTransform || s.msTransform || s.transform || s.getPropertyValue("transform").replace("translate(", "matrix(1, 0, 0, 1,"), 
-                t = i.toString().split(",")), "x" === a && (r = window.WebKitCSSMatrix ? i.m41 : 16 === t.length ? parseFloat(t[12]) : parseFloat(t[4])), 
-                "y" === a && (r = window.WebKitCSSMatrix ? i.m42 : 16 === t.length ? parseFloat(t[13]) : parseFloat(t[5])), 
+                }).join(", ")), i = new window.WebKitCSSMatrix("none" === r ? "" : r)) : (i = s.MozTransform || s.OTransform || s.MsTransform || s.msTransform || s.transform || s.getPropertyValue("transform").replace("translate(", "matrix(1, 0, 0, 1,"),
+                t = i.toString().split(",")), "x" === a && (r = window.WebKitCSSMatrix ? i.m41 : 16 === t.length ? parseFloat(t[12]) : parseFloat(t[4])),
+                "y" === a && (r = window.WebKitCSSMatrix ? i.m42 : 16 === t.length ? parseFloat(t[13]) : parseFloat(t[5])),
                 T.rtl && r && (r = -r), r || 0);
             }, T.getWrapperTranslate = function(e) {
                 return "undefined" == typeof e && (e = i() ? "x" : "y"), T.getTranslate(T.wrapper[0], e);
@@ -2306,23 +2306,23 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
             }, T.createLoop = function() {
                 T.wrapper.children("." + T.params.slideClass + "." + T.params.slideDuplicateClass).remove();
                 var e = T.wrapper.children("." + T.params.slideClass);
-                "auto" !== T.params.slidesPerView || T.params.loopedSlides || (T.params.loopedSlides = e.length), 
-                T.loopedSlides = parseInt(T.params.loopedSlides || T.params.slidesPerView, 10), 
+                "auto" !== T.params.slidesPerView || T.params.loopedSlides || (T.params.loopedSlides = e.length),
+                T.loopedSlides = parseInt(T.params.loopedSlides || T.params.slidesPerView, 10),
                 T.loopedSlides = T.loopedSlides + T.params.loopAdditionalSlides, T.loopedSlides > e.length && (T.loopedSlides = e.length);
                 var t, r = [], s = [];
                 for (e.each(function(t, i) {
                     var n = a(this);
-                    t < T.loopedSlides && s.push(i), t < e.length && t >= e.length - T.loopedSlides && r.push(i), 
+                    t < T.loopedSlides && s.push(i), t < e.length && t >= e.length - T.loopedSlides && r.push(i),
                     n.attr("data-swiper-slide-index", t);
                 }), t = 0; t < s.length; t++) T.wrapper.append(a(s[t].cloneNode(!0)).addClass(T.params.slideDuplicateClass));
                 for (t = r.length - 1; t >= 0; t--) T.wrapper.prepend(a(r[t].cloneNode(!0)).addClass(T.params.slideDuplicateClass));
             }, T.destroyLoop = function() {
-                T.wrapper.children("." + T.params.slideClass + "." + T.params.slideDuplicateClass).remove(), 
+                T.wrapper.children("." + T.params.slideClass + "." + T.params.slideDuplicateClass).remove(),
                 T.slides.removeAttr("data-swiper-slide-index");
             }, T.fixLoop = function() {
                 var e;
-                T.activeIndex < T.loopedSlides ? (e = T.slides.length - 3 * T.loopedSlides + T.activeIndex, 
-                e += T.loopedSlides, T.slideTo(e, 0, !1, !0)) : ("auto" === T.params.slidesPerView && T.activeIndex >= 2 * T.loopedSlides || T.activeIndex > T.slides.length - 2 * T.params.slidesPerView) && (e = -T.slides.length + T.activeIndex + T.loopedSlides, 
+                T.activeIndex < T.loopedSlides ? (e = T.slides.length - 3 * T.loopedSlides + T.activeIndex,
+                e += T.loopedSlides, T.slideTo(e, 0, !1, !0)) : ("auto" === T.params.slidesPerView && T.activeIndex >= 2 * T.loopedSlides || T.activeIndex > T.slides.length - 2 * T.params.slidesPerView) && (e = -T.slides.length + T.activeIndex + T.loopedSlides,
                 e += T.loopedSlides, T.slideTo(e, 0, !1, !0));
             }, T.appendSlide = function(e) {
                 if (T.params.loop && T.destroyLoop(), "object" == typeof e && e.length) for (var a = 0; a < e.length; a++) e[a] && T.wrapper.append(e[a]); else T.wrapper.append(e);
@@ -2334,17 +2334,17 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                     for (var t = 0; t < e.length; t++) e[t] && T.wrapper.prepend(e[t]);
                     a = T.activeIndex + e.length;
                 } else T.wrapper.prepend(e);
-                T.params.loop && T.createLoop(), T.params.observer && T.support.observer || T.update(!0), 
+                T.params.loop && T.createLoop(), T.params.observer && T.support.observer || T.update(!0),
                 T.slideTo(a, 0, !1);
             }, T.removeSlide = function(e) {
                 T.params.loop && (T.destroyLoop(), T.slides = T.wrapper.children("." + T.params.slideClass));
                 var a, t = T.activeIndex;
                 if ("object" == typeof e && e.length) {
-                    for (var r = 0; r < e.length; r++) a = e[r], T.slides[a] && T.slides.eq(a).remove(), 
+                    for (var r = 0; r < e.length; r++) a = e[r], T.slides[a] && T.slides.eq(a).remove(),
                     t > a && t--;
                     t = Math.max(t, 0);
                 } else a = e, T.slides[a] && T.slides.eq(a).remove(), t > a && t--, t = Math.max(t, 0);
-                T.params.loop && T.createLoop(), T.params.observer && T.support.observer || T.update(!0), 
+                T.params.loop && T.createLoop(), T.params.observer && T.support.observer || T.update(!0),
                 T.params.loop ? T.slideTo(t + T.loopedSlides, 0, !1) : T.slideTo(t, 0, !1);
             }, T.removeAllSlides = function() {
                 for (var e = [], a = 0; a < T.slides.length; a++) e.push(a);
@@ -2378,24 +2378,24 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                 cube: {
                     setTranslate: function() {
                         var e, t = 0;
-                        T.params.cube.shadow && (i() ? (e = T.wrapper.find(".swiper-cube-shadow"), 0 === e.length && (e = a('<div class="swiper-cube-shadow"></div>'), 
+                        T.params.cube.shadow && (i() ? (e = T.wrapper.find(".swiper-cube-shadow"), 0 === e.length && (e = a('<div class="swiper-cube-shadow"></div>'),
                         T.wrapper.append(e)), e.css({
                             height: T.width + "px"
-                        })) : (e = T.container.find(".swiper-cube-shadow"), 0 === e.length && (e = a('<div class="swiper-cube-shadow"></div>'), 
+                        })) : (e = T.container.find(".swiper-cube-shadow"), 0 === e.length && (e = a('<div class="swiper-cube-shadow"></div>'),
                         T.container.append(e))));
                         for (var r = 0; r < T.slides.length; r++) {
                             var s = T.slides.eq(r), n = 90 * r, o = Math.floor(n / 360);
                             T.rtl && (n = -n, o = Math.floor(-n / 360));
                             var l = Math.max(Math.min(s[0].progress, 1), -1), d = 0, p = 0, u = 0;
-                            r % 4 === 0 ? (d = 4 * -o * T.size, u = 0) : (r - 1) % 4 === 0 ? (d = 0, u = 4 * -o * T.size) : (r - 2) % 4 === 0 ? (d = T.size + 4 * o * T.size, 
-                            u = T.size) : (r - 3) % 4 === 0 && (d = -T.size, u = 3 * T.size + 4 * T.size * o), 
+                            r % 4 === 0 ? (d = 4 * -o * T.size, u = 0) : (r - 1) % 4 === 0 ? (d = 0, u = 4 * -o * T.size) : (r - 2) % 4 === 0 ? (d = T.size + 4 * o * T.size,
+                            u = T.size) : (r - 3) % 4 === 0 && (d = -T.size, u = 3 * T.size + 4 * T.size * o),
                             T.rtl && (d = -d), i() || (p = d, d = 0);
                             var c = "rotateX(" + (i() ? 0 : -n) + "deg) rotateY(" + (i() ? n : 0) + "deg) translate3d(" + d + "px, " + p + "px, " + u + "px)";
-                            if (1 >= l && l > -1 && (t = 90 * r + 90 * l, T.rtl && (t = 90 * -r - 90 * l)), 
+                            if (1 >= l && l > -1 && (t = 90 * r + 90 * l, T.rtl && (t = 90 * -r - 90 * l)),
                             s.transform(c), T.params.cube.slideShadows) {
                                 var m = i() ? s.find(".swiper-slide-shadow-left") : s.find(".swiper-slide-shadow-top"), f = i() ? s.find(".swiper-slide-shadow-right") : s.find(".swiper-slide-shadow-bottom");
-                                0 === m.length && (m = a('<div class="swiper-slide-shadow-' + (i() ? "left" : "top") + '"></div>'), 
-                                s.append(m)), 0 === f.length && (f = a('<div class="swiper-slide-shadow-' + (i() ? "right" : "bottom") + '"></div>'), 
+                                0 === m.length && (m = a('<div class="swiper-slide-shadow-' + (i() ? "left" : "top") + '"></div>'),
+                                s.append(m)), 0 === f.length && (f = a('<div class="swiper-slide-shadow-' + (i() ? "right" : "bottom") + '"></div>'),
                                 s.append(f));
                                 s[0].progress;
                                 m.length && (m[0].style.opacity = -s[0].progress), f.length && (f[0].style.opacity = s[0].progress);
@@ -2414,7 +2414,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                         T.wrapper.transform("translate3d(0px,0," + b + "px) rotateX(" + (i() ? 0 : t) + "deg) rotateY(" + (i() ? -t : 0) + "deg)");
                     },
                     setTransition: function(e) {
-                        T.slides.transition(e).find(".swiper-slide-shadow-top, .swiper-slide-shadow-right, .swiper-slide-shadow-bottom, .swiper-slide-shadow-left").transition(e), 
+                        T.slides.transition(e).find(".swiper-slide-shadow-top, .swiper-slide-shadow-right, .swiper-slide-shadow-bottom, .swiper-slide-shadow-left").transition(e),
                         T.params.cube.shadow && !i() && T.container.find(".swiper-cube-shadow").transition(e);
                     }
                 },
@@ -2422,13 +2422,13 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                     setTranslate: function() {
                         for (var e = T.translate, t = i() ? -e + T.width / 2 : -e + T.height / 2, r = i() ? T.params.coverflow.rotate : -T.params.coverflow.rotate, s = T.params.coverflow.depth, n = 0, o = T.slides.length; o > n; n++) {
                             var l = T.slides.eq(n), d = T.slidesSizesGrid[n], p = l[0].swiperSlideOffset, u = (t - p - d / 2) / d * T.params.coverflow.modifier, c = i() ? r * u : 0, m = i() ? 0 : r * u, f = -s * Math.abs(u), h = i() ? 0 : T.params.coverflow.stretch * u, g = i() ? T.params.coverflow.stretch * u : 0;
-                            Math.abs(g) < .001 && (g = 0), Math.abs(h) < .001 && (h = 0), Math.abs(f) < .001 && (f = 0), 
+                            Math.abs(g) < .001 && (g = 0), Math.abs(h) < .001 && (h = 0), Math.abs(f) < .001 && (f = 0),
                             Math.abs(c) < .001 && (c = 0), Math.abs(m) < .001 && (m = 0);
                             var v = "translate3d(" + g + "px," + h + "px," + f + "px)  rotateX(" + m + "deg) rotateY(" + c + "deg)";
                             if (l.transform(v), l[0].style.zIndex = -Math.abs(Math.round(u)) + 1, T.params.coverflow.slideShadows) {
                                 var w = i() ? l.find(".swiper-slide-shadow-left") : l.find(".swiper-slide-shadow-top"), y = i() ? l.find(".swiper-slide-shadow-right") : l.find(".swiper-slide-shadow-bottom");
-                                0 === w.length && (w = a('<div class="swiper-slide-shadow-' + (i() ? "left" : "top") + '"></div>'), 
-                                l.append(w)), 0 === y.length && (y = a('<div class="swiper-slide-shadow-' + (i() ? "right" : "bottom") + '"></div>'), 
+                                0 === w.length && (w = a('<div class="swiper-slide-shadow-' + (i() ? "left" : "top") + '"></div>'),
+                                l.append(w)), 0 === y.length && (y = a('<div class="swiper-slide-shadow-' + (i() ? "right" : "bottom") + '"></div>'),
                                 l.append(y)), w.length && (w[0].style.opacity = u > 0 ? u : 0), y.length && (y[0].style.opacity = -u > 0 ? -u : 0);
                             }
                         }
@@ -2446,15 +2446,15 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                 loadImageInSlide: function(e, t) {
                     if ("undefined" != typeof e && ("undefined" == typeof t && (t = !0), 0 !== T.slides.length)) {
                         var r = T.slides.eq(e), s = r.find(".swiper-lazy:not(.swiper-lazy-loaded):not(.swiper-lazy-loading)");
-                        !r.hasClass("swiper-lazy") || r.hasClass("swiper-lazy-loaded") || r.hasClass("swiper-lazy-loading") || (s = s.add(r[0])), 
+                        !r.hasClass("swiper-lazy") || r.hasClass("swiper-lazy-loaded") || r.hasClass("swiper-lazy-loading") || (s = s.add(r[0])),
                         0 !== s.length && s.each(function() {
                             var e = a(this);
                             e.addClass("swiper-lazy-loading");
                             var s = e.attr("data-background"), i = e.attr("data-src"), n = e.attr("data-srcset");
                             T.loadImage(e[0], i || s, n, !1, function() {
-                                if (s ? (e.css("background-image", "url(" + s + ")"), e.removeAttr("data-background")) : (n && (e.attr("srcset", n), 
-                                e.removeAttr("data-srcset")), i && (e.attr("src", i), e.removeAttr("data-src"))), 
-                                e.addClass("swiper-lazy-loaded").removeClass("swiper-lazy-loading"), r.find(".swiper-lazy-preloader, .preloader").remove(), 
+                                if (s ? (e.css("background-image", "url(" + s + ")"), e.removeAttr("data-background")) : (n && (e.attr("srcset", n),
+                                e.removeAttr("data-srcset")), i && (e.attr("src", i), e.removeAttr("data-src"))),
+                                e.addClass("swiper-lazy-loaded").removeClass("swiper-lazy-loading"), r.find(".swiper-lazy-preloader, .preloader").remove(),
                                 T.params.loop && t) {
                                     var a = r.attr("data-swiper-slide-index");
                                     if (r.hasClass(T.params.slideDuplicateClass)) {
@@ -2499,53 +2499,53 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                 },
                 dragStart: function(e) {
                     var a = T.scrollbar;
-                    a.isTouched = !0, e.preventDefault(), e.stopPropagation(), a.setDragPosition(e), 
-                    clearTimeout(a.dragTimeout), a.track.transition(0), T.params.scrollbarHide && a.track.css("opacity", 1), 
+                    a.isTouched = !0, e.preventDefault(), e.stopPropagation(), a.setDragPosition(e),
+                    clearTimeout(a.dragTimeout), a.track.transition(0), T.params.scrollbarHide && a.track.css("opacity", 1),
                     T.wrapper.transition(100), a.drag.transition(100), T.emit("onScrollbarDragStart", T);
                 },
                 dragMove: function(e) {
                     var a = T.scrollbar;
-                    a.isTouched && (e.preventDefault ? e.preventDefault() : e.returnValue = !1, a.setDragPosition(e), 
+                    a.isTouched && (e.preventDefault ? e.preventDefault() : e.returnValue = !1, a.setDragPosition(e),
                     T.wrapper.transition(0), a.track.transition(0), a.drag.transition(0), T.emit("onScrollbarDragMove", T));
                 },
                 dragEnd: function(e) {
                     var a = T.scrollbar;
-                    a.isTouched && (a.isTouched = !1, T.params.scrollbarHide && (clearTimeout(a.dragTimeout), 
+                    a.isTouched && (a.isTouched = !1, T.params.scrollbarHide && (clearTimeout(a.dragTimeout),
                     a.dragTimeout = setTimeout(function() {
                         a.track.css("opacity", 0), a.track.transition(400);
                     }, 1e3)), T.emit("onScrollbarDragEnd", T), T.params.scrollbarSnapOnRelease && T.slideReset());
                 },
                 enableDraggable: function() {
                     var e = T.scrollbar, t = T.support.touch ? e.track : document;
-                    a(e.track).on(T.touchEvents.start, e.dragStart), a(t).on(T.touchEvents.move, e.dragMove), 
+                    a(e.track).on(T.touchEvents.start, e.dragStart), a(t).on(T.touchEvents.move, e.dragMove),
                     a(t).on(T.touchEvents.end, e.dragEnd);
                 },
                 disableDraggable: function() {
                     var e = T.scrollbar, t = T.support.touch ? e.track : document;
-                    a(e.track).off(T.touchEvents.start, e.dragStart), a(t).off(T.touchEvents.move, e.dragMove), 
+                    a(e.track).off(T.touchEvents.start, e.dragStart), a(t).off(T.touchEvents.move, e.dragMove),
                     a(t).off(T.touchEvents.end, e.dragEnd);
                 },
                 set: function() {
                     if (T.params.scrollbar) {
                         var e = T.scrollbar;
-                        e.track = a(T.params.scrollbar), e.drag = e.track.find(".swiper-scrollbar-drag"), 
-                        0 === e.drag.length && (e.drag = a('<div class="swiper-scrollbar-drag"></div>'), 
-                        e.track.append(e.drag)), e.drag[0].style.width = "", e.drag[0].style.height = "", 
-                        e.trackSize = i() ? e.track[0].offsetWidth : e.track[0].offsetHeight, e.divider = T.size / T.virtualSize, 
-                        e.moveDivider = e.divider * (e.trackSize / T.size), e.dragSize = e.trackSize * e.divider, 
-                        i() ? e.drag[0].style.width = e.dragSize + "px" : e.drag[0].style.height = e.dragSize + "px", 
-                        e.divider >= 1 ? e.track[0].style.display = "none" : e.track[0].style.display = "", 
+                        e.track = a(T.params.scrollbar), e.drag = e.track.find(".swiper-scrollbar-drag"),
+                        0 === e.drag.length && (e.drag = a('<div class="swiper-scrollbar-drag"></div>'),
+                        e.track.append(e.drag)), e.drag[0].style.width = "", e.drag[0].style.height = "",
+                        e.trackSize = i() ? e.track[0].offsetWidth : e.track[0].offsetHeight, e.divider = T.size / T.virtualSize,
+                        e.moveDivider = e.divider * (e.trackSize / T.size), e.dragSize = e.trackSize * e.divider,
+                        i() ? e.drag[0].style.width = e.dragSize + "px" : e.drag[0].style.height = e.dragSize + "px",
+                        e.divider >= 1 ? e.track[0].style.display = "none" : e.track[0].style.display = "",
                         T.params.scrollbarHide && (e.track[0].style.opacity = 0);
                     }
                 },
                 setTranslate: function() {
                     if (T.params.scrollbar) {
                         var e, a = T.scrollbar, t = (T.translate || 0, a.dragSize);
-                        e = (a.trackSize - a.dragSize) * T.progress, T.rtl && i() ? (e = -e, e > 0 ? (t = a.dragSize - e, 
-                        e = 0) : -e + a.dragSize > a.trackSize && (t = a.trackSize + e)) : 0 > e ? (t = a.dragSize + e, 
-                        e = 0) : e + a.dragSize > a.trackSize && (t = a.trackSize - e), i() ? (T.support.transforms3d ? a.drag.transform("translate3d(" + e + "px, 0, 0)") : a.drag.transform("translateX(" + e + "px)"), 
-                        a.drag[0].style.width = t + "px") : (T.support.transforms3d ? a.drag.transform("translate3d(0px, " + e + "px, 0)") : a.drag.transform("translateY(" + e + "px)"), 
-                        a.drag[0].style.height = t + "px"), T.params.scrollbarHide && (clearTimeout(a.timeout), 
+                        e = (a.trackSize - a.dragSize) * T.progress, T.rtl && i() ? (e = -e, e > 0 ? (t = a.dragSize - e,
+                        e = 0) : -e + a.dragSize > a.trackSize && (t = a.trackSize + e)) : 0 > e ? (t = a.dragSize + e,
+                        e = 0) : e + a.dragSize > a.trackSize && (t = a.trackSize - e), i() ? (T.support.transforms3d ? a.drag.transform("translate3d(" + e + "px, 0, 0)") : a.drag.transform("translateX(" + e + "px)"),
+                        a.drag[0].style.width = t + "px") : (T.support.transforms3d ? a.drag.transform("translate3d(0px, " + e + "px, 0)") : a.drag.transform("translateY(" + e + "px)"),
+                        a.drag[0].style.height = t + "px"), T.params.scrollbarHide && (clearTimeout(a.timeout),
                         a.track[0].style.opacity = 1, a.timeout = setTimeout(function() {
                             a.track[0].style.opacity = 0, a.track.transition(400);
                         }, 1e3));
@@ -2575,9 +2575,9 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                 },
                 setTranslate: function(e, a) {
                     function r(a) {
-                        e = a.rtl && "horizontal" === a.params.direction ? -T.translate : T.translate, "slide" === T.params.controlBy && (T.controller.getInterpolateFunction(a), 
-                        i = -T.controller.spline.interpolate(-e)), i && "container" !== T.params.controlBy || (s = (a.maxTranslate() - a.minTranslate()) / (T.maxTranslate() - T.minTranslate()), 
-                        i = (e - T.minTranslate()) * s + a.minTranslate()), T.params.controlInverse && (i = a.maxTranslate() - i), 
+                        e = a.rtl && "horizontal" === a.params.direction ? -T.translate : T.translate, "slide" === T.params.controlBy && (T.controller.getInterpolateFunction(a),
+                        i = -T.controller.spline.interpolate(-e)), i && "container" !== T.params.controlBy || (s = (a.maxTranslate() - a.minTranslate()) / (T.maxTranslate() - T.minTranslate()),
+                        i = (e - T.minTranslate()) * s + a.minTranslate()), T.params.controlInverse && (i = a.maxTranslate() - i),
                         a.updateProgress(i), a.setWrapperTranslate(i, !1, T), a.updateActiveIndex();
                     }
                     var s, i, n = T.params.control;
@@ -2620,7 +2620,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                 try {
                     new window.WheelEvent("wheel"), T.mousewheel.event = "wheel";
                 } catch (R) {}
-                T.mousewheel.event || void 0 === document.onmousewheel || (T.mousewheel.event = "mousewheel"), 
+                T.mousewheel.event || void 0 === document.onmousewheel || (T.mousewheel.event = "mousewheel"),
                 T.mousewheel.event || (T.mousewheel.event = "DOMMouseScroll");
             }
             T.disableMousewheelControl = function() {
@@ -2658,7 +2658,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                 if (T.emitterEventListeners[e]) for (a = 0; a < T.emitterEventListeners[e].length; a++) T.emitterEventListeners[e][a](arguments[1], arguments[2], arguments[3], arguments[4], arguments[5]);
                 T.callPlugins && T.callPlugins(e, arguments[1], arguments[2], arguments[3], arguments[4], arguments[5]);
             }, T.on = function(e, a) {
-                return e = m(e), T.emitterEventListeners[e] || (T.emitterEventListeners[e] = []), 
+                return e = m(e), T.emitterEventListeners[e] || (T.emitterEventListeners[e] = []),
                 T.emitterEventListeners[e].push(a), T;
             }, T.off = function(e, a) {
                 var t;
@@ -2690,8 +2690,8 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                     return e.attr("aria-disabled", !1), e;
                 },
                 onEnterKey: function(e) {
-                    13 === e.keyCode && (a(e.target).is(T.params.nextButton) ? (T.onClickNext(e), T.isEnd ? T.a11y.notify(T.params.lastSlideMessage) : T.a11y.notify(T.params.nextSlideMessage)) : a(e.target).is(T.params.prevButton) && (T.onClickPrev(e), 
-                    T.isBeginning ? T.a11y.notify(T.params.firstSlideMessage) : T.a11y.notify(T.params.prevSlideMessage)), 
+                    13 === e.keyCode && (a(e.target).is(T.params.nextButton) ? (T.onClickNext(e), T.isEnd ? T.a11y.notify(T.params.lastSlideMessage) : T.a11y.notify(T.params.nextSlideMessage)) : a(e.target).is(T.params.prevButton) && (T.onClickPrev(e),
+                    T.isBeginning ? T.a11y.notify(T.params.firstSlideMessage) : T.a11y.notify(T.params.prevSlideMessage)),
                     a(e.target).is("." + T.params.bulletClass) && a(e.target)[0].click());
                 },
                 liveRegion: a('<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>'),
@@ -2720,32 +2720,32 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                     T.a11y.liveRegion && T.a11y.liveRegion.length > 0 && T.a11y.liveRegion.remove();
                 }
             }, T.init = function() {
-                T.params.loop && T.createLoop(), T.updateContainerSize(), T.updateSlidesSize(), 
-                T.updatePagination(), T.params.scrollbar && T.scrollbar && (T.scrollbar.set(), T.params.scrollbarDraggable && T.scrollbar.enableDraggable()), 
-                "slide" !== T.params.effect && T.effects[T.params.effect] && (T.params.loop || T.updateProgress(), 
-                T.effects[T.params.effect].setTranslate()), T.params.loop ? T.slideTo(T.params.initialSlide + T.loopedSlides, 0, T.params.runCallbacksOnInit) : (T.slideTo(T.params.initialSlide, 0, T.params.runCallbacksOnInit), 
-                0 === T.params.initialSlide && (T.parallax && T.params.parallax && T.parallax.setTranslate(), 
-                T.lazy && T.params.lazyLoading && (T.lazy.load(), T.lazy.initialImageLoaded = !0))), 
-                T.attachEvents(), T.params.observer && T.support.observer && T.initObservers(), 
-                T.params.preloadImages && !T.params.lazyLoading && T.preloadImages(), T.params.autoplay && T.startAutoplay(), 
-                T.params.keyboardControl && T.enableKeyboardControl && T.enableKeyboardControl(), 
-                T.params.mousewheelControl && T.enableMousewheelControl && T.enableMousewheelControl(), 
-                T.params.hashnav && T.hashnav && T.hashnav.init(), T.params.a11y && T.a11y && T.a11y.init(), 
+                T.params.loop && T.createLoop(), T.updateContainerSize(), T.updateSlidesSize(),
+                T.updatePagination(), T.params.scrollbar && T.scrollbar && (T.scrollbar.set(), T.params.scrollbarDraggable && T.scrollbar.enableDraggable()),
+                "slide" !== T.params.effect && T.effects[T.params.effect] && (T.params.loop || T.updateProgress(),
+                T.effects[T.params.effect].setTranslate()), T.params.loop ? T.slideTo(T.params.initialSlide + T.loopedSlides, 0, T.params.runCallbacksOnInit) : (T.slideTo(T.params.initialSlide, 0, T.params.runCallbacksOnInit),
+                0 === T.params.initialSlide && (T.parallax && T.params.parallax && T.parallax.setTranslate(),
+                T.lazy && T.params.lazyLoading && (T.lazy.load(), T.lazy.initialImageLoaded = !0))),
+                T.attachEvents(), T.params.observer && T.support.observer && T.initObservers(),
+                T.params.preloadImages && !T.params.lazyLoading && T.preloadImages(), T.params.autoplay && T.startAutoplay(),
+                T.params.keyboardControl && T.enableKeyboardControl && T.enableKeyboardControl(),
+                T.params.mousewheelControl && T.enableMousewheelControl && T.enableMousewheelControl(),
+                T.params.hashnav && T.hashnav && T.hashnav.init(), T.params.a11y && T.a11y && T.a11y.init(),
                 T.emit("onInit", T);
             }, T.cleanupStyles = function() {
-                T.container.removeClass(T.classNames.join(" ")).removeAttr("style"), T.wrapper.removeAttr("style"), 
-                T.slides && T.slides.length && T.slides.removeClass([ T.params.slideVisibleClass, T.params.slideActiveClass, T.params.slideNextClass, T.params.slidePrevClass ].join(" ")).removeAttr("style").removeAttr("data-swiper-column").removeAttr("data-swiper-row"), 
-                T.paginationContainer && T.paginationContainer.length && T.paginationContainer.removeClass(T.params.paginationHiddenClass), 
-                T.bullets && T.bullets.length && T.bullets.removeClass(T.params.bulletActiveClass), 
-                T.params.prevButton && a(T.params.prevButton).removeClass(T.params.buttonDisabledClass), 
-                T.params.nextButton && a(T.params.nextButton).removeClass(T.params.buttonDisabledClass), 
-                T.params.scrollbar && T.scrollbar && (T.scrollbar.track && T.scrollbar.track.length && T.scrollbar.track.removeAttr("style"), 
+                T.container.removeClass(T.classNames.join(" ")).removeAttr("style"), T.wrapper.removeAttr("style"),
+                T.slides && T.slides.length && T.slides.removeClass([ T.params.slideVisibleClass, T.params.slideActiveClass, T.params.slideNextClass, T.params.slidePrevClass ].join(" ")).removeAttr("style").removeAttr("data-swiper-column").removeAttr("data-swiper-row"),
+                T.paginationContainer && T.paginationContainer.length && T.paginationContainer.removeClass(T.params.paginationHiddenClass),
+                T.bullets && T.bullets.length && T.bullets.removeClass(T.params.bulletActiveClass),
+                T.params.prevButton && a(T.params.prevButton).removeClass(T.params.buttonDisabledClass),
+                T.params.nextButton && a(T.params.nextButton).removeClass(T.params.buttonDisabledClass),
+                T.params.scrollbar && T.scrollbar && (T.scrollbar.track && T.scrollbar.track.length && T.scrollbar.track.removeAttr("style"),
                 T.scrollbar.drag && T.scrollbar.drag.length && T.scrollbar.drag.removeAttr("style"));
             }, T.destroy = function(e, a) {
-                T.detachEvents(), T.stopAutoplay(), T.params.scrollbar && T.scrollbar && T.params.scrollbarDraggable && T.scrollbar.disableDraggable(), 
-                T.params.loop && T.destroyLoop(), a && T.cleanupStyles(), T.disconnectObservers(), 
-                T.params.keyboardControl && T.disableKeyboardControl && T.disableKeyboardControl(), 
-                T.params.mousewheelControl && T.disableMousewheelControl && T.disableMousewheelControl(), 
+                T.detachEvents(), T.stopAutoplay(), T.params.scrollbar && T.scrollbar && T.params.scrollbarDraggable && T.scrollbar.disableDraggable(),
+                T.params.loop && T.destroyLoop(), a && T.cleanupStyles(), T.disconnectObservers(),
+                T.params.keyboardControl && T.disableKeyboardControl && T.disableKeyboardControl(),
+                T.params.mousewheelControl && T.disableMousewheelControl && T.disableMousewheelControl(),
                 T.params.a11y && T.a11y && T.a11y.destroy(), T.emit("onDestroy"), e !== !1 && (T = null);
             }, T.init(), T;
         }
@@ -2799,11 +2799,11 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                 var i, n, o = a.trim();
                 if (o.indexOf("<") >= 0 && o.indexOf(">") >= 0) {
                     var l = "div";
-                    for (0 === o.indexOf("<li") && (l = "ul"), 0 === o.indexOf("<tr") && (l = "tbody"), 
-                    (0 === o.indexOf("<td") || 0 === o.indexOf("<th")) && (l = "tr"), 0 === o.indexOf("<tbody") && (l = "table"), 
-                    0 === o.indexOf("<option") && (l = "select"), n = document.createElement(l), n.innerHTML = a, 
+                    for (0 === o.indexOf("<li") && (l = "ul"), 0 === o.indexOf("<tr") && (l = "tbody"),
+                    (0 === o.indexOf("<td") || 0 === o.indexOf("<th")) && (l = "tr"), 0 === o.indexOf("<tbody") && (l = "table"),
+                    0 === o.indexOf("<option") && (l = "select"), n = document.createElement(l), n.innerHTML = a,
                     s = 0; s < n.childNodes.length; s++) r.push(n.childNodes[s]);
-                } else for (i = t || "#" !== a[0] || a.match(/[ .<>:~]/) ? (t || document).querySelectorAll(a) : [ document.getElementById(a.split("#")[1]) ], 
+                } else for (i = t || "#" !== a[0] || a.match(/[ .<>:~]/) ? (t || document).querySelectorAll(a) : [ document.getElementById(a.split("#")[1]) ],
                 s = 0; s < i.length; s++) i[s] && r.push(i[s]);
             } else if (a.nodeType || a === window || a === document) r.push(a); else if (a.length > 0 && a[0].nodeType) for (s = 0; s < a.length; s++) r.push(a[s]);
             return new e(r);
@@ -2827,7 +2827,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
             },
             attr: function(e, a) {
                 if (1 === arguments.length && "string" == typeof e) return this[0] ? this[0].getAttribute(e) : void 0;
-                for (var t = 0; t < this.length; t++) if (2 === arguments.length) this[t].setAttribute(e, a); else for (var r in e) this[t][r] = e[r], 
+                for (var t = 0; t < this.length; t++) if (2 === arguments.length) this[t].setAttribute(e, a); else for (var r in e) this[t][r] = e[r],
                 this[t].setAttribute(r, e[r]);
                 return this;
             },
@@ -2869,8 +2869,8 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                     if (a(s).is(t)) r.call(s, e); else for (var i = a(s).parents(), n = 0; n < i.length; n++) a(i[n]).is(t) && r.call(i[n], e);
                 }
                 var n, o, l = e.split(" ");
-                for (n = 0; n < this.length; n++) if ("function" == typeof t || t === !1) for ("function" == typeof t && (r = arguments[1], 
-                s = arguments[2] || !1), o = 0; o < l.length; o++) this[n].addEventListener(l[o], r, s); else for (o = 0; o < l.length; o++) this[n].dom7LiveListeners || (this[n].dom7LiveListeners = []), 
+                for (n = 0; n < this.length; n++) if ("function" == typeof t || t === !1) for ("function" == typeof t && (r = arguments[1],
+                s = arguments[2] || !1), o = 0; o < l.length; o++) this[n].addEventListener(l[o], r, s); else for (o = 0; o < l.length; o++) this[n].dom7LiveListeners || (this[n].dom7LiveListeners = []),
                 this[n].dom7LiveListeners.push({
                     listener: r,
                     liveListener: i
@@ -2878,7 +2878,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                 return this;
             },
             off: function(e, a, t, r) {
-                for (var s = e.split(" "), i = 0; i < s.length; i++) for (var n = 0; n < this.length; n++) if ("function" == typeof a || a === !1) "function" == typeof a && (t = arguments[1], 
+                for (var s = e.split(" "), i = 0; i < s.length; i++) for (var n = 0; n < this.length; n++) if ("function" == typeof a || a === !1) "function" == typeof a && (t = arguments[1],
                 r = arguments[2] || !1), this[n].removeEventListener(s[i], t, r); else if (this[n].dom7LiveListeners) for (var o = 0; o < this[n].dom7LiveListeners.length; o++) this[n].dom7LiveListeners[o].listener === t && this[n].removeEventListener(s[i], this[n].dom7LiveListeners[o].liveListener, r);
                 return this;
             },
@@ -3043,7 +3043,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                 return a(a.unique(t));
             },
             parents: function(e) {
-                for (var t = [], r = 0; r < this.length; r++) for (var s = this[r].parentNode; s; ) e ? a(s).is(e) && t.push(s) : t.push(s), 
+                for (var t = [], r = 0; r < this.length; r++) for (var s = this[r].parentNode; s; ) e ? a(s).is(e) && t.push(s) : t.push(s),
                 s = s.parentNode;
                 return a(a.unique(t));
             },
@@ -3073,7 +3073,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
         }, a;
     }()), s = [ "jQuery", "Zepto", "Dom7" ], i = 0; i < s.length; i++) window[s[i]] && e(window[s[i]]);
     var n;
-    n = "undefined" == typeof r ? window.Dom7 || window.Zepto || window.jQuery : r, 
+    n = "undefined" == typeof r ? window.Dom7 || window.Zepto || window.jQuery : r,
     n && ("transitionEnd" in n.fn || (n.fn.transitionEnd = function(e) {
         function a(i) {
             if (i.target === this) for (e.call(this, i), t = 0; t < r.length; t++) s.off(r[t], a);
@@ -3110,13 +3110,13 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
         b.ev.on(o + a + p, c);
     }, x = function(b, c, d, e) {
         var f = document.createElement("div");
-        return f.className = "mfp-" + b, d && (f.innerHTML = d), e ? c && c.appendChild(f) : (f = a(f), 
+        return f.className = "mfp-" + b, d && (f.innerHTML = d), e ? c && c.appendChild(f) : (f = a(f),
         c && f.appendTo(c)), f;
     }, y = function(c, d) {
-        b.ev.triggerHandler(o + c, d), b.st.callbacks && (c = c.charAt(0).toLowerCase() + c.slice(1), 
+        b.ev.triggerHandler(o + c, d), b.st.callbacks && (c = c.charAt(0).toLowerCase() + c.slice(1),
         b.st.callbacks[c] && b.st.callbacks[c].apply(b, a.isArray(d) ? d : [ d ]));
     }, z = function(c) {
-        return c === g && b.currTemplate.closeBtn || (b.currTemplate.closeBtn = a(b.st.closeMarkup.replace("%title%", b.st.tClose)), 
+        return c === g && b.currTemplate.closeBtn || (b.currTemplate.closeBtn = a(b.st.closeMarkup.replace("%title%", b.st.tClose)),
         g = c), b.currTemplate.closeBtn;
     }, A = function() {
         a.magnificPopup.instance || (b = new t(), b.init(), a.magnificPopup.instance = b);
@@ -3130,9 +3130,9 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
         constructor: t,
         init: function() {
             var c = navigator.appVersion;
-            b.isIE7 = -1 !== c.indexOf("MSIE 7."), b.isIE8 = -1 !== c.indexOf("MSIE 8."), b.isLowIE = b.isIE7 || b.isIE8, 
-            b.isAndroid = /android/gi.test(c), b.isIOS = /iphone|ipad|ipod/gi.test(c), b.supportsTransition = B(), 
-            b.probablyMobile = b.isAndroid || b.isIOS || /(Opera Mini)|Kindle|webOS|BlackBerry|(Opera Mobi)|(Windows Phone)|IEMobile/i.test(navigator.userAgent), 
+            b.isIE7 = -1 !== c.indexOf("MSIE 7."), b.isIE8 = -1 !== c.indexOf("MSIE 8."), b.isLowIE = b.isIE7 || b.isIE8,
+            b.isAndroid = /android/gi.test(c), b.isIOS = /iphone|ipad|ipod/gi.test(c), b.supportsTransition = B(),
+            b.probablyMobile = b.isAndroid || b.isIOS || /(Opera Mini)|Kindle|webOS|BlackBerry|(Opera Mobi)|(Windows Phone)|IEMobile/i.test(navigator.userAgent),
             d = a(document), b.popupsCache = {};
         },
         open: function(c) {
@@ -3146,10 +3146,10 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                 }
             } else b.items = a.isArray(c.items) ? c.items : [ c.items ], b.index = c.index || 0;
             if (b.isOpen) return void b.updateItemHTML();
-            b.types = [], f = "", c.mainEl && c.mainEl.length ? b.ev = c.mainEl.eq(0) : b.ev = d, 
-            c.key ? (b.popupsCache[c.key] || (b.popupsCache[c.key] = {}), b.currTemplate = b.popupsCache[c.key]) : b.currTemplate = {}, 
-            b.st = a.extend(!0, {}, a.magnificPopup.defaults, c), b.fixedContentPos = "auto" === b.st.fixedContentPos ? !b.probablyMobile : b.st.fixedContentPos, 
-            b.st.modal && (b.st.closeOnContentClick = !1, b.st.closeOnBgClick = !1, b.st.showCloseBtn = !1, 
+            b.types = [], f = "", c.mainEl && c.mainEl.length ? b.ev = c.mainEl.eq(0) : b.ev = d,
+            c.key ? (b.popupsCache[c.key] || (b.popupsCache[c.key] = {}), b.currTemplate = b.popupsCache[c.key]) : b.currTemplate = {},
+            b.st = a.extend(!0, {}, a.magnificPopup.defaults, c), b.fixedContentPos = "auto" === b.st.fixedContentPos ? !b.probablyMobile : b.st.fixedContentPos,
+            b.st.modal && (b.st.closeOnContentClick = !1, b.st.closeOnBgClick = !1, b.st.showCloseBtn = !1,
             b.st.enableEscapeKey = !1), b.bgOverlay || (b.bgOverlay = x("bg").on("click" + p, function() {
                 b.close();
             }), b.wrap = x("wrap").attr("tabindex", -1).on("click" + p, function(a) {
@@ -3162,7 +3162,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
             }
             y("BeforeOpen"), b.st.showCloseBtn && (b.st.closeBtnInside ? (w(l, function(a, b, c, d) {
                 c.close_replaceWith = z(d.type);
-            }), f += " mfp-close-btn-in") : b.wrap.append(z())), b.st.alignTop && (f += " mfp-align-top"), 
+            }), f += " mfp-close-btn-in") : b.wrap.append(z())), b.st.alignTop && (f += " mfp-align-top"),
             b.fixedContentPos ? b.wrap.css({
                 overflow: b.st.overflowY,
                 overflowX: "hidden",
@@ -3185,14 +3185,14 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
             }
             b.fixedContentPos && (b.isIE7 ? a("body, html").css("overflow", "hidden") : n.overflow = "hidden");
             var r = b.st.mainClass;
-            return b.isIE7 && (r += " mfp-ie7"), r && b._addClassToMFP(r), b.updateItemHTML(), 
-            y("BuildControls"), a("html").css(n), b.bgOverlay.add(b.wrap).prependTo(b.st.prependTo || a(document.body)), 
+            return b.isIE7 && (r += " mfp-ie7"), r && b._addClassToMFP(r), b.updateItemHTML(),
+            y("BuildControls"), a("html").css(n), b.bgOverlay.add(b.wrap).prependTo(b.st.prependTo || a(document.body)),
             b._lastFocusedEl = document.activeElement, setTimeout(function() {
                 b.content ? (b._addClassToMFP(q), b._setFocus()) : b.bgOverlay.addClass(q), d.on("focusin" + p, b._onFocusIn);
             }, 16), b.isOpen = !0, b.updateSize(k), y(m), c;
         },
         close: function() {
-            b.isOpen && (y(i), b.isOpen = !1, b.st.removalDelay && !b.isLowIE && b.supportsTransition ? (b._addClassToMFP(r), 
+            b.isOpen && (y(i), b.isOpen = !1, b.st.removalDelay && !b.isLowIE && b.supportsTransition ? (b._addClassToMFP(r),
             setTimeout(function() {
                 b._close();
             }, b.st.removalDelay)) : b._close());
@@ -3200,17 +3200,17 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
         _close: function() {
             y(h);
             var c = r + " " + q + " ";
-            if (b.bgOverlay.detach(), b.wrap.detach(), b.container.empty(), b.st.mainClass && (c += b.st.mainClass + " "), 
+            if (b.bgOverlay.detach(), b.wrap.detach(), b.container.empty(), b.st.mainClass && (c += b.st.mainClass + " "),
             b._removeClassFromMFP(c), b.fixedContentPos) {
                 var e = {
                     marginRight: ""
                 };
                 b.isIE7 ? a("body, html").css("overflow", "") : e.overflow = "", a("html").css(e);
             }
-            d.off("keyup" + p + " focusin" + p), b.ev.off(p), b.wrap.attr("class", "mfp-wrap").removeAttr("style"), 
-            b.bgOverlay.attr("class", "mfp-bg"), b.container.attr("class", "mfp-container"), 
-            !b.st.showCloseBtn || b.st.closeBtnInside && b.currTemplate[b.currItem.type] !== !0 || b.currTemplate.closeBtn && b.currTemplate.closeBtn.detach(), 
-            b.st.autoFocusLast && b._lastFocusedEl && a(b._lastFocusedEl).focus(), b.currItem = null, 
+            d.off("keyup" + p + " focusin" + p), b.ev.off(p), b.wrap.attr("class", "mfp-wrap").removeAttr("style"),
+            b.bgOverlay.attr("class", "mfp-bg"), b.container.attr("class", "mfp-container"),
+            !b.st.showCloseBtn || b.st.closeBtnInside && b.currTemplate[b.currItem.type] !== !0 || b.currTemplate.closeBtn && b.currTemplate.closeBtn.detach(),
+            b.st.autoFocusLast && b._lastFocusedEl && a(b._lastFocusedEl).focus(), b.currItem = null,
             b.content = null, b.currTemplate = null, b.prevHeight = 0, y(j);
         },
         updateSize: function(a) {
@@ -3224,18 +3224,18 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
             var c = b.items[b.index];
             b.contentContainer.detach(), b.content && b.content.detach(), c.parsed || (c = b.parseEl(b.index));
             var d = c.type;
-            if (y("BeforeChange", [ b.currItem ? b.currItem.type : "", d ]), b.currItem = c, 
+            if (y("BeforeChange", [ b.currItem ? b.currItem.type : "", d ]), b.currItem = c,
             !b.currTemplate[d]) {
                 var f = b.st[d] ? b.st[d].markup : !1;
                 y("FirstMarkupParse", f), f ? b.currTemplate[d] = a(f) : b.currTemplate[d] = !0;
             }
             e && e !== c.type && b.container.removeClass("mfp-" + e + "-holder");
             var g = b["get" + d.charAt(0).toUpperCase() + d.slice(1)](c, b.currTemplate[d]);
-            b.appendContent(g, d), c.preloaded = !0, y(n, c), e = c.type, b.container.prepend(b.contentContainer), 
+            b.appendContent(g, d), c.preloaded = !0, y(n, c), e = c.type, b.container.prepend(b.contentContainer),
             y("AfterChange");
         },
         appendContent: function(a, c) {
-            b.content = a, a ? b.st.showCloseBtn && b.st.closeBtnInside && b.currTemplate[c] === !0 ? b.content.find(".mfp-close").length || b.content.append(z()) : b.content = a : b.content = "", 
+            b.content = a, a ? b.st.showCloseBtn && b.st.closeBtnInside && b.currTemplate[c] === !0 ? b.content.find(".mfp-close").length || b.content.append(z()) : b.content = a : b.content = "",
             y(k), b.container.addClass("mfp-" + c + "-holder"), b.contentContainer.append(b.content);
         },
         parseEl: function(c) {
@@ -3252,7 +3252,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                 }
                 e.src = e.el.attr("data-mfp-src"), e.src || (e.src = e.el.attr("href"));
             }
-            return e.type = d || b.st.type || "inline", e.index = c, e.parsed = !0, b.items[c] = e, 
+            return e.type = d || b.st.type || "inline", e.index = c, e.parsed = !0, b.items[c] = e,
             y("ElementParse", e), b.items[c];
         },
         addGroup: function(a, c) {
@@ -3261,7 +3261,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
             };
             c || (c = {});
             var e = "click.magnificPopup";
-            c.mainEl = a, c.items ? (c.isObj = !0, a.off(e).on(e, d)) : (c.isObj = !1, c.delegate ? a.off(e).on(e, c.delegate, d) : (c.items = a, 
+            c.mainEl = a, c.items ? (c.isObj = !0, a.off(e).on(e, d)) : (c.isObj = !1, c.delegate ? a.off(e).on(e, c.delegate, d) : (c.items = a,
             a.off(e).on(e, d)));
         },
         _openClick: function(c, d, e) {
@@ -3271,7 +3271,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                 if (g) if (a.isFunction(g)) {
                     if (!g.call(b)) return !0;
                 } else if (v.width() < g) return !0;
-                c.type && (c.preventDefault(), b.isOpen && c.stopPropagation()), e.el = a(c.mfpEl), 
+                c.type && (c.preventDefault(), b.isOpen && c.stopPropagation()), e.el = a(c.mfpEl),
                 e.delegate && (e.items = d.find(e.delegate)), b.open(e);
             }
         },
@@ -3311,7 +3311,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
             (b.st.focus ? b.content.find(b.st.focus).eq(0) : b.wrap).focus();
         },
         _onFocusIn: function(c) {
-            return c.target === b.wrap[0] || a.contains(b.wrap[0], c.target) ? void 0 : (b._setFocus(), 
+            return c.target === b.wrap[0] || a.contains(b.wrap[0], c.target) ? void 0 : (b._setFocus(),
             !1);
         },
         _parseMarkup: function(b, c, d) {
@@ -3330,7 +3330,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
         _getScrollbarSize: function() {
             if (void 0 === b.scrollbarSize) {
                 var a = document.createElement("div");
-                a.style.cssText = "width: 99px; height: 99px; overflow: scroll; position: absolute; top: -9999px;", 
+                a.style.cssText = "width: 99px; height: 99px; overflow: scroll; position: absolute; top: -9999px;",
                 document.body.appendChild(a), b.scrollbarSize = a.offsetWidth - a.clientWidth, document.body.removeChild(a);
             }
             return b.scrollbarSize;
@@ -3346,7 +3346,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
             return a.magnificPopup.instance && a.magnificPopup.instance.close();
         },
         registerModule: function(b, c) {
-            c.options && (a.magnificPopup.defaults[b] = c.options), a.extend(this.proto, c.proto), 
+            c.options && (a.magnificPopup.defaults[b] = c.options), a.extend(this.proto, c.proto),
             this.modules.push(b);
         },
         defaults: {
@@ -3370,7 +3370,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
             overflowY: "auto",
             closeMarkup: '<button title="%title%" type="button" class="mfp-close">&#215;</button>',
             tClose: "Close (Esc)",
-            tLoading: "Loading...",
+            tLoading: "",
             autoFocusLast: !0
         }
     }, a.fn.magnificPopup = function(c) {
@@ -3378,11 +3378,11 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
         var d = a(this);
         if ("string" == typeof c) if ("open" === c) {
             var e, f = u ? d.data("magnificPopup") : d[0].magnificPopup, g = parseInt(arguments[1], 10) || 0;
-            f.items ? e = f.items[g] : (e = d, f.delegate && (e = e.find(f.delegate)), e = e.eq(g)), 
+            f.items ? e = f.items[g] : (e = d, f.delegate && (e = e.find(f.delegate)), e = e.eq(g)),
             b._openClick({
                 mfpEl: e
             }, d, f);
-        } else b.isOpen && b[c].apply(b, Array.prototype.slice.call(arguments, 1)); else c = a.extend(!0, {}, c), 
+        } else b.isOpen && b[c].apply(b, Array.prototype.slice.call(arguments, 1)); else c = a.extend(!0, {}, c),
         u ? d.data("magnificPopup", c) : d[0].magnificPopup = c, b.addGroup(d, c);
         return d;
     };
@@ -3406,7 +3406,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                     var e = b.st.inline, f = a(c.src);
                     if (f.length) {
                         var g = f[0].parentNode;
-                        g && g.tagName && (D || (C = e.hiddenClass, D = x(C), C = "mfp-" + C), E = f.after(D).detach().removeClass(C)), 
+                        g && g.tagName && (D || (C = e.hiddenClass, D = x(C), C = "mfp-" + C), E = f.after(D).detach().removeClass(C)),
                         b.updateStatus("ready");
                     } else b.updateStatus("error", e.tNotFound), f = a("<div>");
                     return c.inlineElement = f, f;
@@ -3439,7 +3439,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                             data: d,
                             xhr: f
                         };
-                        y("ParseAjax", g), b.appendContent(a(g.data), I), c.finished = !0, J(), b._setFocus(), 
+                        y("ParseAjax", g), b.appendContent(a(g.data), I), c.finished = !0, J(), b._setFocus(),
                         setTimeout(function() {
                             b.wrap.addClass(q);
                         }, 16), b.updateStatus("ready"), y("AjaxContentAdded");
@@ -3482,18 +3482,18 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                 var a = b.currItem;
                 if (a && a.img && b.st.image.verticalFit) {
                     var c = 0;
-                    b.isLowIE && (c = parseInt(a.img.css("padding-top"), 10) + parseInt(a.img.css("padding-bottom"), 10)), 
+                    b.isLowIE && (c = parseInt(a.img.css("padding-top"), 10) + parseInt(a.img.css("padding-bottom"), 10)),
                     a.img.css("max-height", b.wH - c);
                 }
             },
             _onImageHasSize: function(a) {
-                a.img && (a.hasSize = !0, L && clearInterval(L), a.isCheckingImgSize = !1, y("ImageHasSize", a), 
+                a.img && (a.hasSize = !0, L && clearInterval(L), a.isCheckingImgSize = !1, y("ImageHasSize", a),
                 a.imgHidden && (b.content && b.content.removeClass("mfp-loading"), a.imgHidden = !1));
             },
             findImageSize: function(a) {
                 var c = 0, d = a.img[0], e = function(f) {
                     L && clearInterval(L), L = setInterval(function() {
-                        return d.naturalWidth > 0 ? void b._onImageHasSize(a) : (c > 200 && clearInterval(L), 
+                        return d.naturalWidth > 0 ? void b._onImageHasSize(a) : (c > 200 && clearInterval(L),
                         c++, void (3 === c ? e(10) : 40 === c ? e(50) : 100 === c && e(500)));
                     }, f);
                 };
@@ -3501,31 +3501,31 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
             },
             getImage: function(c, d) {
                 var e = 0, f = function() {
-                    c && (c.img[0].complete ? (c.img.off(".mfploader"), c === b.currItem && (b._onImageHasSize(c), 
-                    b.updateStatus("ready")), c.hasSize = !0, c.loaded = !0, y("ImageLoadComplete")) : (e++, 
+                    c && (c.img[0].complete ? (c.img.off(".mfploader"), c === b.currItem && (b._onImageHasSize(c),
+                    b.updateStatus("ready")), c.hasSize = !0, c.loaded = !0, y("ImageLoadComplete")) : (e++,
                     200 > e ? setTimeout(f, 100) : g()));
                 }, g = function() {
-                    c && (c.img.off(".mfploader"), c === b.currItem && (b._onImageHasSize(c), b.updateStatus("error", h.tError.replace("%url%", c.src))), 
+                    c && (c.img.off(".mfploader"), c === b.currItem && (b._onImageHasSize(c), b.updateStatus("error", h.tError.replace("%url%", c.src))),
                     c.hasSize = !0, c.loaded = !0, c.loadError = !0);
                 }, h = b.st.image, i = d.find(".mfp-img");
                 if (i.length) {
                     var j = document.createElement("img");
-                    j.className = "mfp-img", c.el && c.el.find("img").length && (j.alt = c.el.find("img").attr("alt")), 
-                    c.img = a(j).on("load.mfploader", f).on("error.mfploader", g), j.src = c.src, i.is("img") && (c.img = c.img.clone()), 
+                    j.className = "mfp-img", c.el && c.el.find("img").length && (j.alt = c.el.find("img").attr("alt")),
+                    c.img = a(j).on("load.mfploader", f).on("error.mfploader", g), j.src = c.src, i.is("img") && (c.img = c.img.clone()),
                     j = c.img[0], j.naturalWidth > 0 ? c.hasSize = !0 : j.width || (c.hasSize = !1);
                 }
                 return b._parseMarkup(d, {
                     title: M(c),
                     img_replaceWith: c.img
-                }, c), b.resizeImage(), c.hasSize ? (L && clearInterval(L), c.loadError ? (d.addClass("mfp-loading"), 
-                b.updateStatus("error", h.tError.replace("%url%", c.src))) : (d.removeClass("mfp-loading"), 
-                b.updateStatus("ready")), d) : (b.updateStatus("loading"), c.loading = !0, c.hasSize || (c.imgHidden = !0, 
+                }, c), b.resizeImage(), c.hasSize ? (L && clearInterval(L), c.loadError ? (d.addClass("mfp-loading"),
+                b.updateStatus("error", h.tError.replace("%url%", c.src))) : (d.removeClass("mfp-loading"),
+                b.updateStatus("ready")), d) : (b.updateStatus("loading"), c.loading = !0, c.hasSize || (c.imgHidden = !0,
                 d.addClass("mfp-loading"), b.findImageSize(c)), d);
             }
         }
     });
     var N, O = function() {
-        return void 0 === N && (N = void 0 !== document.createElement("p").style.MozTransform), 
+        return void 0 === N && (N = void 0 !== document.createElement("p").style.MozTransform),
         N;
     };
     a.magnificPopup.registerModule("zoom", {
@@ -3555,7 +3555,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                     };
                     w("BuildControls" + d, function() {
                         if (b._allowZoom()) {
-                            if (clearTimeout(e), b.content.css("visibility", "hidden"), a = b._getItemToZoom(), 
+                            if (clearTimeout(e), b.content.css("visibility", "hidden"), a = b._getItemToZoom(),
                             !a) return void k();
                             f = j(a), f.css(b._getOffset()), b.wrap.append(f), e = setTimeout(function() {
                                 f.css(b._getOffset(!0)), e = setTimeout(function() {
@@ -3571,7 +3571,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                                 if (a = b._getItemToZoom(), !a) return;
                                 f = j(a);
                             }
-                            f.css(b._getOffset(!0)), b.wrap.append(f), b.content.css("visibility", "hidden"), 
+                            f.css(b._getOffset(!0)), b.wrap.append(f), b.content.css("visibility", "hidden"),
                             setTimeout(function() {
                                 f.css(b._getOffset());
                             }, 16);
@@ -3596,7 +3596,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                     width: d.width(),
                     height: (u ? d.innerHeight() : d[0].offsetHeight) - g - f
                 };
-                return O() ? h["-moz-transform"] = h.transform = "translate(" + e.left + "px," + e.top + "px)" : (h.left = e.left, 
+                return O() ? h["-moz-transform"] = h.transform = "translate(" + e.left + "px," + e.top + "px)" : (h.left = e.left,
                 h.top = e.top), h;
             }
         }
@@ -3639,11 +3639,11 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
             getIframe: function(c, d) {
                 var e = c.src, f = b.st.iframe;
                 a.each(f.patterns, function() {
-                    return e.indexOf(this.index) > -1 ? (this.id && (e = "string" == typeof this.id ? e.substr(e.lastIndexOf(this.id) + this.id.length, e.length) : this.id.call(this, e)), 
+                    return e.indexOf(this.index) > -1 ? (this.id && (e = "string" == typeof this.id ? e.substr(e.lastIndexOf(this.id) + this.id.length, e.length) : this.id.call(this, e)),
                     e = this.src.replace("%id%", e), !1) : void 0;
                 });
                 var g = {};
-                return f.srcAction && (g[f.srcAction] = e), b._parseMarkup(d, g, c), b.updateStatus("ready"), 
+                return f.srcAction && (g[f.srcAction] = e), b._parseMarkup(d, g, c), b.updateStatus("ready"),
                 d;
             }
         }
@@ -3686,7 +3686,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                             b.prev();
                         }), f[h](function() {
                             b.next();
-                        }), b.isIE7 && (x("b", e[0], !1, !0), x("a", e[0], !1, !0), x("b", f[0], !1, !0), 
+                        }), b.isIE7 && (x("b", e[0], !1, !0), x("a", e[0], !1, !0), x("b", f[0], !1, !0),
                         x("a", f[0], !1, !0)), b.container.append(e.add(f));
                     }
                 }), w(n + e, function() {
@@ -3694,7 +3694,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                         b.preloadNearbyImages(), b._preloadTimeout = null;
                     }, 16);
                 }), void w(h + e, function() {
-                    d.off(e), b.wrap.off("click" + e), b.arrowLeft && g && b.arrowLeft.add(b.arrowRight).destroyMfpFastClick(), 
+                    d.off(e), b.wrap.off("click" + e), b.arrowLeft && g && b.arrowLeft.add(b.arrowRight).destroyMfpFastClick(),
                     b.arrowRight = b.arrowLeft = null;
                 })) : !1;
             },
@@ -3759,9 +3759,9 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                 if (c) {
                     var i, j, k, l, m, n;
                     h.on("touchstart" + f, function(a) {
-                        l = !1, n = 1, m = a.originalEvent ? a.originalEvent.touches[0] : a.touches[0], 
+                        l = !1, n = 1, m = a.originalEvent ? a.originalEvent.touches[0] : a.touches[0],
                         j = m.clientX, k = m.clientY, v.on("touchmove" + f, function(a) {
-                            m = a.originalEvent ? a.originalEvent.touches : a.touches, n = m.length, m = m[0], 
+                            m = a.originalEvent ? a.originalEvent.touches : a.touches, n = m.length, m = m[0],
                             (Math.abs(m.clientX - j) > 10 || Math.abs(m.clientY - k) > 10) && (l = !0, d());
                         }).on("touchend" + f, function(a) {
                             d(), l || n > 1 || (g = !0, a.preventDefault(), clearTimeout(i), i = setTimeout(function() {
@@ -3793,23 +3793,23 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
         var i = n.vars.namespace, s = window.navigator && window.navigator.msPointerEnabled && window.MSGesture, r = ("ontouchstart" in window || s || window.DocumentTouch && document instanceof DocumentTouch) && n.vars.touch, o = "click touchend MSPointerUp keyup", l = "", c, d = "vertical" === n.vars.direction, u = n.vars.reverse, v = n.vars.itemWidth > 0, p = "fade" === n.vars.animation, m = "" !== n.vars.asNavFor, f = {};
         $.data(t, "flexslider", n), f = {
             init: function() {
-                n.animating = !1, n.currentSlide = parseInt(n.vars.startAt ? n.vars.startAt : 0, 10), 
-                isNaN(n.currentSlide) && (n.currentSlide = 0), n.animatingTo = n.currentSlide, n.atEnd = 0 === n.currentSlide || n.currentSlide === n.last, 
-                n.containerSelector = n.vars.selector.substr(0, n.vars.selector.search(" ")), n.slides = $(n.vars.selector, n), 
-                n.container = $(n.containerSelector, n), n.count = n.slides.length, n.syncExists = $(n.vars.sync).length > 0, 
-                "slide" === n.vars.animation && (n.vars.animation = "swing"), n.prop = d ? "top" : "marginLeft", 
-                n.args = {}, n.manualPause = !1, n.stopped = !1, n.started = !1, n.startTimeout = null, 
+                n.animating = !1, n.currentSlide = parseInt(n.vars.startAt ? n.vars.startAt : 0, 10),
+                isNaN(n.currentSlide) && (n.currentSlide = 0), n.animatingTo = n.currentSlide, n.atEnd = 0 === n.currentSlide || n.currentSlide === n.last,
+                n.containerSelector = n.vars.selector.substr(0, n.vars.selector.search(" ")), n.slides = $(n.vars.selector, n),
+                n.container = $(n.containerSelector, n), n.count = n.slides.length, n.syncExists = $(n.vars.sync).length > 0,
+                "slide" === n.vars.animation && (n.vars.animation = "swing"), n.prop = d ? "top" : "marginLeft",
+                n.args = {}, n.manualPause = !1, n.stopped = !1, n.started = !1, n.startTimeout = null,
                 n.transitions = !n.vars.video && !p && n.vars.useCSS && function() {
                     var e = document.createElement("div"), t = [ "perspectiveProperty", "WebkitPerspective", "MozPerspective", "OPerspective", "msPerspective" ];
-                    for (var a in t) if (void 0 !== e.style[t[a]]) return n.pfx = t[a].replace("Perspective", "").toLowerCase(), 
+                    for (var a in t) if (void 0 !== e.style[t[a]]) return n.pfx = t[a].replace("Perspective", "").toLowerCase(),
                     n.prop = "-" + n.pfx + "-transform", !0;
                     return !1;
-                }(), n.ensureAnimationEnd = "", "" !== n.vars.controlsContainer && (n.controlsContainer = $(n.vars.controlsContainer).length > 0 && $(n.vars.controlsContainer)), 
-                "" !== n.vars.manualControls && (n.manualControls = $(n.vars.manualControls).length > 0 && $(n.vars.manualControls)), 
-                "" !== n.vars.customDirectionNav && (n.customDirectionNav = 2 === $(n.vars.customDirectionNav).length && $(n.vars.customDirectionNav)), 
+                }(), n.ensureAnimationEnd = "", "" !== n.vars.controlsContainer && (n.controlsContainer = $(n.vars.controlsContainer).length > 0 && $(n.vars.controlsContainer)),
+                "" !== n.vars.manualControls && (n.manualControls = $(n.vars.manualControls).length > 0 && $(n.vars.manualControls)),
+                "" !== n.vars.customDirectionNav && (n.customDirectionNav = 2 === $(n.vars.customDirectionNav).length && $(n.vars.customDirectionNav)),
                 n.vars.randomize && (n.slides.sort(function() {
                     return Math.round(Math.random()) - .5;
-                }), n.container.empty().append(n.slides)), n.doMath(), n.setup("init"), n.vars.controlNav && f.controlNav.setup(), 
+                }), n.container.empty().append(n.slides)), n.doMath(), n.setup("init"), n.vars.controlNav && f.controlNav.setup(),
                 n.vars.directionNav && f.directionNav.setup(), n.vars.keyboard && (1 === $(n.containerSelector).length || n.vars.multipleKeyboard) && $(document).bind("keyup", function(e) {
                     var t = e.keyCode;
                     if (!n.animating && (39 === t || 37 === t)) {
@@ -3820,21 +3820,21 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                     e.preventDefault();
                     var s = 0 > t ? n.getTarget("next") : n.getTarget("prev");
                     n.flexAnimate(s, n.vars.pauseOnAction);
-                }), n.vars.pausePlay && f.pausePlay.setup(), n.vars.slideshow && n.vars.pauseInvisible && f.pauseInvisible.init(), 
+                }), n.vars.pausePlay && f.pausePlay.setup(), n.vars.slideshow && n.vars.pauseInvisible && f.pauseInvisible.init(),
                 n.vars.slideshow && (n.vars.pauseOnHover && n.hover(function() {
                     n.manualPlay || n.manualPause || n.pause();
                 }, function() {
                     n.manualPause || n.manualPlay || n.stopped || n.play();
-                }), n.vars.pauseInvisible && f.pauseInvisible.isHidden() || (n.vars.initDelay > 0 ? n.startTimeout = setTimeout(n.play, n.vars.initDelay) : n.play())), 
-                m && f.asNav.setup(), r && n.vars.touch && f.touch(), (!p || p && n.vars.smoothHeight) && $(window).bind("resize orientationchange focus", f.resize), 
+                }), n.vars.pauseInvisible && f.pauseInvisible.isHidden() || (n.vars.initDelay > 0 ? n.startTimeout = setTimeout(n.play, n.vars.initDelay) : n.play())),
+                m && f.asNav.setup(), r && n.vars.touch && f.touch(), (!p || p && n.vars.smoothHeight) && $(window).bind("resize orientationchange focus", f.resize),
                 n.find("img").attr("draggable", "false"), setTimeout(function() {
                     n.vars.start(n);
                 }, 200);
             },
             asNav: {
                 setup: function() {
-                    n.asNav = !0, n.animatingTo = Math.floor(n.currentSlide / n.move), n.currentItem = n.currentSlide, 
-                    n.slides.removeClass(i + "active-slide").eq(n.currentItem).addClass(i + "active-slide"), 
+                    n.asNav = !0, n.animatingTo = Math.floor(n.currentSlide / n.move), n.currentItem = n.currentSlide,
+                    n.slides.removeClass(i + "active-slide").eq(n.currentItem).addClass(i + "active-slide"),
                     s ? (t._slider = n, n.slides.each(function() {
                         var e = this;
                         e._gesture = new MSGesture(), e._gesture.target = e, e.addEventListener("MSPointerDown", function(e) {
@@ -3842,13 +3842,13 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                         }, !1), e.addEventListener("MSGestureTap", function(e) {
                             e.preventDefault();
                             var t = $(this), a = t.index();
-                            $(n.vars.asNavFor).data("flexslider").animating || t.hasClass("active") || (n.direction = n.currentItem < a ? "next" : "prev", 
+                            $(n.vars.asNavFor).data("flexslider").animating || t.hasClass("active") || (n.direction = n.currentItem < a ? "next" : "prev",
                             n.flexAnimate(a, n.vars.pauseOnAction, !1, !0, !0));
                         });
                     })) : n.slides.on(o, function(e) {
                         e.preventDefault();
                         var t = $(this), a = t.index(), s = t.offset().left - $(n).scrollLeft();
-                        0 >= s && t.hasClass(i + "active-slide") ? n.flexAnimate(n.getTarget("prev"), !0) : $(n.vars.asNavFor).data("flexslider").animating || t.hasClass(i + "active-slide") || (n.direction = n.currentItem < a ? "next" : "prev", 
+                        0 >= s && t.hasClass(i + "active-slide") ? n.flexAnimate(n.getTarget("prev"), !0) : $(n.vars.asNavFor).data("flexslider").animating || t.hasClass(i + "active-slide") || (n.direction = n.currentItem < a ? "next" : "prev",
                         n.flexAnimate(a, n.vars.pauseOnAction, !1, !0, !0));
                     });
                 }
@@ -3859,22 +3859,22 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                 },
                 setupPaging: function() {
                     var e = "thumbnails" === n.vars.controlNav ? "control-thumbs" : "control-paging", t = 1, a, s;
-                    if (n.controlNavScaffold = $('<ol class="' + i + "control-nav " + i + e + '"></ol>'), 
+                    if (n.controlNavScaffold = $('<ol class="' + i + "control-nav " + i + e + '"></ol>'),
                     n.pagingCount > 1) for (var r = 0; r < n.pagingCount; r++) {
                         s = n.slides.eq(r), void 0 === s.attr("data-thumb-alt") && s.attr("data-thumb-alt", "");
                         var c = "" !== s.attr("data-thumb-alt") ? c = ' alt="' + s.attr("data-thumb-alt") + '"' : "";
-                        if (a = "thumbnails" === n.vars.controlNav ? '<img src="' + s.attr("data-thumb") + '"' + c + "/>" : '<a href="#">' + t + "</a>", 
+                        if (a = "thumbnails" === n.vars.controlNav ? '<img src="' + s.attr("data-thumb") + '"' + c + "/>" : '<a href="#">' + t + "</a>",
                         "thumbnails" === n.vars.controlNav && !0 === n.vars.thumbCaptions) {
                             var d = s.attr("data-thumbcaption");
                             "" !== d && void 0 !== d && (a += '<span class="' + i + 'caption">' + d + "</span>");
                         }
                         n.controlNavScaffold.append("<li>" + a + "</li>"), t++;
                     }
-                    n.controlsContainer ? $(n.controlsContainer).append(n.controlNavScaffold) : n.append(n.controlNavScaffold), 
+                    n.controlsContainer ? $(n.controlsContainer).append(n.controlNavScaffold) : n.append(n.controlNavScaffold),
                     f.controlNav.set(), f.controlNav.active(), n.controlNavScaffold.delegate("a, img", o, function(e) {
                         if (e.preventDefault(), "" === l || l === e.type) {
                             var t = $(this), a = n.controlNav.index(t);
-                            t.hasClass(i + "active") || (n.direction = a > n.currentSlide ? "next" : "prev", 
+                            t.hasClass(i + "active") || (n.direction = a > n.currentSlide ? "next" : "prev",
                             n.flexAnimate(a, n.vars.pauseOnAction));
                         }
                         "" === l && (l = e.type), f.setToClearWatchedEvent();
@@ -3884,7 +3884,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                     n.controlNav = n.manualControls, f.controlNav.active(), n.controlNav.bind(o, function(e) {
                         if (e.preventDefault(), "" === l || l === e.type) {
                             var t = $(this), a = n.controlNav.index(t);
-                            t.hasClass(i + "active") || (a > n.currentSlide ? n.direction = "next" : n.direction = "prev", 
+                            t.hasClass(i + "active") || (a > n.currentSlide ? n.direction = "next" : n.direction = "prev",
                             n.flexAnimate(a, n.vars.pauseOnAction));
                         }
                         "" === l && (l = e.type), f.setToClearWatchedEvent();
@@ -3898,20 +3898,20 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                     n.controlNav.removeClass(i + "active").eq(n.animatingTo).addClass(i + "active");
                 },
                 update: function(e, t) {
-                    n.pagingCount > 1 && "add" === e ? n.controlNavScaffold.append($('<li><a href="#">' + n.count + "</a></li>")) : 1 === n.pagingCount ? n.controlNavScaffold.find("li").remove() : n.controlNav.eq(t).closest("li").remove(), 
+                    n.pagingCount > 1 && "add" === e ? n.controlNavScaffold.append($('<li><a href="#">' + n.count + "</a></li>")) : 1 === n.pagingCount ? n.controlNavScaffold.find("li").remove() : n.controlNav.eq(t).closest("li").remove(),
                     f.controlNav.set(), n.pagingCount > 1 && n.pagingCount !== n.controlNav.length ? n.update(t, e) : f.controlNav.active();
                 }
             },
             directionNav: {
                 setup: function() {
                     var e = $('<ul class="' + i + 'direction-nav"><li class="' + i + 'nav-prev"><a class="' + i + 'prev" href="#">' + n.vars.prevText + '</a></li><li class="' + i + 'nav-next"><a class="' + i + 'next" href="#">' + n.vars.nextText + "</a></li></ul>");
-                    n.customDirectionNav ? n.directionNav = n.customDirectionNav : n.controlsContainer ? ($(n.controlsContainer).append(e), 
-                    n.directionNav = $("." + i + "direction-nav li a", n.controlsContainer)) : (n.append(e), 
-                    n.directionNav = $("." + i + "direction-nav li a", n)), f.directionNav.update(), 
+                    n.customDirectionNav ? n.directionNav = n.customDirectionNav : n.controlsContainer ? ($(n.controlsContainer).append(e),
+                    n.directionNav = $("." + i + "direction-nav li a", n.controlsContainer)) : (n.append(e),
+                    n.directionNav = $("." + i + "direction-nav li a", n)), f.directionNav.update(),
                     n.directionNav.bind(o, function(e) {
                         e.preventDefault();
                         var t;
-                        "" !== l && l !== e.type || (t = $(this).hasClass(i + "next") ? n.getTarget("next") : n.getTarget("prev"), 
+                        "" !== l && l !== e.type || (t = $(this).hasClass(i + "next") ? n.getTarget("next") : n.getTarget("prev"),
                         n.flexAnimate(t, n.vars.pauseOnAction)), "" === l && (l = e.type), f.setToClearWatchedEvent();
                     });
                 },
@@ -3923,11 +3923,11 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
             pausePlay: {
                 setup: function() {
                     var e = $('<div class="' + i + 'pauseplay"><a href="#"></a></div>');
-                    n.controlsContainer ? (n.controlsContainer.append(e), n.pausePlay = $("." + i + "pauseplay a", n.controlsContainer)) : (n.append(e), 
-                    n.pausePlay = $("." + i + "pauseplay a", n)), f.pausePlay.update(n.vars.slideshow ? i + "pause" : i + "play"), 
+                    n.controlsContainer ? (n.controlsContainer.append(e), n.pausePlay = $("." + i + "pauseplay a", n.controlsContainer)) : (n.append(e),
+                    n.pausePlay = $("." + i + "pauseplay a", n)), f.pausePlay.update(n.vars.slideshow ? i + "pause" : i + "play"),
                     n.pausePlay.bind(o, function(e) {
-                        e.preventDefault(), "" !== l && l !== e.type || ($(this).hasClass(i + "pause") ? (n.manualPause = !0, 
-                        n.manualPlay = !1, n.pause()) : (n.manualPause = !1, n.manualPlay = !0, n.play())), 
+                        e.preventDefault(), "" !== l && l !== e.type || ($(this).hasClass(i + "pause") ? (n.manualPause = !0,
+                        n.manualPlay = !1, n.pause()) : (n.manualPause = !1, n.manualPlay = !0, n.play())),
                         "" === l && (l = e.type), f.setToClearWatchedEvent();
                     });
                 },
@@ -3937,7 +3937,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
             },
             touch: function() {
                 function e(e) {
-                    e.stopPropagation(), n.animating ? e.preventDefault() : (n.pause(), t._gesture.addPointer(e.pointerId), 
+                    e.stopPropagation(), n.animating ? e.preventDefault() : (n.pause(), t._gesture.addPointer(e.pointerId),
                     T = 0, c = d ? n.h : n.w, f = Number(new Date()), l = v && u && n.animatingTo === n.last ? 0 : v && u ? n.limit - (n.itemW + n.vars.itemMargin) * n.move * n.animatingTo : v && n.currentSlide === n.last ? n.limit : v ? (n.itemW + n.vars.itemMargin) * n.move * n.currentSlide : u ? (n.last - n.currentSlide + n.cloneOffset) * c : (n.currentSlide + n.cloneOffset) * c);
                 }
                 function a(e) {
@@ -3945,10 +3945,10 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                     var a = e.target._slider;
                     if (a) {
                         var n = -e.translationX, i = -e.translationY;
-                        return T += d ? i : n, m = T, y = d ? Math.abs(T) < Math.abs(-n) : Math.abs(T) < Math.abs(-i), 
+                        return T += d ? i : n, m = T, y = d ? Math.abs(T) < Math.abs(-n) : Math.abs(T) < Math.abs(-i),
                         e.detail === e.MSGESTURE_FLAG_INERTIA ? void setImmediate(function() {
                             t._gesture.stop();
-                        }) : void ((!y || Number(new Date()) - f > 500) && (e.preventDefault(), !p && a.transitions && (a.vars.animationLoop || (m = T / (0 === a.currentSlide && 0 > T || a.currentSlide === a.last && T > 0 ? Math.abs(T) / c + 2 : 1)), 
+                        }) : void ((!y || Number(new Date()) - f > 500) && (e.preventDefault(), !p && a.transitions && (a.vars.animationLoop || (m = T / (0 === a.currentSlide && 0 > T || a.currentSlide === a.last && T > 0 ? Math.abs(T) / c + 2 : 1)),
                         a.setProps(l + m, "setTouch"))));
                     }
                 }
@@ -3964,17 +3964,17 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                     }
                 }
                 var r, o, l, c, m, f, g, h, S, y = !1, x = 0, b = 0, T = 0;
-                s ? (t.style.msTouchAction = "none", t._gesture = new MSGesture(), t._gesture.target = t, 
-                t.addEventListener("MSPointerDown", e, !1), t._slider = n, t.addEventListener("MSGestureChange", a, !1), 
+                s ? (t.style.msTouchAction = "none", t._gesture = new MSGesture(), t._gesture.target = t,
+                t.addEventListener("MSPointerDown", e, !1), t._slider = n, t.addEventListener("MSGestureChange", a, !1),
                 t.addEventListener("MSGestureEnd", i, !1)) : (g = function(e) {
-                    n.animating ? e.preventDefault() : (window.navigator.msPointerEnabled || 1 === e.touches.length) && (n.pause(), 
-                    c = d ? n.h : n.w, f = Number(new Date()), x = e.touches[0].pageX, b = e.touches[0].pageY, 
-                    l = v && u && n.animatingTo === n.last ? 0 : v && u ? n.limit - (n.itemW + n.vars.itemMargin) * n.move * n.animatingTo : v && n.currentSlide === n.last ? n.limit : v ? (n.itemW + n.vars.itemMargin) * n.move * n.currentSlide : u ? (n.last - n.currentSlide + n.cloneOffset) * c : (n.currentSlide + n.cloneOffset) * c, 
+                    n.animating ? e.preventDefault() : (window.navigator.msPointerEnabled || 1 === e.touches.length) && (n.pause(),
+                    c = d ? n.h : n.w, f = Number(new Date()), x = e.touches[0].pageX, b = e.touches[0].pageY,
+                    l = v && u && n.animatingTo === n.last ? 0 : v && u ? n.limit - (n.itemW + n.vars.itemMargin) * n.move * n.animatingTo : v && n.currentSlide === n.last ? n.limit : v ? (n.itemW + n.vars.itemMargin) * n.move * n.currentSlide : u ? (n.last - n.currentSlide + n.cloneOffset) * c : (n.currentSlide + n.cloneOffset) * c,
                     r = d ? b : x, o = d ? x : b, t.addEventListener("touchmove", h, !1), t.addEventListener("touchend", S, !1));
                 }, h = function(e) {
                     x = e.touches[0].pageX, b = e.touches[0].pageY, m = d ? r - b : r - x, y = d ? Math.abs(m) < Math.abs(x - o) : Math.abs(m) < Math.abs(b - o);
                     var t = 500;
-                    (!y || Number(new Date()) - f > t) && (e.preventDefault(), !p && n.transitions && (n.vars.animationLoop || (m /= 0 === n.currentSlide && 0 > m || n.currentSlide === n.last && m > 0 ? Math.abs(m) / c + 2 : 1), 
+                    (!y || Number(new Date()) - f > t) && (e.preventDefault(), !p && n.transitions && (n.vars.animationLoop || (m /= 0 === n.currentSlide && 0 > m || n.currentSlide === n.last && m > 0 ? Math.abs(m) / c + 2 : 1),
                     n.setProps(l + m, "setTouch")));
                 }, S = function(e) {
                     if (t.removeEventListener("touchmove", h, !1), n.animatingTo === n.currentSlide && !y && null !== m) {
@@ -3985,8 +3985,8 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                 }, t.addEventListener("touchstart", g, !1));
             },
             resize: function() {
-                !n.animating && n.is(":visible") && (v || n.doMath(), p ? f.smoothHeight() : v ? (n.slides.width(n.computedW), 
-                n.update(n.pagingCount), n.setProps()) : d ? (n.viewport.height(n.h), n.setProps(n.h, "setTotal")) : (n.vars.smoothHeight && f.smoothHeight(), 
+                !n.animating && n.is(":visible") && (v || n.doMath(), p ? f.smoothHeight() : v ? (n.slides.width(n.computedW),
+                n.update(n.pagingCount), n.setProps()) : d ? (n.viewport.height(n.h), n.setProps(n.h, "setTotal")) : (n.vars.smoothHeight && f.smoothHeight(),
                 n.newSlides.width(n.computedW), n.setProps(n.computedW, "setTotal")));
             },
             smoothHeight: function(e) {
@@ -4046,20 +4046,20 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                 }, 3e3);
             }
         }, n.flexAnimate = function(e, t, a, s, o) {
-            if (n.vars.animationLoop || e === n.currentSlide || (n.direction = e > n.currentSlide ? "next" : "prev"), 
-            m && 1 === n.pagingCount && (n.direction = n.currentItem < e ? "next" : "prev"), 
+            if (n.vars.animationLoop || e === n.currentSlide || (n.direction = e > n.currentSlide ? "next" : "prev"),
+            m && 1 === n.pagingCount && (n.direction = n.currentItem < e ? "next" : "prev"),
             !n.animating && (n.canAdvance(e, o) || a) && n.is(":visible")) {
                 if (m && s) {
                     var l = $(n.vars.asNavFor).data("flexslider");
-                    if (n.atEnd = 0 === e || e === n.count - 1, l.flexAnimate(e, !0, !1, !0, o), n.direction = n.currentItem < e ? "next" : "prev", 
-                    l.direction = n.direction, Math.ceil((e + 1) / n.visible) - 1 === n.currentSlide || 0 === e) return n.currentItem = e, 
+                    if (n.atEnd = 0 === e || e === n.count - 1, l.flexAnimate(e, !0, !1, !0, o), n.direction = n.currentItem < e ? "next" : "prev",
+                    l.direction = n.direction, Math.ceil((e + 1) / n.visible) - 1 === n.currentSlide || 0 === e) return n.currentItem = e,
                     n.slides.removeClass(i + "active-slide").eq(e).addClass(i + "active-slide"), !1;
-                    n.currentItem = e, n.slides.removeClass(i + "active-slide").eq(e).addClass(i + "active-slide"), 
+                    n.currentItem = e, n.slides.removeClass(i + "active-slide").eq(e).addClass(i + "active-slide"),
                     e = Math.floor(e / n.visible);
                 }
-                if (n.animating = !0, n.animatingTo = e, t && n.pause(), n.vars.before(n), n.syncExists && !o && f.sync("animate"), 
-                n.vars.controlNav && f.controlNav.active(), v || n.slides.removeClass(i + "active-slide").eq(e).addClass(i + "active-slide"), 
-                n.atEnd = 0 === e || e === n.last, n.vars.directionNav && f.directionNav.update(), 
+                if (n.animating = !0, n.animatingTo = e, t && n.pause(), n.vars.before(n), n.syncExists && !o && f.sync("animate"),
+                n.vars.controlNav && f.controlNav.active(), v || n.slides.removeClass(i + "active-slide").eq(e).addClass(i + "active-slide"),
+                n.atEnd = 0 === e || e === n.last, n.vars.directionNav && f.directionNav.update(),
                 e === n.last && (n.vars.end(n), n.vars.animationLoop || n.pause()), p) r ? (n.slides.eq(n.currentSlide).css({
                     opacity: 0,
                     zIndex: 1
@@ -4076,9 +4076,9 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                     opacity: 1
                 }, n.vars.animationSpeed, n.vars.easing, n.wrapup)); else {
                     var c = d ? n.slides.filter(":first").height() : n.computedW, g, h, S;
-                    v ? (g = n.vars.itemMargin, S = (n.itemW + g) * n.move * n.animatingTo, h = S > n.limit && 1 !== n.visible ? n.limit : S) : h = 0 === n.currentSlide && e === n.count - 1 && n.vars.animationLoop && "next" !== n.direction ? u ? (n.count + n.cloneOffset) * c : 0 : n.currentSlide === n.last && 0 === e && n.vars.animationLoop && "prev" !== n.direction ? u ? 0 : (n.count + 1) * c : u ? (n.count - 1 - e + n.cloneOffset) * c : (e + n.cloneOffset) * c, 
-                    n.setProps(h, "", n.vars.animationSpeed), n.transitions ? (n.vars.animationLoop && n.atEnd || (n.animating = !1, 
-                    n.currentSlide = n.animatingTo), n.container.unbind("webkitTransitionEnd transitionend"), 
+                    v ? (g = n.vars.itemMargin, S = (n.itemW + g) * n.move * n.animatingTo, h = S > n.limit && 1 !== n.visible ? n.limit : S) : h = 0 === n.currentSlide && e === n.count - 1 && n.vars.animationLoop && "next" !== n.direction ? u ? (n.count + n.cloneOffset) * c : 0 : n.currentSlide === n.last && 0 === e && n.vars.animationLoop && "prev" !== n.direction ? u ? 0 : (n.count + 1) * c : u ? (n.count - 1 - e + n.cloneOffset) * c : (e + n.cloneOffset) * c,
+                    n.setProps(h, "", n.vars.animationSpeed), n.transitions ? (n.vars.animationLoop && n.atEnd || (n.animating = !1,
+                    n.currentSlide = n.animatingTo), n.container.unbind("webkitTransitionEnd transitionend"),
                     n.container.bind("webkitTransitionEnd transitionend", function() {
                         clearTimeout(n.ensureAnimationEnd), n.wrapup(c);
                     }), clearTimeout(n.ensureAnimationEnd), n.ensureAnimationEnd = setTimeout(function() {
@@ -4090,15 +4090,15 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                 n.vars.smoothHeight && f.smoothHeight(n.vars.animationSpeed);
             }
         }, n.wrapup = function(e) {
-            p || v || (0 === n.currentSlide && n.animatingTo === n.last && n.vars.animationLoop ? n.setProps(e, "jumpEnd") : n.currentSlide === n.last && 0 === n.animatingTo && n.vars.animationLoop && n.setProps(e, "jumpStart")), 
+            p || v || (0 === n.currentSlide && n.animatingTo === n.last && n.vars.animationLoop ? n.setProps(e, "jumpEnd") : n.currentSlide === n.last && 0 === n.animatingTo && n.vars.animationLoop && n.setProps(e, "jumpStart")),
             n.animating = !1, n.currentSlide = n.animatingTo, n.vars.after(n);
         }, n.animateSlides = function() {
             !n.animating && e && n.flexAnimate(n.getTarget("next"));
         }, n.pause = function() {
-            clearInterval(n.animatedSlides), n.animatedSlides = null, n.playing = !1, n.vars.pausePlay && f.pausePlay.update("play"), 
+            clearInterval(n.animatedSlides), n.animatedSlides = null, n.playing = !1, n.vars.pausePlay && f.pausePlay.update("play"),
             n.syncExists && f.sync("pause");
         }, n.play = function() {
-            n.playing && clearInterval(n.animatedSlides), n.animatedSlides = n.animatedSlides || setInterval(n.animateSlides, n.vars.slideshowSpeed), 
+            n.playing && clearInterval(n.animatedSlides), n.animatedSlides = n.animatedSlides || setInterval(n.animateSlides, n.vars.slideshowSpeed),
             n.started = n.playing = !0, n.vars.pausePlay && f.pausePlay.update("pause"), n.syncExists && f.sync("play");
         }, n.stop = function() {
             n.pause(), n.stopped = !0;
@@ -4130,9 +4130,9 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                 }();
                 return -1 * i + "px";
             }();
-            n.transitions && (i = d ? "translate3d(0," + i + ",0)" : "translate3d(" + i + ",0,0)", 
-            a = void 0 !== a ? a / 1e3 + "s" : "0s", n.container.css("-" + n.pfx + "-transition-duration", a), 
-            n.container.css("transition-duration", a)), n.args[n.prop] = i, (n.transitions || void 0 === a) && n.container.css(n.args), 
+            n.transitions && (i = d ? "translate3d(0," + i + ",0)" : "translate3d(" + i + ",0,0)",
+            a = void 0 !== a ? a / 1e3 + "s" : "0s", n.container.css("-" + n.pfx + "-transition-duration", a),
+            n.container.css("transition-duration", a)), n.args[n.prop] = i, (n.transitions || void 0 === a) && n.container.css(n.args),
             n.container.css("transform", i);
         }, n.setup = function(e) {
             if (p) n.slides.css({
@@ -4169,16 +4169,16 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                 "init" === e && (n.viewport = $('<div class="' + i + 'viewport"></div>').css({
                     overflow: "hidden",
                     position: "relative"
-                }).appendTo(n).append(n.container), n.cloneCount = 0, n.cloneOffset = 0, u && (a = $.makeArray(n.slides).reverse(), 
-                n.slides = $(a), n.container.empty().append(n.slides))), n.vars.animationLoop && !v && (n.cloneCount = 2, 
-                n.cloneOffset = 1, "init" !== e && n.container.find(".clone").remove(), n.container.append(f.uniqueID(n.slides.first().clone().addClass("clone")).attr("aria-hidden", "true")).prepend(f.uniqueID(n.slides.last().clone().addClass("clone")).attr("aria-hidden", "true"))), 
-                n.newSlides = $(n.vars.selector, n), t = u ? n.count - 1 - n.currentSlide + n.cloneOffset : n.currentSlide + n.cloneOffset, 
-                d && !v ? (n.container.height(200 * (n.count + n.cloneCount) + "%").css("position", "absolute").width("100%"), 
+                }).appendTo(n).append(n.container), n.cloneCount = 0, n.cloneOffset = 0, u && (a = $.makeArray(n.slides).reverse(),
+                n.slides = $(a), n.container.empty().append(n.slides))), n.vars.animationLoop && !v && (n.cloneCount = 2,
+                n.cloneOffset = 1, "init" !== e && n.container.find(".clone").remove(), n.container.append(f.uniqueID(n.slides.first().clone().addClass("clone")).attr("aria-hidden", "true")).prepend(f.uniqueID(n.slides.last().clone().addClass("clone")).attr("aria-hidden", "true"))),
+                n.newSlides = $(n.vars.selector, n), t = u ? n.count - 1 - n.currentSlide + n.cloneOffset : n.currentSlide + n.cloneOffset,
+                d && !v ? (n.container.height(200 * (n.count + n.cloneCount) + "%").css("position", "absolute").width("100%"),
                 setTimeout(function() {
                     n.newSlides.css({
                         display: "block"
                     }), n.doMath(), n.viewport.height(n.h), n.setProps(t * n.h, "init");
-                }, "init" === e ? 100 : 0)) : (n.container.width(200 * (n.count + n.cloneCount) + "%"), 
+                }, "init" === e ? 100 : 0)) : (n.container.width(200 * (n.count + n.cloneCount) + "%"),
                 n.setProps(t * n.computedW, "init"), setTimeout(function() {
                     n.doMath(), n.newSlides.css({
                         width: n.computedW,
@@ -4188,32 +4188,32 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
                     }), n.vars.smoothHeight && f.smoothHeight();
                 }, "init" === e ? 100 : 0));
             }
-            v || n.slides.removeClass(i + "active-slide").eq(n.currentSlide).addClass(i + "active-slide"), 
+            v || n.slides.removeClass(i + "active-slide").eq(n.currentSlide).addClass(i + "active-slide"),
             n.vars.init(n);
         }, n.doMath = function() {
             var e = n.slides.first(), t = n.vars.itemMargin, a = n.vars.minItems, i = n.vars.maxItems;
-            n.w = void 0 === n.viewport ? n.width() : n.viewport.width(), n.h = e.height(), 
-            n.boxPadding = e.outerWidth() - e.width(), v ? (n.itemT = n.vars.itemWidth + t, 
-            n.itemM = t, n.minW = a ? a * n.itemT : n.w, n.maxW = i ? i * n.itemT - t : n.w, 
-            n.itemW = n.minW > n.w ? (n.w - t * (a - 1)) / a : n.maxW < n.w ? (n.w - t * (i - 1)) / i : n.vars.itemWidth > n.w ? n.w : n.vars.itemWidth, 
-            n.visible = Math.floor(n.w / n.itemW), n.move = n.vars.move > 0 && n.vars.move < n.visible ? n.vars.move : n.visible, 
-            n.pagingCount = Math.ceil((n.count - n.visible) / n.move + 1), n.last = n.pagingCount - 1, 
-            n.limit = 1 === n.pagingCount ? 0 : n.vars.itemWidth > n.w ? n.itemW * (n.count - 1) + t * (n.count - 1) : (n.itemW + t) * n.count - n.w - t) : (n.itemW = n.w, 
-            n.itemM = t, n.pagingCount = n.count, n.last = n.count - 1), n.computedW = n.itemW - n.boxPadding, 
+            n.w = void 0 === n.viewport ? n.width() : n.viewport.width(), n.h = e.height(),
+            n.boxPadding = e.outerWidth() - e.width(), v ? (n.itemT = n.vars.itemWidth + t,
+            n.itemM = t, n.minW = a ? a * n.itemT : n.w, n.maxW = i ? i * n.itemT - t : n.w,
+            n.itemW = n.minW > n.w ? (n.w - t * (a - 1)) / a : n.maxW < n.w ? (n.w - t * (i - 1)) / i : n.vars.itemWidth > n.w ? n.w : n.vars.itemWidth,
+            n.visible = Math.floor(n.w / n.itemW), n.move = n.vars.move > 0 && n.vars.move < n.visible ? n.vars.move : n.visible,
+            n.pagingCount = Math.ceil((n.count - n.visible) / n.move + 1), n.last = n.pagingCount - 1,
+            n.limit = 1 === n.pagingCount ? 0 : n.vars.itemWidth > n.w ? n.itemW * (n.count - 1) + t * (n.count - 1) : (n.itemW + t) * n.count - n.w - t) : (n.itemW = n.w,
+            n.itemM = t, n.pagingCount = n.count, n.last = n.count - 1), n.computedW = n.itemW - n.boxPadding,
             n.computedM = n.itemM;
         }, n.update = function(e, t) {
-            n.doMath(), v || (e < n.currentSlide ? n.currentSlide += 1 : e <= n.currentSlide && 0 !== e && (n.currentSlide -= 1), 
-            n.animatingTo = n.currentSlide), n.vars.controlNav && !n.manualControls && ("add" === t && !v || n.pagingCount > n.controlNav.length ? f.controlNav.update("add") : ("remove" === t && !v || n.pagingCount < n.controlNav.length) && (v && n.currentSlide > n.last && (n.currentSlide -= 1, 
+            n.doMath(), v || (e < n.currentSlide ? n.currentSlide += 1 : e <= n.currentSlide && 0 !== e && (n.currentSlide -= 1),
+            n.animatingTo = n.currentSlide), n.vars.controlNav && !n.manualControls && ("add" === t && !v || n.pagingCount > n.controlNav.length ? f.controlNav.update("add") : ("remove" === t && !v || n.pagingCount < n.controlNav.length) && (v && n.currentSlide > n.last && (n.currentSlide -= 1,
             n.animatingTo -= 1), f.controlNav.update("remove", n.last))), n.vars.directionNav && f.directionNav.update();
         }, n.addSlide = function(e, t) {
             var a = $(e);
-            n.count += 1, n.last = n.count - 1, d && u ? void 0 !== t ? n.slides.eq(n.count - t).after(a) : n.container.prepend(a) : void 0 !== t ? n.slides.eq(t).before(a) : n.container.append(a), 
-            n.update(t, "add"), n.slides = $(n.vars.selector + ":not(.clone)", n), n.setup(), 
+            n.count += 1, n.last = n.count - 1, d && u ? void 0 !== t ? n.slides.eq(n.count - t).after(a) : n.container.prepend(a) : void 0 !== t ? n.slides.eq(t).before(a) : n.container.append(a),
+            n.update(t, "add"), n.slides = $(n.vars.selector + ":not(.clone)", n), n.setup(),
             n.vars.added(n);
         }, n.removeSlide = function(e) {
             var t = isNaN(e) ? n.slides.index($(e)) : e;
-            n.count -= 1, n.last = n.count - 1, isNaN(e) ? $(e, n.slides).remove() : d && u ? n.slides.eq(n.last).remove() : n.slides.eq(e).remove(), 
-            n.doMath(), n.update(t, "remove"), n.slides = $(n.vars.selector + ":not(.clone)", n), 
+            n.count -= 1, n.last = n.count - 1, isNaN(e) ? $(e, n.slides).remove() : d && u ? n.slides.eq(n.last).remove() : n.slides.eq(e).remove(),
+            n.doMath(), n.update(t, "remove"), n.slides = $(n.vars.selector + ":not(.clone)", n),
             n.setup(), n.vars.removed(n);
         }, f.init();
     }, $(window).blur(function(t) {
