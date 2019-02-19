@@ -18,6 +18,7 @@ $(document).on('turbolinks:load', function() {
   $('#select_auditorium').on('change', function(){
     $('#auditoriump').text($("#select_auditorium option:selected").text());
     $('.order-date').children().remove();
+    $('.order-date span').remove();
     localStorage.setItem('auditorium_id', $(this).val());
     $.ajax({
       url: 'get_schedules',
@@ -26,11 +27,15 @@ $(document).on('turbolinks:load', function() {
     }).done(function(response){
       var schedules = response["schedules"];
       console.log(response['schedules']);
-      for(let i=0; i< schedules.length; i++){
-        let start_time = formatDate(schedules[i]['start_time'])
-        console.log(schedules[i]['id'])
-        $('.order-date').append('<li value=' + schedules[i]['id'] +
-          '><a href="javascript:;"><i><b>' + start_time + '</b></i></a></li>');
+      if(response['schedules'].length === 0 ) {
+        $('.order-date').append('<span>Chưa có lịch chiếu</span>');
+      } else {
+        for(let i=0; i< schedules.length; i++){
+          let start_time = formatDate(schedules[i]['start_time'])
+          console.log(schedules[i]['id'])
+          $('.order-date').append('<li value=' + schedules[i]['id'] +
+            '><a href="javascript:;"><i><b>' + start_time + '</b></i></a></li>');
+        }
       }
     })
     $.ajax({
@@ -44,10 +49,11 @@ $(document).on('turbolinks:load', function() {
   })
 
   $('#msform').on('click', '.order-date a', function(){
+    $('#select-info-movie').remove();
     var animating;
     localStorage.setItem('schedule_id', $(this).parent().val());
     $('#timep').text($(this).text());
-
+    $('.zoom-button').removeClass('display-none');
     $.ajax({
       url: 'get_schedule_id_from_client',
       type: "POST",
@@ -101,18 +107,29 @@ $(document).on('turbolinks:load', function() {
       console.log(response['schedules']);
       for(let i=0; i< schedules.length; i++){
         let start_time = formatDate(schedules[i]['start_time'])
-        $('.order-date').append('<li><a href="javascript:;"><i><b>' + start_time + '</b></i></a></li>');
+        $('.order-date').append('<li value=' + schedules[i]['id'] +
+          '><a href="javascript:;"><i><b>' + start_time + '</b></i></a></li>');
       }
     })
   });
   var area = document.querySelector('.table');
-  var controller = panzoom(area, {zoomDoubleClickSpeed: 1})
+  var controller = panzoom(area, {zoomDoubleClickSpeed: 1,
+    maxZoom: 1.5,
+    minZoom: 1})
+
   $('#submit-booking').click(function(){
     $('#form-seat').submit();
   })
+  var currentZoom = 1
+  $('#zoom-in').click(function(){
+    currentZoom += 0.1;
+    $('.table').css({ transform: 'scale(' + currentZoom + ')' })
+  });
+  $('#zoom-out').click(function(){
+    currentZoom -= 0.1;
+    $('.table').css({ transform: 'scale(' + currentZoom + ')' })
+  });
 
-
-  $()
   $('.seat-map table tr td').on('click', function(e){
     if(e.target.type == 'checkbox'){
       if($(this).is(':checked')) $(this).attr('checked', false);

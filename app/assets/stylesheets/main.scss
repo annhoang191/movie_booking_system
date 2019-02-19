@@ -46,7 +46,8 @@
     top: 0px;
     left: 0px;
     width: 100%;
-    line-height: 90px;
+    line-height: 50px;
+    height: 50px;
     z-index: 100;
   }
   header#header .button_container {
@@ -2632,7 +2633,6 @@
   input[type=button]:hover,
   input[type=submit]:hover {
     text-decoration: none;
-    color: #fb802d;
   }
   .btn.drop-hover,
   button.drop-hover,

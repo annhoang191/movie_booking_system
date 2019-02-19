@@ -2,9 +2,8 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6 col-sm-6 col-xs-4">
-        <%= link_to root_path, id: "logo", title: "Tenguu", class: "logo-image",
-          data: {bg_image: "https://c2.staticflickr.com/8/7926/32137861817_5b985863e7_o.png"} do %>
-          Movie ticket
+        <%= link_to root_path, class: "logo-image" do %>
+          Movie booking
         <% end %>
       </div>
       <div class="col-md-4 col-md-offset-2 col-sm-6 col-xs-8 phl0">
@@ -30,7 +29,7 @@
           <ul >
             <li><%= link_to "Trang chủ", root_path %></li>
             <% if user_signed_in? %>
-              <li><a href="#order" class="order_btn">Order</a></li>
+              <li><a href="#order" class="order_btn">Đặt vé</a></li>
               <li><%= link_to t(".log_out"), destroy_user_session_path, method: :delete %></li>
             <% else %>
               <li><%= link_to t(".sign_up"), new_user_registration_path %></li>

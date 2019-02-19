@@ -1,4 +1,8 @@
+@import 'colors';
+
 .seat-map {
+  overflow-x:auto;
+
   input[type="checkbox"] {
     display: none;
   }
@@ -6,5 +10,28 @@
   .red-highlight {
     background-color: red;
     color: white;
+  }
+
+  td {
+    border: 1px solid #ccc;
+    padding: 1px !important;
+    text-align: center;
+  }
+
+  #seat-map-table {
+    border-collapse: separate;
+    border-spacing: 5px;
+    text-align: center;
+    .hidden-td {
+      visibility: hidden;
+    }
+  }
+
+  .cinema-screen {
+    background-color: $jaffa;
+    border: 1px solid;
+    height: 15px;
+    border-bottom-left-radius:50%;
+    border-bottom-right-radius:50%;
   }
 }

@@ -4,7 +4,11 @@ class StaticPagesController < ApplicationController
     @cinemas = Cinema.all.includes :auditoria
     @auditoria = Auditorium.all.includes :schedules
     @movies = Movie.all.includes :schedules
-    @seats = Seat.where auditorium_id: session[:auditorium_id]
+    if session[:auditorium_id].nil?
+      @seats = Seat.where auditorium_id: 2
+    else
+      @seats = Seat.where auditorium_id: session[:auditorium_id]
+    end
   end
 
   def filter_auditoria
@@ -15,11 +19,7 @@ class StaticPagesController < ApplicationController
   end
 
   def get_schedules
-    if params[:movie_id].nil? || params[:movie_id].blank?
-      @schedules = Schedule.by_auditorium params[:auditorium_id]
-    else
-      @schedules = Schedule.by_auditorium_and_movie params[:auditorium_id], params[:movie_id]
-    end
+    @schedules = Schedule.by_auditorium_and_movie params[:auditorium_id], params[:movie_id]
     respond_to do |format|
       format.json {render json: {schedules: @schedules}}
     end

@@ -1,9 +1,13 @@
-<div class="seat-map" style="overflow-x:auto;">
+<div class="seat-map">
+  <div class="cinema-screen"></div>
   <%= form_tag booking_seats_path, id: "form-seat", method: :post do %>
     <table class="table" id="seat-map-table">
       <tbody>
         <% ("A".."E").each do |row| %>
-          <tr>
+          <tr class="row-center">
+            <% 8.times.each do |n| %>
+              <td class="hidden-td"></td>
+            <%end %>
             <% @seats.where(row:row).each do |seat| %>
               <td id="<%= seat.id %>" class="<%= booked_seat session[:schedule_id], seat.id %>">
                 <%= check_box_tag "seat_id[]", seat.id %>
@@ -11,18 +15,26 @@
                 <%= hidden_field_tag "user_id", current_user.id %>
               </td>
             <% end %>
+            <% 8.times.each do |n| %>
+              <td class="hidden-td"></td>
+            <%end %>
           </tr>
         <% end %>
         <% ("F".."J").each do |row| %>
           <tr>
+            <% 3.times.each do |n| %>
+              <td class="hidden-td"></td>
+            <%end %>
             <% @seats.where(row:row).each do |seat| %>
               <td class="<%= booked_seat session[:schedule_id], seat.id %>">
                 <%= check_box_tag "seat_id[]", seat.id %>
                 <%= seat.row %><%= seat.number %>
                 <%= hidden_field_tag "user_id", current_user.id %>
-                <%= hidden_field_tag "schedule_id", Schedule.first.id %>
               </td>
             <% end %>
+            <% 3.times.each do |n| %>
+              <td class="hidden-td"></td>
+            <%end %>
           </tr>
         <% end %>
         <% ("K".."L").each do |row| %>
@@ -32,7 +44,6 @@
                 <%= check_box_tag "seat_id[]", seat.id %>
                 <%= seat.row %><%= seat.number %>
                 <%= hidden_field_tag "user_id", current_user.id %>
-                <%= hidden_field_tag "schedule_id", Schedule.first.id %>
               </td>
             <% end %>
           </tr>

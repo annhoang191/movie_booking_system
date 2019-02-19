@@ -1,4 +1,4 @@
-namespace :name_task do
+namespace :db do
   desc "Create seats 400"
   task faker_seats_400: :environment do
     p "Create seat 400"

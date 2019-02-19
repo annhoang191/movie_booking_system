@@ -1,50 +1,66 @@
 <div class="seat-map">
-  <%= form_tag booking_seats_path, method: :post do %>
+  <div class="cinema-screen"></div>
+  <%= form_tag booking_seats_path, id: "form-seat", method: :post do %>
     <table class="table" id="seat-map-table">
       <tbody>
         <% ("A".."E").each do |row| %>
           <tr>
+            <% 8.times.each do |n| %>
+              <td class="hidden-td"></td>
+            <%end %>
             <% @seats.where(row:row).each do |seat| %>
-              <td id="<%= seat.id %>">
+              <td id="<%= seat.id %>" class="<%= booked_seat session[:schedule_id], seat.id %>">
                 <%= check_box_tag "seat_id[]", seat.id %>
                 <%= seat.row %><%= seat.number %>
                 <%= hidden_field_tag "user_id", current_user.id %>
               </td>
             <% end %>
+            <% 8.times.each do |n| %>
+              <td class="hidden-td"></td>
+            <%end %>
           </tr>
         <% end %>
         <% ("F".."K").each do |row| %>
           <tr>
+            <% 7.times.each do |n| %>
+              <td class="hidden-td"></td>
+            <%end %>
             <% @seats.where(row:row).each do |seat| %>
-              <td>
+              <td class="<%= booked_seat session[:schedule_id], seat.id %>">
                 <%= check_box_tag "seat_id[]", seat.id %>
                 <%= seat.row %><%= seat.number %>
                 <%= hidden_field_tag "user_id", current_user.id %>
-                <%= hidden_field_tag "schedule_id", Schedule.first.id %>
               </td>
             <% end %>
+            <% 7.times.each do |n| %>
+              <td class="hidden-td"></td>
+            <%end %>
           </tr>
         <% end %>
         <% ("L".."O").each do |row| %>
           <tr>
+            <% 6.times.each do |n| %>
+              <td class="hidden-td"></td>
+            <%end %>
             <% @seats.where(row:row).each do |seat| %>
-              <td>
+              <td class="<%= booked_seat session[:schedule_id], seat.id %>">
                 <%= check_box_tag "seat_id[]", seat.id %>
                 <%= seat.row %><%= seat.number %>
                 <%= hidden_field_tag "user_id", current_user.id %>
-                <%= hidden_field_tag "schedule_id", Schedule.first.id %>
               </td>
             <% end %>
+            <% 6.times.each do |n| %>
+              <td class="hidden-td"></td>
+            <%end %>
           </tr>
         <% end %>
         <% ("P".."T").each do |row| %>
           <tr>
             <% @seats.where(row:row).each do |seat| %>
-              <td>
+              <td class="<%= booked_seat session[:schedule_id], seat.id %>">
                 <%= check_box_tag "seat_id[]", seat.id %>
                 <%= seat.row %><%= seat.number %>
                 <%= hidden_field_tag "user_id", current_user.id %>
-                <%= hidden_field_tag "schedule_id", Schedule.first.id %>
               </td>
             <% end %>
           </tr>
@@ -52,11 +68,10 @@
         <% ("U".."X").each do |row| %>
           <tr>
             <% @seats.where(row:row).each do |seat| %>
-              <td>
+              <td class="<%= booked_seat session[:schedule_id], seat.id %>">
                 <%= check_box_tag "seat_id[]", seat.id %>
                 <%= seat.row %><%= seat.number %>
                 <%= hidden_field_tag "user_id", current_user.id %>
-                <%= hidden_field_tag "schedule_id", Schedule.first.id %>
               </td>
             <% end %>
           </tr>

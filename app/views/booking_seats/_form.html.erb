@@ -3,9 +3,13 @@
     <div class="row order-content">
       <div class="col-sm-9 col-xs-12 seat_content ph0">
         <h2>Đặt vé</h2>
+        <div class="zoom-button-container">
+          <span id="zoom-in" class="btn btn-default zoom-button button display-none">+ Phóng to</span>
+          <span id="zoom-out" class="btn btn-default zoom-button button display-none">- Thu nhỏ</span>
+        </div>
         <div class="entry-order-content">
           <div id="msform" name="msform">
-            <fieldset>
+            <fieldset class="select-info-movie">
               <div class="wpc-content">
                 <h3>Chọn rạp phim</h3>
                 <%= select_tag :select_cinema,
@@ -17,7 +21,7 @@
                 <%= select_tag :select_movie,
                   options_from_collection_for_select(@movies, :id, :title) %>
                 <h3 class="mt3">Lịch chiếu</h3>
-                <ul class="order-date"></ul>
+                <ul class="order-date"><span>Chưa có lịch chiếu</span></ul>
               </div>
             </fieldset>
             <fieldset class="seat-content">

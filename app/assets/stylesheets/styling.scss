@@ -147,3 +147,29 @@
   color: $white;
   background-color: $jaffa;
 }
+
+#order .order-content .zoom-button {
+  padding: 5px;
+  margin-top: -10%;
+  margin-right: 15%;
+}
+
+.display-none {
+  display: none;
+}
+
+.zoom-button-container {
+  text-align: center;
+}
+
+.logo-image {
+  text-decoration: none;
+  color: $white;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 30px;
+  &:hover {
+    text-decoration: none;
+    color: $white;
+  }
+}
