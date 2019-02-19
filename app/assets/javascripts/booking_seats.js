@@ -18,6 +18,7 @@ $(document).on('turbolinks:load', function() {
   $('#select_auditorium').on('change', function(){
     $('#auditoriump').text($("#select_auditorium option:selected").text());
     $('.order-date').children().remove();
+    $('.order-date span').remove();
     localStorage.setItem('auditorium_id', $(this).val());
     $.ajax({
       url: 'get_schedules',
@@ -26,11 +27,15 @@ $(document).on('turbolinks:load', function() {
     }).done(function(response){
       var schedules = response["schedules"];
       console.log(response['schedules']);
-      for(let i=0; i< schedules.length; i++){
-        let start_time = formatDate(schedules[i]['start_time'])
-        console.log(schedules[i]['id'])
-        $('.order-date').append('<li value=' + schedules[i]['id'] +
-          '><a href="javascript:;"><i><b>' + start_time + '</b></i></a></li>');
+      if(response['schedules'].length === 0 ) {
+        $('.order-date').append('<span>Chưa có lịch chiếu</span>');
+      } else {
+        for(let i=0; i< schedules.length; i++){
+          let start_time = formatDate(schedules[i]['start_time'])
+          console.log(schedules[i]['id'])
+          $('.order-date').append('<li value=' + schedules[i]['id'] +
+            '><a href="javascript:;"><i><b>' + start_time + '</b></i></a></li>');
+        }
       }
     })
     $.ajax({
