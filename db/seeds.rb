@@ -45,4 +45,3 @@ Auditorium.create!(cinema_id: 2,
 Auditorium.create!(cinema_id: 3,
   name: "2D",
   seat_capacity: 200)
-end
