@@ -45,13 +45,13 @@
   <div class="container-fluid pv11 ">
     <div class="row">
       <div class="col-sm-12">
-        <h3 class="heading text-center">Now playing</h3>
+        <h3 class="heading text-center">Phim đang chiếu</h3>
         <div class="ticket-carousel pvt85">
           <div class="swiper-container carousel-container movie-images" data-col="5">
             <div class="swiper-wrapper">
               <% @movies.each do |movie| %>
                 <div class="swiper-slide">
-                  <div class="movie-image" data-bg-image="images/carousel/movie-1.jpg">
+                  <div class="movie-image" data-bg-image="<%= movie.cover ? movie.cover : "images/carousel/movie-1.jpg" %>">
                     <div class="entry-hover">
                       <div class="entry-actions">
                         <a href="#" class="btn-trailers video-player">watch trailer</a>

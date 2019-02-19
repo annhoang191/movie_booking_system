@@ -1,97 +1,3 @@
-(function($) {
-  var price = 13; //price
-  $(document).ready(function() {
-    var $cart = $('#selected-seats'), //Sitting Area
-      $counter = $('#counter'), //Votes
-      $total = $('#total'); //Total money
-    //sold seat
-    // sc.get(['2_9', '2_11', '2_12', '2_13', '2_14', '2_15', '2_10', '3_11', '3_12', '3_13', ]).status('unavailable');
-
-  });
-  //sum total money
-  function recalculateTotal(sc) {
-    var total = 0;
-    sc.find('selected').each(function() {
-      total += price;
-    });
-
-    return total;
-  }
-
-  function doAnimations(elems) {
-    //Cache the animationend event in a variable
-    var animEndEv = 'webkitAnimationEnd animationend';
-
-    elems.each(function() {
-      var $this = $(this),
-        $animationType = $this.data('animation');
-      $this.addClass($animationType).one(animEndEv, function() {
-        $this.removeClass($animationType);
-      });
-    });
-  }
-
-  //Variables on page load
-  var $myCarousel = $('#headerslider'),
-    $firstAnimatingElems = $myCarousel.find('.item').find("[data-animation ^= 'animated']");
-
-  //Initialize carousel
-  $myCarousel.carousel();
-
-  //Animate captions in first slide on page load
-  doAnimations($firstAnimatingElems);
-
-  //Pause carousel
-  $myCarousel.carousel('pause');
-
-
-  //Other slides to be animated on carousel slide event
-  $myCarousel.on('slide.bs.carousel', function(e) {
-    var $animatingElems = $(e.relatedTarget).find("[data-animation ^= 'animated']");
-    doAnimations($animatingElems);
-  });
-  $(window).load(function() {
-    // The slider being synced must be initialized first
-    $('#carousel_coming').flexslider({
-      animation: "slide",
-      controlNav: false,
-      animationLoop: true,
-      slideshow: false,
-      loop: true,
-      centeredSlides: true,
-      itemWidth: 212,
-      itemMargin: 20,
-      asNavFor: '#slider_coming'
-    });
-
-    $('#slider_coming').flexslider({
-      animation: "slide",
-      controlNav: false,
-      slideshow: true,
-      sync: "#carousel_coming"
-    });
-  });
-
-  function wpc_add_img_bg(img_sel, parent_sel) {
-    if (!img_sel) {
-      console.info('no img selector');
-      return false;
-    }
-    var $parent, _this;
-    $(img_sel).each(function() {
-      _this = $(this);
-      $parent = _this.closest(parent_sel);
-      $parent = $parent.length ? $parent : _this.parent();
-      $parent.css('background-image', 'url(' + this.src + ')');
-      _this.hide();
-    });
-  }
-  $(window).load(function() {
-    wpc_add_img_bg('.featured-image img', '.featured-image');
-    wpc_add_img_bg('.thumb_item .wpc_img', '.thumb_item');
-  });
-})(jQuery);
-
 $(document).on('turbolinks:load', function() {
   $(window).load(function() {
     // Animate loader off screen
@@ -377,4 +283,82 @@ $(document).on('turbolinks:load', function() {
   $('.close-window').on('click', function() {
     $.magnificPopup.close();
   });
+
+  function doAnimations(elems) {
+    //Cache the animationend event in a variable
+    var animEndEv = 'webkitAnimationEnd animationend';
+
+    elems.each(function() {
+      var $this = $(this),
+        $animationType = $this.data('animation');
+      $this.addClass($animationType).one(animEndEv, function() {
+        $this.removeClass($animationType);
+      });
+    });
+  }
+
+  //Variables on page load
+  var $myCarousel = $('#headerslider'),
+    $firstAnimatingElems = $myCarousel.find('.item').find("[data-animation ^= 'animated']");
+
+  //Initialize carousel
+  $myCarousel.carousel();
+
+  //Animate captions in first slide on page load
+  doAnimations($firstAnimatingElems);
+
+  //Pause carousel
+  $myCarousel.carousel('pause');
+
+
+  //Other slides to be animated on carousel slide event
+  $myCarousel.on('slide.bs.carousel', function(e) {
+    var $animatingElems = $(e.relatedTarget).find("[data-animation ^= 'animated']");
+    doAnimations($animatingElems);
+  });
+  $(window).load(function() {
+    // The slider being synced must be initialized first
+    $('#carousel_coming').flexslider({
+      animation: "slide",
+      controlNav: false,
+      animationLoop: true,
+      slideshow: false,
+      loop: true,
+      centeredSlides: true,
+      itemWidth: 212,
+      itemMargin: 20,
+      asNavFor: '#slider_coming'
+    });
+
+    $('#slider_coming').flexslider({
+      animation: "slide",
+      controlNav: false,
+      slideshow: true,
+      sync: "#carousel_coming"
+    });
+  });
+
+  function wpc_add_img_bg(img_sel, parent_sel) {
+    if (!img_sel) {
+      console.info('no img selector');
+      return false;
+    }
+    var $parent, _this;
+    $(img_sel).each(function() {
+      _this = $(this);
+      $parent = _this.closest(parent_sel);
+      $parent = $parent.length ? $parent : _this.parent();
+      $parent.css('background-image', 'url(' + this.src + ')');
+      _this.hide();
+    });
+  }
+  $(window).load(function() {
+    wpc_add_img_bg('.featured-image img', '.featured-image');
+    wpc_add_img_bg('.thumb_item .wpc_img', '.thumb_item');
+  });
+
+  if(window.location.href.includes('sign_up') ||
+    window.location.href.includes('sign_in')){
+    $('#header').css('background-color', 'black');
+  }
 });
