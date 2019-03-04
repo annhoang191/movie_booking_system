@@ -49,6 +49,9 @@
     line-height: 50px;
     height: 50px;
     z-index: 100;
+    .logo-image:hover {
+      text-decoration: none;
+    }
   }
   header#header .button_container {
     position: absolute;

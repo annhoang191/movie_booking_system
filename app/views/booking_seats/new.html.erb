@@ -1,0 +1,70 @@
+<div id="booking-div">
+  <div class="container">
+    <% if @movie.cinemas.blank?  %>
+      <h3 class="text-center">Chưa có thông tin chiếu</h3>
+    <% else %>
+      <div class="row order-content">
+      <h3 class="text-center">Phim <strong><%= @movie.title %></strong></h3>
+      <div class="col-sm-9 col-xs-12 seat_content ph0">
+        <div class="zoom-button-container">
+          <span id="zoom-in" class="btn btn-default zoom-button button display-none">+ Phóng to</span>
+          <span id="zoom-out" class="btn btn-default zoom-button button display-none">- Thu nhỏ</span>
+        </div>
+        <div class="entry-order-content">
+          <div id="msform" name="msform">
+            <fieldset class="select-info-movie">
+              <div class="wpc-content info-movie">
+                <h3>Chọn rạp phim</h3>
+                <%= select_tag :select_cinema_booking,
+                  options_from_collection_for_select(@cinemas, :id, :name) %>
+                <h3 class="mt3">Chọn phòng chiếu</h3>
+                <%= select_tag :select_auditorium_booking,
+                  options_from_collection_for_select(Cinema.first.auditoria, :id, :name) %>
+                <h3 class="mt3">Lịch chiếu</h3>
+                <ul class="order-date">
+                  <% @movie.schedules.each do |schedule| %>
+                    <li class="time-list"><a><i>
+                      <%= schedule.start_time.strftime("%Y/%m/%d %H:%M:%S") %>
+                    </i></a></li>
+                  <% end %>
+                </ul>
+              </div>
+            </fieldset>
+            <fieldset class="seat-content display-none">
+              <div class="wpc-content">
+                <% if @seats.size == 200 %>
+                  <%= render "booking_seats/seat_map" %>
+                <% elsif @seats.size == 300 %>
+                  <%= render "booking_seats/seat_map_300" %>
+                <% else %>
+                  <%= render "booking_seats/seat_map_400" %>
+                <% end %>
+                <div id="legend"></div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-2 col-xs-12 order_sidebar ph0">
+        <h2>Thông tin vé</h2>
+        <div class="order-details">
+          <span> Rạp phim:</span>
+          <p id="locationp">CGV</p>
+          <span> Phòng chiếu:</span>
+          <p id="auditoriump"></p>
+          <span> Phim:</span>
+          <p><%= @movie.title %></p>
+          <span>Giờ chiếu:</span>
+          <p id="timep"></p>
+          <span>Ghế: </span>
+          <ul id="selected-seats"></ul>
+          <div>Số lượng vé: <span id="counter">0</span></div>
+          <div>
+            <button id="submit-booking-movie">Đặt vé</button>
+          </div>
+        </div>
+      </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -23,7 +23,7 @@ gem "figaro"
 gem "toastr-rails"
 gem "simple_form"
 gem "activerecord-import"
-
+gem "kaminari"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
