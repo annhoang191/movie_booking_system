@@ -26,7 +26,6 @@ $(document).on('turbolinks:load', function() {
       data: {auditorium_id: $(this).val()}
     }).done(function(response){
       var schedules = response["schedules"];
-      console.log(response['schedules']);
       if(response['schedules'].length === 0 ) {
         $('.order-date').append('<span>Chưa có lịch chiếu</span>');
       } else {
@@ -45,7 +44,6 @@ $(document).on('turbolinks:load', function() {
     }).done(function(){
       console.log('sent');
     })
-
   })
 
   $('#msform').on('click', '.order-date a', function(){
@@ -149,6 +147,70 @@ $(document).on('turbolinks:load', function() {
       }
     }
   });
+
+  $('#select_cinema_booking').on('change', function(){
+    $('#locationp').text($("#select_cinema_booking option:selected").text());
+    $.ajax({
+      url: '/filter_auditoria',
+      type: "GET",
+      data: {cinema_id: $(this).val()}
+    }).done(function(response){
+      var auditoria = response["auditoria"];
+      $('#select_auditorium_booking').children().remove();
+      for(var i=0; i< auditoria.length; i++){
+        $("#select_auditorium_booking").append('<option value="' + auditoria[i]["id"] + '">' + auditoria[i]["name"] + '</option>');
+      }
+    })
+  });
+
+  $('#select_auditorium_booking').on('change', function(){
+    $('#auditoriump').text($("#select_auditorium_booking option:selected").text());
+    $('.order-date').children().remove();
+    $('.order-date span').remove();
+    localStorage.setItem('auditorium_id', $(this).val());
+    $.ajax({
+      url: '/get_schedules',
+      type: "GET",
+      data: {auditorium_id: $(this).val(),
+        movie_id: window.location.href.split('=')[1]}
+    }).done(function(response){
+      var schedules = response["schedules"];
+      if(response['schedules'].length === 0 ) {
+        $('.order-date').append('<span>Chưa có lịch chiếu</span>');
+      } else {
+        for(let i=0; i< schedules.length; i++){
+          let start_time = formatDate(schedules[i]['start_time'])
+          $('.order-date').append('<li value=' + schedules[i]['id'] +
+            '><a href="javascript:;"><i><b>' + start_time + '</b></i></a></li>');
+        }
+      }
+    })
+    $.ajax({
+      url: '/get_auditorium_id_from_client',
+      type: "POST",
+      data: {auditorium_id: localStorage.getItem('auditorium_id')}
+    }).done(function(){
+      console.log('sent');
+    })
+  })
+
+  $('#msform').on('click', '.order-date a', function(){
+    $('.select-info-movie').addClass('display-none');
+    localStorage.setItem('schedule_id', $(this).parent().val());
+    $('#timep').text($(this).text());
+    $('.zoom-button').removeClass('display-none');
+    $.ajax({
+      url: '/get_schedule_id_from_client',
+      type: "POST",
+      data: {schedule_id: localStorage.getItem('schedule_id')}
+    }).done(function(){
+      console.log('sent');
+    })
+  })
+
+  $('#submit-booking-movie').click(function(){
+    $('#form-seat').submit();
+  })
 });
 
 function formatDate(d) {

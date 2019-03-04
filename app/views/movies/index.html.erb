@@ -1,0 +1,38 @@
+<div class="section-content">
+  <div class="fullscreen-section bg-black pvb0">
+    <div class="container wpc-boxoffice pv8">
+      <div class="row">
+        <div class="col-sm-12 col-xs-12">
+          <h3>Tất cả phim</h3>
+          <ul class="wpc-box-list">
+            <% @movies.each_with_index do |movie, index| %>
+              <li class="wpc-box-item" >
+                <ol>
+                  <li class="bx-item-t">
+                    <%= image_tag movie.cover, class: "movie-thumb" if movie.cover %>
+                  </li>
+                  <li class="bx-item-c"><%= index + 1 %></li>
+                  <li class="bx-item-title">
+                    <h4><%= movie.title %></h4>
+                    <span></span>
+                    <span><%= movie.genre.join(', ')%></span>
+                  </li>
+                  <li class="bx-item-d"><%= movie.duration %> GIỜ</li>
+                  <li class="bx-item-m">
+                    <%= button_to "Đặt Vé", new_booking_seat_path, class: "book-ticket-movie",
+                      method: :get, params: {movie_id: movie.id} %>
+                  </li>
+                </ol>
+              </li>
+            <% end %>
+          </ul>
+          <%= paginate @movies %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% if user_signed_in? %>
+  <%= render "booking_seats/form" %>
+<% end %>

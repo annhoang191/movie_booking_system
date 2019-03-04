@@ -1,22 +1,25 @@
 <header id="header" class="menu-top-left">
   <div class="container">
     <div class="row">
-      <div class="col-md-6 col-sm-6 col-xs-4">
+      <div class="col-md-6 col-sm-6 col-xs-6">
         <%= link_to root_path, class: "logo-image" do %>
           Movie booking
         <% end %>
       </div>
-      <div class="col-md-4 col-md-offset-2 col-sm-6 col-xs-8 phl0">
+      <div class="col-md-5 col-sm-5 col-xs-5 phl0">
         <div class="header_ticket">
+          <%= link_to "Danh sách phim", movies_path %>
           <% if user_signed_in? %>
-            <%= link_to current_user.name, "#" %>
             <a href="#order" class="order_btn">Đặt vé</a>
+            <%= link_to current_user.name, "#" %>
             <%= link_to t(".log_out"), destroy_user_session_path, method: :delete %>
           <% else %>
             <%= link_to t(".sign_up"), new_user_registration_path %>
             <%= link_to t(".log_in"), new_user_session_path %>
           <% end %>
         </div>
+      </div>
+      <div class="col-md-1 col-sm-1 col-xs-1 phl0">
         <div class="button_container" id="toggle">
           <span class="top"></span>
           <span class="middle"></span>

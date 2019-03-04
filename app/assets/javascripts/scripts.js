@@ -358,7 +358,8 @@ $(document).on('turbolinks:load', function() {
   });
 
   if(window.location.href.includes('sign_up') ||
-    window.location.href.includes('sign_in')){
+    window.location.href.includes('sign_in') ||
+    window.location.href.includes('booking_seat')) {
     $('#header').css('background-color', 'black');
   }
 });

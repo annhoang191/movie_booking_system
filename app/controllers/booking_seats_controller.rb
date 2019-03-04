@@ -1,5 +1,17 @@
 class BookingSeatsController < ApplicationController
   before_action :authenticate_user!
+  before_action :load_movie
+
+  def new
+    @cinemas = @movie.cinemas.includes(:auditoria).uniq
+    @auditoria = Auditorium.all.includes :schedules
+    @movies = Movie.all.includes :schedules
+    if session[:auditorium_id].nil?
+      @seats = Seat.where auditorium_id: 2
+    else
+      @seats = Seat.where auditorium_id: session[:auditorium_id]
+    end
+  end
 
   def create
     reservations = []
@@ -25,6 +37,10 @@ class BookingSeatsController < ApplicationController
   end
 
   private
+
+  def load_movie
+    @movie = Movie.find_by id: params[:movie_id]
+  end
 
   def seat_params
     params.permit :user_id

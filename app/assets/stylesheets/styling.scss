@@ -173,3 +173,94 @@
     color: $white;
   }
 }
+
+.movie-thumb {
+  max-width: 58px;
+  max-height: 87px;
+}
+
+.button_container {
+  margin-top: 15%;
+}
+
+input.book-ticket-movie[type=button],
+input.book-ticket-movie[type=submit] {
+  border: none;
+  margin-top: -8%;
+}
+
+#booking-div {
+  margin-top: 6%;
+  margin-bottom: 3%;
+  h3 {
+    text-transform: uppercase;
+  }
+  .order_sidebar {
+    padding-left: 1% !important;
+  }
+  .order-content .entry-order-content #msform {
+    select {
+      background: transparent;
+      width: 265px;
+      padding: 5px 15px;
+      font-size: 14px;
+      font-style: italic;
+      border: 1px solid #999;
+      height: 40px;
+      border-radius: 0;
+      color: #000;
+      font-weight: 400;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+    fieldset .wpc-content .order-date {
+      list-style-type: none;
+      padding-left: 0;
+      display: inline-block;
+      li a i {
+        padding: 5px 10px;
+        font-size: 12px;
+        color: #000;
+        font-family: 'Open Sans';
+        font-weight: 400;
+        border-radius: 15px;
+        border: 1px solid #000;
+        -webkit-transition: all 0.25s ease;
+        -moz-transition: all 0.25s ease;
+        transition: all 0.25s ease;
+      }
+    }
+  }
+
+  #selected-seats {
+    overflow-y: auto;
+    overflow-x: auto;
+    width: 100%;
+    li {
+      display: inline !important;
+      float: left;
+      width: 72px;
+      height: 26px;
+      line-height: 26px;
+      border: 1px solid #d3d3d3;
+      list-style-type: none;
+      background: #f7f7f7;
+      margin: 6px;
+      font-size: 14px;
+      font-weight: bold;
+      text-align: center;
+    }
+  }
+
+  #submit-booking-movie {
+    color: $white;
+    background-color: $jaffa;
+  }
+  .zoom-button {
+    color: black;
+  }
+  .zoom-button-container {
+    margin-bottom: 2%;
+  }
+}
