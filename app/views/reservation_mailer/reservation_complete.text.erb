@@ -1,0 +1,8 @@
+Xin chào <%= @user.name %>!
+======================================
+Bạn đã đặt vé thành công cho bộ phim <%= @schedule.movie.title %> vào lúc: <%= @schedule.start_time.strftime("%H:%M:%S %d/%m/%Y")%>.
+Số lượng ghế đã đặt: <%= @reservations.size %>ghế. Gồm những ghế:
+<% @seats.each do |seat| %>
+  <li><%= seat.row%><%= seat.number%></li>
+=======================================
+<% end %>

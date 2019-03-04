@@ -22,6 +22,7 @@ class BookingSeatsController < ApplicationController
       end
 
       if Reservation.import! reservations
+        ReservationMailer.reservation_complete(current_user, reservations).deliver_now
         redirect_to root_path
         flash[:success] = t ".create_success"
       else
