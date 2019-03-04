@@ -264,3 +264,20 @@ input.book-ticket-movie[type=submit] {
     margin-bottom: 2%;
   }
 }
+.movie-detail {
+  background-color: black;
+  .movie-cover-detail {
+    max-width: 329px;
+    max-height: 486px;
+  }
+  .subtitle {
+    text-transform: uppercase;
+  }
+}
+
+.link-no-decoration {
+  color: white;
+  &:hover {
+    text-decoration: none;
+  }
+}

@@ -1,0 +1,40 @@
+<div class="section-content pvb0 bg-cover movie-detail">
+  <div class="container pvt80">
+    <div class="row">
+      <div class="col-md-12">
+        <div id="slider_coming" class="flexslider">
+          <ul class="slides">
+            <li>
+              <article class="product-item hover-dark">
+                <div class="entry-title">
+                  <ul class="subtitle">
+                    <% @movie.genre.each do |genre| %>
+                      <li><%= genre %></li>
+                    <% end %>
+                  </ul>
+                  <a href="javascript:;" class="title"><%= @movie.title %></a>
+                  <div class="entry-date"><span><%= @movie.duration %> GIỜ</span></div>
+                </div>
+                <div class="entry-desc">
+                  <div class="row mh0">
+                    <div class="col-md-4 col-sm-3 col-xs-12 comming_movie ph0">
+                      <%= image_tag @movie.cover, class: "movie-cover-detail" if  @movie.cover %>
+                    </div>
+                    <div class="col-md-8 col-sm-7 col-xs-12 entry-text phl3">
+                      <h3>Nội dung</h3>
+                      <p><%= @movie.description %></p>
+                      <%= button_to new_booking_seat_path, class: "btn order",
+                        method: :get, params: {movie_id: @movie.id} do %>
+                        Đặt Vé
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
