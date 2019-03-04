@@ -9,4 +9,8 @@ class MoviesController < ApplicationController
       @seats = Seat.where auditorium_id: session[:auditorium_id]
     end
   end
+
+  def show
+    @movie = Movie.find_by id: params[:id]
+  end
 end

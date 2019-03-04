@@ -318,24 +318,6 @@ $(document).on('turbolinks:load', function() {
   });
   $(window).load(function() {
     // The slider being synced must be initialized first
-    $('#carousel_coming').flexslider({
-      animation: "slide",
-      controlNav: false,
-      animationLoop: true,
-      slideshow: false,
-      loop: true,
-      centeredSlides: true,
-      itemWidth: 212,
-      itemMargin: 20,
-      asNavFor: '#slider_coming'
-    });
-
-    $('#slider_coming').flexslider({
-      animation: "slide",
-      controlNav: false,
-      slideshow: true,
-      sync: "#carousel_coming"
-    });
   });
 
   function wpc_add_img_bg(img_sel, parent_sel) {
@@ -359,7 +341,8 @@ $(document).on('turbolinks:load', function() {
 
   if(window.location.href.includes('sign_up') ||
     window.location.href.includes('sign_in') ||
-    window.location.href.includes('booking_seat')) {
+    window.location.href.includes('booking_seat') ||
+    window.location.href.includes('movies')) {
     $('#header').css('background-color', 'black');
   }
 });

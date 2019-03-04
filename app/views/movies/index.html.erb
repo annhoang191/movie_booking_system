@@ -9,11 +9,11 @@
               <li class="wpc-box-item" >
                 <ol>
                   <li class="bx-item-t">
-                    <%= image_tag movie.cover, class: "movie-thumb" if movie.cover %>
+                    <%= link_to image_tag(movie.cover, class: "movie-thumb"), movie_path(movie) if movie.cover%>
                   </li>
                   <li class="bx-item-c"><%= index + 1 %></li>
                   <li class="bx-item-title">
-                    <h4><%= movie.title %></h4>
+                    <h4><%= link_to movie.title, movie_path(movie), class: "link-no-decoration" %></h4>
                     <span></span>
                     <span><%= movie.genre.join(', ')%></span>
                   </li>
