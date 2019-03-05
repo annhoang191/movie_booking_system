@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <style type="text/css">
+      @media only screen and (max-width: 550px), screen and (max-device-width: 550px) {
+          body[yahoo] .buttonwrapper { background-color: transparent !important; }
+          body[yahoo] .button { padding: 0 !important; }
+          body[yahoo] .button a { background-color: #46b7bf; padding: 15px 25px !important; }
+      }
+      @media only screen and (min-device-width: 601px) {
+          .content { width: 600px !important; }
+          .col387 { width: 387px !important; }
+      }
+    </style>
+  </head>
+  <body bgcolor="#3b3f40" style="margin: 0; padding: 0;" yahoo="fix">
+    <!--[if (gte mso 9)|(IE)]>
+    <table width="600" align="center" cellpadding="0" cellspacing="0" border="0">
+      <tr>
+        <td>
+    <![endif]-->
+    <table align="center" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 100%; max-width: 600px;" class="content">
+      <tr><br></tr>
+      <tr>
+        <td align="center" bgcolor="#46b7bf" style="padding: 20px 20px 20px 20px; color: #ffffff; font-family: Arial, sans-serif; font-size: 36px; font-weight: bold;">
+          <img src="http://www.myiconfinder.com/uploads/iconsets/256-256-9ea4d43475dc0e77aab3c6152086b5ed.png" alt="Ticket Logo"style="display:block;" />
+        </td>
+      </tr>
+      <tr>
+        <td align="center" bgcolor="#ffffff" style="padding: 40px 20px 40px 20px; color: #555555; font-family: Arial, sans-serif; font-size: 20px; line-height: 30px; border-bottom: 1px solid #f6f6f6;">
+          Xin chào <%= @user.name %>!
+        </td>
+      </tr>
+      <tr>
+        <td align="center" bgcolor="#ffffff" style="padding: 40px 20px 40px 20px; color: #555555; font-family: Arial, sans-serif; font-size: 20px; line-height: 30px; border-bottom: 1px solid #f6f6f6;">
+          Bạn đã đặt vé thành công. Thông tin vé như sau:
+        </td>
+      </tr>
+      <tr>
+        <td bgcolor="#ffffff" style="padding: 40px 20px 40px 20px; color: #555555; font-family: Arial, sans-serif; font-size: 20px; line-height: 30px; border-bottom: 1px solid #f6f6f6;">
+          <p>Phim: <strong><%= @schedule.movie.title %></strong></p>
+          <p>Suất chiếu: <strong><%= @schedule.start_time.strftime("%H:%M:%S - %d/%m/%Y")%></strong><p>
+          <p>Rạp: <strong><%= @schedule.auditorium.cinema.name %></strong></p>
+          <p>Địa chỉ: <strong><%= @schedule.auditorium.cinema.address %></strong></p>
+          <p>Phòng chiếu: <strong><%= @schedule.auditorium.name %></strong></p>
+          <p>Số lượng ghế đã đặt: <%= @reservations.size %> ghế. Gồm những ghế:</p>
+          <ul style="list-style-type: none;">
+            <% @seats.each do |seat| %>
+              <li><%= seat.row%><%= seat.number%></li>
+            <% end %>
+          </ul>
+          <br/>
+        </td>
+      </tr>
+      <tr>
+        <td align="center" bgcolor="#dddddd" style="padding: 15px 10px 15px 10px; color: #555555; font-family: Arial, sans-serif; font-size: 12px; line-height: 18px;">
+          <b>Đặt vé online</b><br/>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
