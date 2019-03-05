@@ -31,7 +31,7 @@ group :development, :test do
   gem "cucumber-rails", require: false
   gem "shoulda-matchers", git: "https://github.com/thoughtbot/shoulda-matchers.git",
     branch: "rails-5"
-  gem "factory_bot_rails"
+  gem "factory_bot_rails", require: false
 end
 
 group :development do
